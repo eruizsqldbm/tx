@@ -1,0 +1,73 @@
+name: stg_REGION
+color: '#FC7917'
+isSource: false
+columns:
+  - name: R_REGIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: e200d143-e667-4b43-a8ed-fd4180044060
+  - name: R_NAME
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 3177afc5-e04a-4e0c-b8b3-1f1058a84560
+  - name: R_COMMENT
+    allowNulls: true
+    dataType: varchar(152)
+    defaultValue: ''
+    description: ''
+    id: f6a3a3f1-58bc-48eb-9825-6b2dfcf7c47c
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 4170bdb5-1dea-4cc4-bd39-9d8359daa56d
+logic: |-
+  with "REGION" as (
+      SELECT
+          "R_REGIONKEY",
+          "R_NAME",
+          "R_COMMENT"
+      FROM {{ref('RAW', 'REGION')}}
+  )
+  , 
+  common as (
+      SELECT
+          "REGION"."R_REGIONKEY",
+          "REGION"."R_NAME",
+          "REGION"."R_COMMENT",
+          current_date() AS "__load_date"
+      FROM "REGION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: REGION dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: fdc2be96-4117-4a1e-8f1f-b27a49b22f23
+nodeFormat: dynamic
+parentName: STAGING
+references:
+  ed6909c8-7dd3-42c4-a32c-b5af4085358e:
+    parentTableId: a22bed9e-f55d-4a9b-8b05-5e3f1fabb390
+    id: ed6909c8-7dd3-42c4-a32c-b5af4085358e

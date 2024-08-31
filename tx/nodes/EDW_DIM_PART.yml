@@ -1,0 +1,145 @@
+name: DIM_PART
+color: '#E53E3E'
+isSource: false
+columns:
+  - name: pk_load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 57990e11-3ef2-4eb1-8016-2a290a33c67b
+  - name: P_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 7e56a5e2-d2df-4c29-87eb-ea428ffdff41
+  - name: P_NAME
+    allowNulls: true
+    dataType: varchar(55)
+    defaultValue: ''
+    description: ''
+    id: b87a6a9e-82bd-4ed1-9f48-fc436456ecaf
+  - name: P_MFGR
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 58a8a965-a49f-44de-80c9-661bfaf73dfc
+  - name: P_BRAND
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: 993b59ed-9b50-4c97-b869-29e7ba827064
+  - name: P_TYPE
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 9b24b8c3-a581-41ed-8c48-9f8ad01794a5
+  - name: P_SIZE
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: a7cc9426-dfc1-47bf-bed6-0b7d0e71b771
+  - name: P_CONTAINER
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: ff2b4ae3-6bb9-412c-93d4-6e7ac59bebf7
+  - name: P_RETAILPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 5af67aeb-efa9-48fd-b23b-3041d20a6195
+  - name: P_COMMENT
+    allowNulls: true
+    dataType: varchar(23)
+    defaultValue: ''
+    description: ''
+    id: 6f2f9226-7237-48a0-bc21-534a24437ec0
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 5ee5723d-609f-4210-951a-203677d3cee5
+  - name: load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: a1717fed-1b06-47c8-840e-d9c4fedd696b
+logic: |-
+  with "stg_PART" as (
+      SELECT
+          "P_PARTKEY",
+          "P_NAME",
+          "P_MFGR",
+          "P_BRAND",
+          "P_TYPE",
+          "P_SIZE",
+          "P_CONTAINER",
+          "P_RETAILPRICE",
+          "P_COMMENT",
+          "__load_date"
+      FROM {{ref('STAGING', 'stg_PART')}}
+  )
+  , 
+  common as (
+      SELECT
+          current_date() AS "pk_load_date",
+          "stg_PART"."P_PARTKEY",
+          "stg_PART"."P_NAME",
+          "stg_PART"."P_MFGR",
+          "stg_PART"."P_BRAND",
+          "stg_PART"."P_TYPE",
+          "stg_PART"."P_SIZE",
+          "stg_PART"."P_CONTAINER",
+          "stg_PART"."P_RETAILPRICE",
+          "stg_PART"."P_COMMENT",
+          "stg_PART"."__load_date",
+          current_date() AS "load_date"
+      FROM "stg_PART"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PART dimension dimension
+columnSets:
+  - itemName: PK
+    setName: PK_DIM_stg_PART
+    columns:
+      - columnId: 57990e11-3ef2-4eb1-8016-2a290a33c67b
+        position: 1
+        name: pk_load_date
+    id: bb1e6db9-bfd3-409b-a78b-8e0ef2a29c3e
+templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
+materialization: table
+storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+id: 7a948044-81ea-4611-ba01-e0eb5e826ff4
+nodeFormat: dynamic
+parentName: EDW
+references:
+  cadb5887-b747-4672-9674-86355e876fef:
+    parentTableId: e9c03667-32bc-46c2-87e4-a5f2508353f4
+    id: cadb5887-b747-4672-9674-86355e876fef

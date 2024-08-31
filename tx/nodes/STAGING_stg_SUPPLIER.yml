@@ -1,0 +1,105 @@
+name: stg_SUPPLIER
+color: '#FC7917'
+isSource: false
+columns:
+  - name: S_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 315a1df2-643d-47a0-aa8d-2a56a9af4c34
+  - name: S_NAME
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: dc283a7b-215e-4cea-b6fc-d7f3e643931a
+  - name: S_ADDRESS
+    allowNulls: true
+    dataType: varchar(40)
+    defaultValue: ''
+    description: ''
+    id: 188729db-dc1c-4b47-960c-f0ea8987179a
+  - name: S_NATIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 828166a8-b642-40b2-baab-c4bf917f9ccc
+  - name: S_PHONE
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: c6442ac9-ddd9-4afc-bba3-6a9dce068d54
+  - name: S_ACCTBAL
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: f3e3c181-7b6a-4465-8a1a-24cbe09598e5
+  - name: S_COMMENT
+    allowNulls: true
+    dataType: varchar(101)
+    defaultValue: ''
+    description: ''
+    id: 218da7d7-2707-4761-bee7-5a4d65ffc1f4
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 254561e9-7434-43a3-8c3a-23f1cf80c4de
+logic: |-
+  with "SUPPLIER" as (
+      SELECT
+          "S_SUPPKEY",
+          "S_NAME",
+          "S_ADDRESS",
+          "S_NATIONKEY",
+          "S_PHONE",
+          "S_ACCTBAL",
+          "S_COMMENT"
+      FROM {{ref('RAW', 'SUPPLIER')}}
+  )
+  , 
+  common as (
+      SELECT
+          "SUPPLIER"."S_SUPPKEY",
+          "SUPPLIER"."S_NAME",
+          "SUPPLIER"."S_ADDRESS",
+          "SUPPLIER"."S_NATIONKEY",
+          "SUPPLIER"."S_PHONE",
+          "SUPPLIER"."S_ACCTBAL",
+          "SUPPLIER"."S_COMMENT",
+          current_date() AS "__load_date"
+      FROM "SUPPLIER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: SUPPLIER dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 5fcf49a3-1e68-43d3-9433-a98a2555a8a7
+nodeFormat: dynamic
+parentName: STAGING
+references:
+  eb65f16c-4acd-4577-bfff-4e97438b55c0:
+    parentTableId: 884bcdee-3f4a-426a-9f6e-a5e18fc709ef
+    id: eb65f16c-4acd-4577-bfff-4e97438b55c0

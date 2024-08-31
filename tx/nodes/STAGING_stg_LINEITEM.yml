@@ -1,0 +1,177 @@
+name: stg_LINEITEM
+color: '#FC7917'
+isSource: false
+columns:
+  - name: L_ORDERKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: b98d52d7-3852-4cdd-85cb-3533b34132fb
+  - name: L_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: f7b1a609-837c-4704-a6fb-3df40337836d
+  - name: L_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: d41eca9e-2038-4b15-a9ae-c749a08660bc
+  - name: L_LINENUMBER
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 314d9bbf-cb20-4a61-9d69-ee2522104adf
+  - name: L_QUANTITY
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 541ba4b1-421e-4ded-ab10-d13b23dcada0
+  - name: L_EXTENDEDPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: a54ebc9c-e7b8-459e-b44c-4bd35611cf8f
+  - name: L_DISCOUNT
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: a410d1b8-023d-48e0-a4ed-d075b3a4e674
+  - name: L_TAX
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 633b17a4-8245-4dae-8bbd-bfb5c03a8aee
+  - name: L_RETURNFLAG
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 4ce6dc42-e4ba-43cc-b3e0-237fd1bffd2c
+  - name: L_LINESTATUS
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 67b252e9-19bd-49e6-add8-9e6e75384aa6
+  - name: L_SHIPDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: f8843afa-f1ac-4687-a6f8-cad47d5d5c80
+  - name: L_COMMITDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: e1bf9cc0-cf72-4358-b1b4-4fc446bf8bad
+  - name: L_RECEIPTDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: 79787a05-6814-480d-a743-547a94471d5b
+  - name: L_SHIPINSTRUCT
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 7da364c6-2adf-4cf5-a264-5dc0ce035293
+  - name: L_SHIPMODE
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: 730d8f75-477a-4dfc-acde-d1f57af0d6ab
+  - name: L_COMMENT
+    allowNulls: true
+    dataType: varchar(44)
+    defaultValue: ''
+    description: ''
+    id: 024cde2f-660b-4f56-811c-d42a2c949ee2
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 95585ac9-07cd-4eee-94fd-6be5b465b314
+logic: |-
+  with "LINEITEM" as (
+      SELECT
+          "L_ORDERKEY",
+          "L_PARTKEY",
+          "L_SUPPKEY",
+          "L_LINENUMBER",
+          "L_QUANTITY",
+          "L_EXTENDEDPRICE",
+          "L_DISCOUNT",
+          "L_TAX",
+          "L_RETURNFLAG",
+          "L_LINESTATUS",
+          "L_SHIPDATE",
+          "L_COMMITDATE",
+          "L_RECEIPTDATE",
+          "L_SHIPINSTRUCT",
+          "L_SHIPMODE",
+          "L_COMMENT"
+      FROM {{ref('RAW', 'LINEITEM')}}
+  )
+  , 
+  common as (
+      SELECT
+          "LINEITEM"."L_ORDERKEY",
+          "LINEITEM"."L_PARTKEY",
+          "LINEITEM"."L_SUPPKEY",
+          "LINEITEM"."L_LINENUMBER",
+          "LINEITEM"."L_QUANTITY",
+          "LINEITEM"."L_EXTENDEDPRICE",
+          "LINEITEM"."L_DISCOUNT",
+          "LINEITEM"."L_TAX",
+          "LINEITEM"."L_RETURNFLAG",
+          "LINEITEM"."L_LINESTATUS",
+          "LINEITEM"."L_SHIPDATE",
+          "LINEITEM"."L_COMMITDATE",
+          "LINEITEM"."L_RECEIPTDATE",
+          "LINEITEM"."L_SHIPINSTRUCT",
+          "LINEITEM"."L_SHIPMODE",
+          "LINEITEM"."L_COMMENT",
+          current_date() AS "__load_date"
+      FROM "LINEITEM"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: LINEITEM dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 256d1c86-7d46-4ebf-9595-9015c6806c8d
+nodeFormat: dynamic
+parentName: STAGING
+references:
+  cfec6616-6e96-4434-a9db-4b6be20c4c8f:
+    parentTableId: ddeb77cf-0a7b-4409-9cdb-f8d97f353294
+    id: cfec6616-6e96-4434-a9db-4b6be20c4c8f

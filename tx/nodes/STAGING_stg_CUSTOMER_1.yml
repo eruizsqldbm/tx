@@ -1,0 +1,113 @@
+name: stg_CUSTOMER_1
+color: '#FC7917'
+isSource: false
+columns:
+  - name: C_CUSTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: d9852d8a-ede9-466b-a546-23e1b17272d2
+  - name: C_NAME
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: eba1cae2-ea2d-45a6-b03c-4fdd34353b7b
+  - name: C_ADDRESS
+    allowNulls: true
+    dataType: varchar(40)
+    defaultValue: ''
+    description: ''
+    id: 382d353c-290b-4cdf-87fb-14b41b619f23
+  - name: C_NATIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: f2d78a7f-eac5-4952-82b4-ffedde6264b2
+  - name: C_PHONE
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: 53b42f75-b588-4615-b118-78b5d2b8b1ae
+  - name: C_ACCTBAL
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 87ccfc3f-51e3-4710-921c-85cbe9907f3e
+  - name: C_MKTSEGMENT
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: 673a0451-6fde-465b-ad06-1547b0a6d57c
+  - name: C_COMMENT
+    allowNulls: true
+    dataType: varchar(117)
+    defaultValue: ''
+    description: ''
+    id: 82122f00-a604-43f3-8373-ef85247c7fb5
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 7746d764-6125-4d98-96b5-f3c9aca0a6eb
+logic: |-
+  with "CUSTOMER" as (
+      SELECT
+          "C_CUSTKEY",
+          "C_NAME",
+          "C_ADDRESS",
+          "C_NATIONKEY",
+          "C_PHONE",
+          "C_ACCTBAL",
+          "C_MKTSEGMENT",
+          "C_COMMENT"
+      FROM {{ref('RAW', 'CUSTOMER')}}
+  )
+  , 
+  common as (
+      SELECT
+          "CUSTOMER"."C_CUSTKEY",
+          "CUSTOMER"."C_NAME",
+          "CUSTOMER"."C_ADDRESS",
+          "CUSTOMER"."C_NATIONKEY",
+          "CUSTOMER"."C_PHONE",
+          "CUSTOMER"."C_ACCTBAL",
+          "CUSTOMER"."C_MKTSEGMENT",
+          "CUSTOMER"."C_COMMENT",
+          current_date() AS "__load_date"
+      FROM "CUSTOMER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: CUSTOMER dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 6f82523e-537b-4353-825b-356a5621fb38
+nodeFormat: dynamic
+parentName: STAGING
+references:
+  3217d0d1-9a2e-4631-86f8-fe2140757882:
+    parentTableId: 9fff3174-9794-467e-9e0c-4dfbe343f259
+    id: 3217d0d1-9a2e-4631-86f8-fe2140757882

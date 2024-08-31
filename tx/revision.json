@@ -7984,7 +7984,13 @@
     "GlobalProcedures": {}
   },
   "DiagramModel": {
-    "SubjectAreas": {},
+    "SubjectAreas": {
+      "dc6ab3b9-018b-47a8-8a1e-96dfa31dcdd0": {
+        "SubjectAreaId": "dc6ab3b9-018b-47a8-8a1e-96dfa31dcdd0",
+        "Name": "Star Schemas",
+        "Comment": null
+      }
+    },
     "Diagrams": {
       "22cae5e4-8d13-4d60-9ff1-a40f648bf316": {
         "DiagramId": "22cae5e4-8d13-4d60-9ff1-a40f648bf316",
@@ -8186,14 +8192,6 @@
             "ReferenceId": "14a908ff-8edc-4a12-b54d-0739a4d3210a",
             "Points": null
           },
-          "f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59": {
-            "ReferenceId": "f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59",
-            "Points": null
-          },
-          "26ca9918-b77b-4cb0-b3a1-21fd78b7ffbe": {
-            "ReferenceId": "26ca9918-b77b-4cb0-b3a1-21fd78b7ffbe",
-            "Points": null
-          },
           "73e30110-98f8-485a-97d2-6658e6f78b68": {
             "ReferenceId": "73e30110-98f8-485a-97d2-6658e6f78b68",
             "Points": null
@@ -8202,20 +8200,12 @@
             "ReferenceId": "9bb5ed79-ad22-470e-b78f-c5e6449a86dc",
             "Points": null
           },
-          "694f61c4-8bb1-47c7-ae9e-10c98143b1b6": {
-            "ReferenceId": "694f61c4-8bb1-47c7-ae9e-10c98143b1b6",
-            "Points": null
-          },
-          "44607840-e858-4f0b-9fa8-9801d1e99f8c": {
-            "ReferenceId": "44607840-e858-4f0b-9fa8-9801d1e99f8c",
-            "Points": null
-          },
           "bb9d2a58-799c-400f-a1bd-6808d628d07b": {
             "ReferenceId": "bb9d2a58-799c-400f-a1bd-6808d628d07b",
             "Points": null
           },
-          "612eb8bf-b179-46b7-ba2b-fe6cbe39f621": {
-            "ReferenceId": "612eb8bf-b179-46b7-ba2b-fe6cbe39f621",
+          "44607840-e858-4f0b-9fa8-9801d1e99f8c": {
+            "ReferenceId": "44607840-e858-4f0b-9fa8-9801d1e99f8c",
             "Points": null
           },
           "b2904156-a592-41f0-b975-d416fade9f79": {
@@ -8230,28 +8220,120 @@
             "ReferenceId": "f011a87b-eddd-4c54-b4f1-bd397c4666ed",
             "Points": null
           },
-          "2764bdc0-ec11-45a9-8b27-abedea4a9d8c": {
-            "ReferenceId": "2764bdc0-ec11-45a9-8b27-abedea4a9d8c",
+          "f9427e03-731c-49b6-a0cd-0c2109f9a88c": {
+            "ReferenceId": "f9427e03-731c-49b6-a0cd-0c2109f9a88c",
             "Points": null
           },
           "98498c6f-b94f-4e4b-ab3c-85418ace6111": {
             "ReferenceId": "98498c6f-b94f-4e4b-ab3c-85418ace6111",
             "Points": null
           },
-          "93529bf4-94f9-4216-b980-a56a558e59cc": {
-            "ReferenceId": "93529bf4-94f9-4216-b980-a56a558e59cc",
+          "f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59": {
+            "ReferenceId": "f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59",
             "Points": null
           },
-          "f9427e03-731c-49b6-a0cd-0c2109f9a88c": {
-            "ReferenceId": "f9427e03-731c-49b6-a0cd-0c2109f9a88c",
+          "694f61c4-8bb1-47c7-ae9e-10c98143b1b6": {
+            "ReferenceId": "694f61c4-8bb1-47c7-ae9e-10c98143b1b6",
+            "Points": null
+          },
+          "612eb8bf-b179-46b7-ba2b-fe6cbe39f621": {
+            "ReferenceId": "612eb8bf-b179-46b7-ba2b-fe6cbe39f621",
             "Points": null
           },
           "f3b336a6-af56-4427-87d8-9f60a4957e46": {
             "ReferenceId": "f3b336a6-af56-4427-87d8-9f60a4957e46",
             "Points": null
           },
+          "2764bdc0-ec11-45a9-8b27-abedea4a9d8c": {
+            "ReferenceId": "2764bdc0-ec11-45a9-8b27-abedea4a9d8c",
+            "Points": null
+          },
+          "93529bf4-94f9-4216-b980-a56a558e59cc": {
+            "ReferenceId": "93529bf4-94f9-4216-b980-a56a558e59cc",
+            "Points": null
+          },
+          "26ca9918-b77b-4cb0-b3a1-21fd78b7ffbe": {
+            "ReferenceId": "26ca9918-b77b-4cb0-b3a1-21fd78b7ffbe",
+            "Points": null
+          },
           "35063acc-56d3-41b0-8582-1f41a1316b8d": {
             "ReferenceId": "35063acc-56d3-41b0-8582-1f41a1316b8d",
+            "Points": null
+          },
+          "57871e62-9c2e-4e4a-a354-abb6a8c5b74c": {
+            "ReferenceId": "57871e62-9c2e-4e4a-a354-abb6a8c5b74c",
+            "Points": null
+          },
+          "f8517263-4a9b-4184-8e3d-825558104f1b": {
+            "ReferenceId": "f8517263-4a9b-4184-8e3d-825558104f1b",
+            "Points": null
+          },
+          "06a3e42f-6450-4546-ad2c-c52c7c431ede": {
+            "ReferenceId": "06a3e42f-6450-4546-ad2c-c52c7c431ede",
+            "Points": null
+          }
+        },
+        "DiagramViewModes": {},
+        "DiagramViews": {},
+        "DiagramFunctions": {},
+        "DiagramProcedures": {},
+        "comment": null,
+        "DiagramDiscriminators": {}
+      },
+      "518bcb59-67ae-499b-9589-26c74883872d": {
+        "DiagramId": "518bcb59-67ae-499b-9589-26c74883872d",
+        "Name": "Diagram_1",
+        "SubjectAreaId": "dc6ab3b9-018b-47a8-8a1e-96dfa31dcdd0",
+        "Left": 24,
+        "Top": 363,
+        "Zoom": 70,
+        "ActiveViewModeType": 4,
+        "DiagramTables": {
+          "ea12f399-cd1e-47b4-af2e-4581be3fa0b3": {
+            "TableId": "ea12f399-cd1e-47b4-af2e-4581be3fa0b3",
+            "Id": "ea12f399-cd1e-47b4-af2e-4581be3fa0b3",
+            "X": 492,
+            "Y": 433,
+            "W": 0,
+            "H": 0
+          },
+          "0f4af8f0-00d9-4b30-92b9-039a73198cf0": {
+            "TableId": "0f4af8f0-00d9-4b30-92b9-039a73198cf0",
+            "Id": "0f4af8f0-00d9-4b30-92b9-039a73198cf0",
+            "X": 97,
+            "Y": 83,
+            "W": 0,
+            "H": 0
+          },
+          "f9f70e6f-a9ba-4a5c-99b7-dd5255d41da0": {
+            "TableId": "f9f70e6f-a9ba-4a5c-99b7-dd5255d41da0",
+            "Id": "f9f70e6f-a9ba-4a5c-99b7-dd5255d41da0",
+            "X": 120,
+            "Y": 520,
+            "W": 0,
+            "H": 0
+          },
+          "3c3ee084-2868-4d51-9259-ba2836599e5f": {
+            "TableId": "3c3ee084-2868-4d51-9259-ba2836599e5f",
+            "Id": "3c3ee084-2868-4d51-9259-ba2836599e5f",
+            "X": 1169,
+            "Y": 518,
+            "W": 0,
+            "H": 0
+          }
+        },
+        "DisplayItems": {},
+        "DiagramReferences": {
+          "57871e62-9c2e-4e4a-a354-abb6a8c5b74c": {
+            "ReferenceId": "57871e62-9c2e-4e4a-a354-abb6a8c5b74c",
+            "Points": null
+          },
+          "f8517263-4a9b-4184-8e3d-825558104f1b": {
+            "ReferenceId": "f8517263-4a9b-4184-8e3d-825558104f1b",
+            "Points": null
+          },
+          "06a3e42f-6450-4546-ad2c-c52c7c431ede": {
+            "ReferenceId": "06a3e42f-6450-4546-ad2c-c52c7c431ede",
             "Points": null
           }
         },
@@ -8263,8 +8345,8 @@
         "DiagramDiscriminators": {}
       }
     },
-    "ActiveSubjectAreaId": null,
-    "ActiveDiagramId": "22cae5e4-8d13-4d60-9ff1-a40f648bf316"
+    "ActiveSubjectAreaId": "dc6ab3b9-018b-47a8-8a1e-96dfa31dcdd0",
+    "ActiveDiagramId": "518bcb59-67ae-499b-9589-26c74883872d"
   },
   "NamingConvention": {
     "Standard": 0,

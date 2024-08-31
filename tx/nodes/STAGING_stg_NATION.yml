@@ -1,0 +1,81 @@
+name: stg_NATION
+color: '#FC7917'
+isSource: false
+columns:
+  - name: N_NATIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: c6e39275-3d58-4e3e-a77e-f58a9a40815e
+  - name: N_NAME
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 46a94f20-53b6-49ea-80ff-99b6c27468cc
+  - name: N_REGIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 32ed42cf-2e4b-49cf-aa19-8f7bc1cea9a3
+  - name: N_COMMENT
+    allowNulls: true
+    dataType: varchar(152)
+    defaultValue: ''
+    description: ''
+    id: fa989604-90fb-489c-88b0-ee7eaa3b67ff
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 899764bf-4f45-4f08-abbb-6b6b32e57d83
+logic: |-
+  with "NATION" as (
+      SELECT
+          "N_NATIONKEY",
+          "N_NAME",
+          "N_REGIONKEY",
+          "N_COMMENT"
+      FROM {{ref('RAW', 'NATION')}}
+  )
+  , 
+  common as (
+      SELECT
+          "NATION"."N_NATIONKEY",
+          "NATION"."N_NAME",
+          "NATION"."N_REGIONKEY",
+          "NATION"."N_COMMENT",
+          current_date() AS "__load_date"
+      FROM "NATION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: NATION dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 5450fdd6-cc81-4ade-9cd7-60636a15c4be
+nodeFormat: dynamic
+parentName: STAGING
+references:
+  c2d2ef35-0ad4-4a26-b6c9-cd1efe5d63bf:
+    parentTableId: 1f27efad-da3e-4ac3-9946-ec323b055669
+    id: c2d2ef35-0ad4-4a26-b6c9-cd1efe5d63bf
