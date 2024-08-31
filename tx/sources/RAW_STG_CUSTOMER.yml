@@ -1,0 +1,59 @@
+sourceId: 55d96945-da8f-4c28-bd95-0d85bcd04d5d
+name: STG_CUSTOMER
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: C_CUSTKEY
+    dataType: number(38,0)
+    id: ed7d7cb1-f55f-4888-9a39-757ebadcc642
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_NAME
+    dataType: varchar(25)
+    id: 99a661f1-8518-46d1-9c46-8ea3522e00e2
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_ADDRESS
+    dataType: varchar(40)
+    id: ef645afe-c696-49e4-b8c3-69350e188329
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_NATIONKEY
+    dataType: number(38,0)
+    id: dedbbd54-be5c-4d1a-b741-ee179329e1c2
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_PHONE
+    dataType: varchar(15)
+    id: bded2a6a-c2d7-4303-b779-35a7b3dce7d1
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_ACCTBAL
+    dataType: number(12,2)
+    id: a72a4acd-49bf-457c-955b-66d6fc183d16
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_MKTSEGMENT
+    dataType: varchar(10)
+    id: 22aa53c5-8632-4963-912a-7f6d4199dc32
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: C_COMMENT
+    dataType: varchar(117)
+    id: e639d412-63a3-4bf5-a8b8-ae72895b54fd
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: __LOAD_DATE
+    dataType: date
+    id: af911881-8962-4fef-8914-bded51969a61
+    allowNulls: false
+    defaultValue: ''
+    description: LOAD DATE

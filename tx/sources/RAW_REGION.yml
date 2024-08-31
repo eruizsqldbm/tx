@@ -1,0 +1,23 @@
+sourceId: a22bed9e-f55d-4a9b-8b05-5e3f1fabb390
+name: REGION
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: R_REGIONKEY
+    dataType: number(38,0)
+    id: 6852ddd5-72f9-41ba-9284-f86d16e56fac
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: R_NAME
+    dataType: varchar(25)
+    id: 2e760c9d-4c87-402e-9c08-8c14e0cadb58
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: R_COMMENT
+    dataType: varchar(152)
+    id: 422cf8db-0946-4be3-a1da-351217fdf23b
+    allowNulls: true
+    defaultValue: ''
+    description: ''

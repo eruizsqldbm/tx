@@ -1,0 +1,121 @@
+name: stg_PART
+color: '#8E44AD'
+isSource: false
+columns:
+  - name: P_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 66a1a62c-32b2-4119-83c5-4a4afc304266
+  - name: P_NAME
+    allowNulls: true
+    dataType: varchar(55)
+    defaultValue: ''
+    description: ''
+    id: 543affa1-a726-40d3-9cea-65a448467f2f
+  - name: P_MFGR
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 7f01922b-8e59-4013-8b6c-40318c1b1c56
+  - name: P_BRAND
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: e4f80a9e-8b57-4187-a626-9cd39965f823
+  - name: P_TYPE
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 35c3dc00-0dec-4c9b-a674-44a9bcb5655d
+  - name: P_SIZE
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: f7edbecd-609a-40bf-b0df-f355b61647ea
+  - name: P_CONTAINER
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: efa054dd-e329-4662-b544-82e170077310
+  - name: P_RETAILPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: e6cf4fbb-427e-4b7a-a283-4b51b56c1c4f
+  - name: P_COMMENT
+    allowNulls: true
+    dataType: varchar(23)
+    defaultValue: ''
+    description: ''
+    id: fe6470ae-e616-4f42-ad60-cc1d94e4590d
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: d571b767-a67d-49e4-9688-881f6c33fcaa
+logic: |-
+  with "PART" as (
+      SELECT
+          "P_PARTKEY",
+          "P_NAME",
+          "P_MFGR",
+          "P_BRAND",
+          "P_TYPE",
+          "P_SIZE",
+          "P_CONTAINER",
+          "P_RETAILPRICE",
+          "P_COMMENT"
+      FROM {{ref('RAW', 'PART')}}
+  )
+  , 
+  common as (
+      SELECT
+          "PART"."P_PARTKEY",
+          "PART"."P_NAME",
+          "PART"."P_MFGR",
+          "PART"."P_BRAND",
+          "PART"."P_TYPE",
+          "PART"."P_SIZE",
+          "PART"."P_CONTAINER",
+          "PART"."P_RETAILPRICE",
+          "PART"."P_COMMENT",
+          current_date() AS "__load_date"
+      FROM "PART"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PART dimension
+columnSets: []
+templateId: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+materialization: table
+storageLocationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 312adbdc-405d-414b-bbff-d9ec2441dd72
+nodeFormat: dynamic
+parentName: RAW
+references:
+  44607840-e858-4f0b-9fa8-9801d1e99f8c:
+    parentTableId: 2eea65f8-5fcf-4741-8b93-77b56b6d17c4
+    id: 44607840-e858-4f0b-9fa8-9801d1e99f8c

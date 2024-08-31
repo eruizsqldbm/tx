@@ -1,0 +1,59 @@
+sourceId: b2846110-fdcf-4542-9c42-64a8b309b28c
+name: ORDERS
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: O_ORDERKEY
+    dataType: number(38,0)
+    id: 4ba87f32-9e79-44a2-a710-60eb1cbb7fc5
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_CUSTKEY
+    dataType: number(38,0)
+    id: b2802612-ff5f-4b41-b585-cc98237bb473
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_ORDERSTATUS
+    dataType: varchar(1)
+    id: 831168c2-de69-4e32-af67-3f3b4b6af153
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_TOTALPRICE
+    dataType: number(12,2)
+    id: 903fd943-b5ee-4464-8a74-45026c5135ab
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_ORDERDATE
+    dataType: date
+    id: 7b9adc68-ad03-4028-bfa8-0350303a9fb2
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_ORDERPRIORITY
+    dataType: varchar(15)
+    id: 27425a5c-af46-4aa3-8812-5166b5d8bcf1
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_CLERK
+    dataType: varchar(15)
+    id: 329f47a7-237b-49c0-975a-ef87d8b8aa9d
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_SHIPPRIORITY
+    dataType: number(38,0)
+    id: dd1b0983-51a4-4a05-8368-168e4c14715d
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: O_COMMENT
+    dataType: varchar(79)
+    id: 2e31c222-3ca3-4d7c-83a9-18a63898f66e
+    allowNulls: true
+    defaultValue: ''
+    description: ''

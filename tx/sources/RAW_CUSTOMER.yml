@@ -1,0 +1,53 @@
+sourceId: 9fff3174-9794-467e-9e0c-4dfbe343f259
+name: CUSTOMER
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: C_CUSTKEY
+    dataType: number(38,0)
+    id: de23d06c-5e4a-4a92-887e-3a54a0fa81d7
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_NAME
+    dataType: varchar(25)
+    id: 039fba33-4427-4656-810f-713f9d048784
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_ADDRESS
+    dataType: varchar(40)
+    id: 5d752a63-ab29-446b-9a1d-384b97143a3a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_NATIONKEY
+    dataType: number(38,0)
+    id: 862b4e8f-be37-4b59-8f9c-65a9e634f327
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_PHONE
+    dataType: varchar(15)
+    id: eb0f25aa-8d71-4407-afb7-da8f6ca8b3bb
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_ACCTBAL
+    dataType: number(12,2)
+    id: 6cd11aa1-68f2-43ed-98a7-ca58c36581df
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_MKTSEGMENT
+    dataType: varchar(10)
+    id: eab99e1a-f394-4570-8cd8-914c2a7b2385
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: C_COMMENT
+    dataType: varchar(117)
+    id: c604921c-7a77-4f11-9561-a36f8769d131
+    allowNulls: true
+    defaultValue: ''
+    description: ''

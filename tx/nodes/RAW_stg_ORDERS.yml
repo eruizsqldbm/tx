@@ -1,0 +1,121 @@
+name: stg_ORDERS
+color: '#8E44AD'
+isSource: false
+columns:
+  - name: O_ORDERKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 3af393a9-1628-4930-92b0-8f349fec67eb
+  - name: O_CUSTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 6d1237a3-4ac3-4ec7-9d65-2a5405867463
+  - name: O_ORDERSTATUS
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 5b8cbe25-e391-43e5-9dcb-3919f01c5f17
+  - name: O_TOTALPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 6476785e-94de-4c7b-83db-708475db2475
+  - name: O_ORDERDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: 66720626-54df-4036-8c47-79e77fe32859
+  - name: O_ORDERPRIORITY
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: 75ccca5a-df87-43d8-8e72-0a97df429544
+  - name: O_CLERK
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: 8dd99ccd-6e28-44a3-827c-eb10d7a90fa0
+  - name: O_SHIPPRIORITY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 7e2dac53-98fa-4e2b-9ac0-3569d22e504a
+  - name: O_COMMENT
+    allowNulls: true
+    dataType: varchar(79)
+    defaultValue: ''
+    description: ''
+    id: ed28b3d6-5376-432d-9e61-0ad8550167e7
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 639f8217-9dbc-4859-9406-9394a3ae0906
+logic: |-
+  with "ORDERS" as (
+      SELECT
+          "O_ORDERKEY",
+          "O_CUSTKEY",
+          "O_ORDERSTATUS",
+          "O_TOTALPRICE",
+          "O_ORDERDATE",
+          "O_ORDERPRIORITY",
+          "O_CLERK",
+          "O_SHIPPRIORITY",
+          "O_COMMENT"
+      FROM {{ref('RAW', 'ORDERS')}}
+  )
+  , 
+  common as (
+      SELECT
+          "ORDERS"."O_ORDERKEY",
+          "ORDERS"."O_CUSTKEY",
+          "ORDERS"."O_ORDERSTATUS",
+          "ORDERS"."O_TOTALPRICE",
+          "ORDERS"."O_ORDERDATE",
+          "ORDERS"."O_ORDERPRIORITY",
+          "ORDERS"."O_CLERK",
+          "ORDERS"."O_SHIPPRIORITY",
+          "ORDERS"."O_COMMENT",
+          current_date() AS "__load_date"
+      FROM "ORDERS"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: ORDERS dimension
+columnSets: []
+templateId: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+materialization: table
+storageLocationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 2b8bc297-7342-4804-9d11-159e88c88022
+nodeFormat: dynamic
+parentName: RAW
+references:
+  9bb5ed79-ad22-470e-b78f-c5e6449a86dc:
+    parentTableId: b2846110-fdcf-4542-9c42-64a8b309b28c
+    id: 9bb5ed79-ad22-470e-b78f-c5e6449a86dc

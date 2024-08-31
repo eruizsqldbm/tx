@@ -1,0 +1,89 @@
+name: stg_PARTSUPP
+color: '#8E44AD'
+isSource: false
+columns:
+  - name: PS_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 6e09334d-6cd0-41b5-8224-2a5a8153d94c
+  - name: PS_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 38675e02-3d06-4989-9f4a-6b9eb7341848
+  - name: PS_AVAILQTY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: d8ce0172-1bc6-4c12-a42e-fbf15475f360
+  - name: PS_SUPPLYCOST
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 7fcc963f-b918-4110-bef4-0e790fa4b149
+  - name: PS_COMMENT
+    allowNulls: true
+    dataType: varchar(199)
+    defaultValue: ''
+    description: ''
+    id: 3aeb0709-e171-41e9-a5a5-a87586668a7a
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 0a4c269c-9a1b-4d7e-88c2-1f33ed8e3694
+logic: |-
+  with "PARTSUPP" as (
+      SELECT
+          "PS_PARTKEY",
+          "PS_SUPPKEY",
+          "PS_AVAILQTY",
+          "PS_SUPPLYCOST",
+          "PS_COMMENT"
+      FROM {{ref('RAW', 'PARTSUPP')}}
+  )
+  , 
+  common as (
+      SELECT
+          "PARTSUPP"."PS_PARTKEY",
+          "PARTSUPP"."PS_SUPPKEY",
+          "PARTSUPP"."PS_AVAILQTY",
+          "PARTSUPP"."PS_SUPPLYCOST",
+          "PARTSUPP"."PS_COMMENT",
+          current_date() AS "__load_date"
+      FROM "PARTSUPP"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PARTSUPP dimension
+columnSets: []
+templateId: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+materialization: table
+storageLocationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: c6a65cee-d335-470a-894f-4e7e4f69c45c
+nodeFormat: dynamic
+parentName: RAW
+references:
+  bb9d2a58-799c-400f-a1bd-6808d628d07b:
+    parentTableId: a35b0f24-2b45-4c9d-aaaf-82a0bdbe5e5c
+    id: bb9d2a58-799c-400f-a1bd-6808d628d07b

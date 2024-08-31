@@ -1,0 +1,29 @@
+sourceId: 1f27efad-da3e-4ac3-9946-ec323b055669
+name: NATION
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: N_NATIONKEY
+    dataType: number(38,0)
+    id: 2a3b2273-13fa-4761-b733-9d4724f2551d
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: N_NAME
+    dataType: varchar(25)
+    id: 2c4e4b12-6fb8-48d2-88f7-e58770ba0466
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: N_REGIONKEY
+    dataType: number(38,0)
+    id: 193ca71d-f155-44a9-8ff0-12c7e7c60e9c
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: N_COMMENT
+    dataType: varchar(152)
+    id: f7f6e923-59e2-439d-a3f0-265a640f7ed3
+    allowNulls: true
+    defaultValue: ''
+    description: ''

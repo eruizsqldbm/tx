@@ -1,0 +1,331 @@
+name: stg_LINEITEM_ORDERS_PARTSUPP
+color: '#FC7917'
+isSource: false
+columns:
+  - name: L_ORDERKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 0370b01b-38e7-4312-9f98-f6b104efbaeb
+  - name: L_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 7254ccb9-134a-42ff-b6fd-13607ac3e749
+  - name: L_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 79fab393-9d1b-46c8-8aa0-2b8331de26a4
+  - name: L_LINENUMBER
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 79cb574a-8693-4d58-b40c-721018411863
+  - name: L_QUANTITY
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 8b18116c-271e-4f66-90fc-0db889c4347e
+  - name: L_EXTENDEDPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: a008bdda-1c74-49ce-a0ff-987850bb6b55
+  - name: L_DISCOUNT
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 608147d5-51a1-4ecf-9021-7fac5fe03ea8
+  - name: L_TAX
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 573bf072-1398-402f-ba54-765b68a22325
+  - name: L_RETURNFLAG
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 659b231b-cc63-4982-828a-7ab192de2144
+  - name: L_LINESTATUS
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 131f853b-0f01-4b4c-b81e-5bf466c3bb37
+  - name: L_SHIPDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: 41c168c6-7d1c-47b3-a463-ba29e59b8807
+  - name: L_COMMITDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: 8d45271f-e471-458a-bf7b-ea1fdb4529a8
+  - name: L_RECEIPTDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: dde30120-f8cc-4d7b-aa8a-becb2288ef68
+  - name: L_SHIPINSTRUCT
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 29b810d0-e14d-4c92-b78d-2cf31ffbfe9b
+  - name: L_SHIPMODE
+    allowNulls: true
+    dataType: varchar(10)
+    defaultValue: ''
+    description: ''
+    id: 37a45c1f-8ea0-4473-b7cb-66e86fa2175e
+  - name: L_COMMENT
+    allowNulls: true
+    dataType: varchar(44)
+    defaultValue: ''
+    description: ''
+    id: 34d1eb37-191c-4bb1-8282-887b3ac49af0
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: d9a26266-943e-4143-8225-2fe1d7dea20d
+  - name: O_ORDERKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 40083fc4-1d2a-47c4-aefb-95d6189d3701
+  - name: O_CUSTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 7b4d80cc-f36f-46ea-a88c-c1c319331c69
+  - name: O_ORDERSTATUS
+    allowNulls: true
+    dataType: varchar(1)
+    defaultValue: ''
+    description: ''
+    id: 368be8d6-2ffd-4794-895c-f3396f54de49
+  - name: O_TOTALPRICE
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 641ed0a6-2e3b-4dfc-b51d-936212a3474f
+  - name: O_ORDERDATE
+    allowNulls: true
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: 9be585fb-f072-4c67-9205-08ad6c363242
+  - name: O_ORDERPRIORITY
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: 4a605d83-9f4f-4373-b5ec-5ba35767cede
+  - name: O_CLERK
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: cdad2b49-c605-4364-9676-8563880bec8d
+  - name: O_SHIPPRIORITY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: fc9e6f7e-4979-4b74-9935-7a793bfacff8
+  - name: O_COMMENT
+    allowNulls: true
+    dataType: varchar(79)
+    defaultValue: ''
+    description: ''
+    id: 382d6908-0c12-4992-851a-5d247d2b9935
+  - name: __load_date_1
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 048ae560-19c8-4b6a-be18-5245c3c0a3bb
+  - name: PS_PARTKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 4b25fb97-d096-4385-bd99-f9d5d9543eca
+  - name: PS_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: c82a3254-c104-4901-b7ce-c95b2e936828
+  - name: PS_AVAILQTY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 8019096d-4ff9-4033-a92e-b6114546169c
+  - name: PS_SUPPLYCOST
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 477298ef-0e36-4979-82a9-a59fd2d26a03
+  - name: PS_COMMENT
+    allowNulls: true
+    dataType: varchar(199)
+    defaultValue: ''
+    description: ''
+    id: da1b2075-f8dc-4c58-b27b-73ca4a65b8ec
+  - name: __load_date_2
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 453dd6b6-3fb0-4f2e-8152-077bd24a9d64
+  - name: __load_date_3
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 7589afc8-b907-4b32-a1da-f3c35a2b9808
+logic: |-
+  with "stg_LINEITEM" as (
+      SELECT
+          "L_ORDERKEY",
+          "L_PARTKEY",
+          "L_SUPPKEY",
+          "L_LINENUMBER",
+          "L_QUANTITY",
+          "L_EXTENDEDPRICE",
+          "L_DISCOUNT",
+          "L_TAX",
+          "L_RETURNFLAG",
+          "L_LINESTATUS",
+          "L_SHIPDATE",
+          "L_COMMITDATE",
+          "L_RECEIPTDATE",
+          "L_SHIPINSTRUCT",
+          "L_SHIPMODE",
+          "L_COMMENT",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_LINEITEM')}}
+  ),
+  "stg_ORDERS" as (
+      SELECT
+          "O_ORDERKEY",
+          "O_CUSTKEY",
+          "O_ORDERSTATUS",
+          "O_TOTALPRICE",
+          "O_ORDERDATE",
+          "O_ORDERPRIORITY",
+          "O_CLERK",
+          "O_SHIPPRIORITY",
+          "O_COMMENT",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_ORDERS')}}
+  ),
+  "stg_PARTSUPP" as (
+      SELECT
+          "PS_PARTKEY",
+          "PS_SUPPKEY",
+          "PS_AVAILQTY",
+          "PS_SUPPLYCOST",
+          "PS_COMMENT",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_PARTSUPP')}}
+  )
+  , 
+  common as (
+      SELECT
+          "stg_LINEITEM"."L_ORDERKEY",
+          "stg_LINEITEM"."L_PARTKEY",
+          "stg_LINEITEM"."L_SUPPKEY",
+          "stg_LINEITEM"."L_LINENUMBER",
+          "stg_LINEITEM"."L_QUANTITY",
+          "stg_LINEITEM"."L_EXTENDEDPRICE",
+          "stg_LINEITEM"."L_DISCOUNT",
+          "stg_LINEITEM"."L_TAX",
+          "stg_LINEITEM"."L_RETURNFLAG",
+          "stg_LINEITEM"."L_LINESTATUS",
+          "stg_LINEITEM"."L_SHIPDATE",
+          "stg_LINEITEM"."L_COMMITDATE",
+          "stg_LINEITEM"."L_RECEIPTDATE",
+          "stg_LINEITEM"."L_SHIPINSTRUCT",
+          "stg_LINEITEM"."L_SHIPMODE",
+          "stg_LINEITEM"."L_COMMENT",
+          "stg_LINEITEM"."__load_date",
+          "stg_ORDERS"."O_ORDERKEY",
+          "stg_ORDERS"."O_CUSTKEY",
+          "stg_ORDERS"."O_ORDERSTATUS",
+          "stg_ORDERS"."O_TOTALPRICE",
+          "stg_ORDERS"."O_ORDERDATE",
+          "stg_ORDERS"."O_ORDERPRIORITY",
+          "stg_ORDERS"."O_CLERK",
+          "stg_ORDERS"."O_SHIPPRIORITY",
+          "stg_ORDERS"."O_COMMENT",
+          "stg_ORDERS"."__load_date" AS "__load_date_1",
+          "stg_PARTSUPP"."PS_PARTKEY",
+          "stg_PARTSUPP"."PS_SUPPKEY",
+          "stg_PARTSUPP"."PS_AVAILQTY",
+          "stg_PARTSUPP"."PS_SUPPLYCOST",
+          "stg_PARTSUPP"."PS_COMMENT",
+          "stg_PARTSUPP"."__load_date" AS "__load_date_2",
+          current_date() AS "__load_date_3"
+      FROM "stg_LINEITEM"
+      INNER JOIN "stg_ORDERS"
+      ON /*"stg_LINEITEM"."<column>" = "stg_ORDERS"."<column>"*/
+      INNER JOIN "stg_PARTSUPP"
+      ON /*"stg_LINEITEM"."<column>" = "stg_PARTSUPP"."<column>"*/
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: LINEITEM dimension_ORDERS dimension_PARTSUPP dimension dimension
+columnSets: []
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 1c1e070d-3a86-4d18-bda3-045ba3bf71e0
+nodeFormat: dynamic
+parentName: RAW
+references:
+  f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59:
+    parentTableId: 41450785-04b9-4ea0-9854-ab4b78612ff9
+    id: f6eb6523-9d7f-4bc3-b92d-f7ffd7763c59
+  694f61c4-8bb1-47c7-ae9e-10c98143b1b6:
+    parentTableId: 2b8bc297-7342-4804-9d11-159e88c88022
+    id: 694f61c4-8bb1-47c7-ae9e-10c98143b1b6
+  612eb8bf-b179-46b7-ba2b-fe6cbe39f621:
+    parentTableId: c6a65cee-d335-470a-894f-4e7e4f69c45c
+    id: 612eb8bf-b179-46b7-ba2b-fe6cbe39f621

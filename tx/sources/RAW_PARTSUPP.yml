@@ -1,0 +1,35 @@
+sourceId: a35b0f24-2b45-4c9d-aaaf-82a0bdbe5e5c
+name: PARTSUPP
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: PS_PARTKEY
+    dataType: number(38,0)
+    id: ab3381bb-f8b4-4179-b177-3c3f2ceb5eae
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: PS_SUPPKEY
+    dataType: number(38,0)
+    id: 18075e11-0f20-4a68-9fd5-f9ee04c712bc
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: PS_AVAILQTY
+    dataType: number(38,0)
+    id: 759bbbee-62f2-4c7e-959f-9d0a8a966ce6
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: PS_SUPPLYCOST
+    dataType: number(12,2)
+    id: be0d403e-4eb2-467f-8f78-be15825bb446
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: PS_COMMENT
+    dataType: varchar(199)
+    id: c7f43663-78ae-4e38-a3bf-7c19a0011f97
+    allowNulls: true
+    defaultValue: ''
+    description: ''

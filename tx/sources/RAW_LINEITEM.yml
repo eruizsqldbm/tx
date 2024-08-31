@@ -1,0 +1,101 @@
+sourceId: ddeb77cf-0a7b-4409-9cdb-f8d97f353294
+name: LINEITEM
+locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+description: ''
+columns:
+  - name: L_ORDERKEY
+    dataType: number(38,0)
+    id: 631f54b7-79fa-4866-b9c7-6378481fd26f
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_PARTKEY
+    dataType: number(38,0)
+    id: 220f0a63-0964-48a6-8a25-f5dc9d85a218
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_SUPPKEY
+    dataType: number(38,0)
+    id: e8385eac-3af4-4f31-bad1-9e19824d3376
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_LINENUMBER
+    dataType: number(38,0)
+    id: 550f2b9c-130b-4423-8d9b-3dd3a648056d
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_QUANTITY
+    dataType: number(12,2)
+    id: 35ff7976-2207-438a-928b-62f460f4d28a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_EXTENDEDPRICE
+    dataType: number(12,2)
+    id: c9542c60-3301-4456-abde-2d5a419d9cde
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_DISCOUNT
+    dataType: number(12,2)
+    id: 4c4e31ad-c0f4-41b5-af5b-979186e2ac4a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_TAX
+    dataType: number(12,2)
+    id: f6d7266f-4755-45c3-a528-1df812f0d2ce
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_RETURNFLAG
+    dataType: varchar(1)
+    id: 66c1fc16-a2a0-4ffd-a84b-96c93bcfd3f0
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_LINESTATUS
+    dataType: varchar(1)
+    id: ccda1df5-ef95-47fb-8c73-3c298c6c5a20
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_SHIPDATE
+    dataType: date
+    id: 0c67861d-4b51-4a56-997a-925399eacc8f
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_COMMITDATE
+    dataType: date
+    id: d4802e9c-ee22-4185-86dd-03a14c949545
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_RECEIPTDATE
+    dataType: date
+    id: 6940729b-5c04-4b54-8ba2-836009e7395f
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_SHIPINSTRUCT
+    dataType: varchar(25)
+    id: fc9acb74-05d0-40f1-99b1-bb027d65bece
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_SHIPMODE
+    dataType: varchar(10)
+    id: 691e9b5e-47af-4be7-9d15-1a45ca9f0e8e
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: L_COMMENT
+    dataType: varchar(44)
+    id: dd164e27-c261-47bf-ad3a-b006e33e70f0
+    allowNulls: true
+    defaultValue: ''
+    description: ''

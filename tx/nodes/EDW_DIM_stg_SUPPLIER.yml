@@ -1,0 +1,129 @@
+name: DIM_stg_SUPPLIER
+color: '#E53E3E'
+isSource: false
+columns:
+  - name: pk_load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 84e45069-5637-4e3d-84bf-90c8cc67c4c4
+  - name: S_SUPPKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: a1a16e4e-67ed-43f6-a346-088b5af9c1ed
+  - name: S_NAME
+    allowNulls: true
+    dataType: varchar(25)
+    defaultValue: ''
+    description: ''
+    id: 193dd015-5abf-4736-86c9-266215351a31
+  - name: S_ADDRESS
+    allowNulls: true
+    dataType: varchar(40)
+    defaultValue: ''
+    description: ''
+    id: 37704b1b-1437-43d5-862f-b7af2dd32e09
+  - name: S_NATIONKEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: d4798840-0626-4ef1-ac3b-0901d4ba0824
+  - name: S_PHONE
+    allowNulls: true
+    dataType: varchar(15)
+    defaultValue: ''
+    description: ''
+    id: 368459ed-1c05-45f8-915b-9dd9ed236cec
+  - name: S_ACCTBAL
+    allowNulls: true
+    dataType: number(12,2)
+    defaultValue: ''
+    description: ''
+    id: 9a5d2b7e-2a31-455d-9686-42aff05b5c54
+  - name: S_COMMENT
+    allowNulls: true
+    dataType: varchar(101)
+    defaultValue: ''
+    description: ''
+    id: e36002c6-9e4c-471f-a58f-81e9d0ee86c2
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: c62560f8-ea6b-4973-9957-ba22bd5c3ed7
+  - name: load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 0e1a195e-7a85-4aee-b54e-f82ad222e693
+logic: |-
+  with "stg_SUPPLIER" as (
+      SELECT
+          "S_SUPPKEY",
+          "S_NAME",
+          "S_ADDRESS",
+          "S_NATIONKEY",
+          "S_PHONE",
+          "S_ACCTBAL",
+          "S_COMMENT",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_SUPPLIER')}}
+  )
+  , 
+  common as (
+      SELECT
+          current_date() AS "pk_load_date",
+          "stg_SUPPLIER"."S_SUPPKEY",
+          "stg_SUPPLIER"."S_NAME",
+          "stg_SUPPLIER"."S_ADDRESS",
+          "stg_SUPPLIER"."S_NATIONKEY",
+          "stg_SUPPLIER"."S_PHONE",
+          "stg_SUPPLIER"."S_ACCTBAL",
+          "stg_SUPPLIER"."S_COMMENT",
+          "stg_SUPPLIER"."__load_date",
+          current_date() AS "load_date"
+      FROM "stg_SUPPLIER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: SUPPLIER dimension dimension
+columnSets:
+  - itemName: PK
+    setName: PK_DIM_stg_SUPPLIER
+    columns:
+      - columnId: 84e45069-5637-4e3d-84bf-90c8cc67c4c4
+        position: 1
+        name: pk_load_date
+    id: a6ca039a-4dca-49cb-972b-6def34a6e651
+templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
+materialization: table
+storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+id: 0f4af8f0-00d9-4b30-92b9-039a73198cf0
+nodeFormat: dynamic
+parentName: EDW
+references:
+  f9427e03-731c-49b6-a0cd-0c2109f9a88c:
+    parentTableId: 667ce99f-50c7-4702-9082-59550bbb8b10
+    id: f9427e03-731c-49b6-a0cd-0c2109f9a88c
