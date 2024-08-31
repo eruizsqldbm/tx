@@ -1,0 +1,121 @@
+name: STG_ORDERS
+id: c5f40cab-3f00-4a02-8679-51b66180b424
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: O_ORDERKEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 92df670a-b8f1-466e-950c-e398625e22fb
+  - name: O_CUSTKEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: d71ba81f-4705-4293-a99c-f8394e1c91b1
+  - name: O_ORDERSTATUS
+    dataType: varchar(1)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: ed5a74c3-752d-4860-ae66-0d2af98aeb9e
+  - name: O_TOTALPRICE
+    dataType: number(12,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: f153206f-e4a3-4aa5-9ff5-024155cc972a
+  - name: O_ORDERDATE
+    dataType: date
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 2b38e0a2-baf3-4b31-a646-227d2353ab02
+  - name: O_ORDERPRIORITY
+    dataType: varchar(15)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 6883126e-e77e-4bb5-9fa4-0deced5ae6bd
+  - name: O_CLERK
+    dataType: varchar(15)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 9557db98-add1-42be-a711-586c5d494270
+  - name: O_SHIPPRIORITY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 06b1da4e-898d-4312-8af9-4044973789bb
+  - name: O_COMMENT
+    dataType: varchar(79)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 61f437b7-deb2-45be-8549-33701ddb655c
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: bc51620d-6cc5-4a16-a711-93171380a5f1
+columnSets: []
+nodeFormat: dynamic
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGING
+color: '#FC7917'
+logic: |-
+  with "ORDERS" as (
+      SELECT
+          "O_ORDERKEY",
+          "O_CUSTKEY",
+          "O_ORDERSTATUS",
+          "O_TOTALPRICE",
+          "O_ORDERDATE",
+          "O_ORDERPRIORITY",
+          "O_CLERK",
+          "O_SHIPPRIORITY",
+          "O_COMMENT"
+      FROM {{ref('RAW', 'ORDERS')}}
+  )
+  , 
+  common as (
+      SELECT
+          "ORDERS"."O_ORDERKEY",
+          "ORDERS"."O_CUSTKEY",
+          "ORDERS"."O_ORDERSTATUS",
+          "ORDERS"."O_TOTALPRICE",
+          "ORDERS"."O_ORDERDATE",
+          "ORDERS"."O_ORDERPRIORITY",
+          "ORDERS"."O_CLERK",
+          "ORDERS"."O_SHIPPRIORITY",
+          "ORDERS"."O_COMMENT",
+          current_date() AS "__load_date"
+      FROM "ORDERS"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: ORDERS dimension
+references:
+  7dd172f5-1384-4591-be57-f46502adaf56:
+    parentTableId: b2846110-fdcf-4542-9c42-64a8b309b28c
+    id: 7dd172f5-1384-4591-be57-f46502adaf56

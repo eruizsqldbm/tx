@@ -7,67 +7,67 @@ columns:
     dataType: date
     defaultValue: current_date()
     description: load date
-    id: b3744f1b-9f45-47b0-b0ae-dfc3114efbf3
+    id: fd58e987-c6b2-4c3e-9af1-a0f906e75141
   - name: C_CUSTKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
-    id: 660b6a81-168a-4961-b06b-3ee15b94bb75
+    id: a95fe14d-0896-483f-9c9c-cc7a2cb33208
   - name: C_NAME
     allowNulls: true
-    dataType: varchar(25)
+    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
-    id: 87f54282-13fb-4f88-9297-b0ba85c824b9
+    id: ea4cb56a-e48c-4747-bae5-f53baa263375
   - name: C_ADDRESS
     allowNulls: true
-    dataType: varchar(40)
+    dataType: VARCHAR(40)
     defaultValue: ''
     description: ''
-    id: 96384d6e-2442-485b-9cea-ed41ed93b39d
+    id: c82138d4-bbce-4ac5-995a-e6d79634facb
   - name: C_NATIONKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
-    id: 2c05538b-427e-4784-88da-603979d74a6f
+    id: 64d48f31-5244-4403-b18a-b379257526e9
   - name: C_PHONE
     allowNulls: true
-    dataType: varchar(15)
+    dataType: VARCHAR(15)
     defaultValue: ''
     description: ''
-    id: 954ab26c-6e8f-4243-af51-c82abdf0230d
+    id: 90baf70e-2974-4272-87ed-56af506714c5
   - name: C_ACCTBAL
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
-    id: 30ce5aab-ff8c-426e-83a8-303a2bbd11ae
+    id: 537edd14-899c-4d25-8b25-a4412b9e5a59
   - name: C_MKTSEGMENT
     allowNulls: true
-    dataType: varchar(10)
+    dataType: VARCHAR(10)
     defaultValue: ''
     description: ''
-    id: 6184fdca-5ca3-4023-8063-1e939e77a0f7
+    id: 0d5a94c7-504f-4c06-815e-d63b4ef53106
   - name: C_COMMENT
     allowNulls: true
-    dataType: varchar(117)
+    dataType: VARCHAR(117)
     defaultValue: ''
     description: ''
-    id: 9deed53e-da41-4a63-b96a-77b060eafe5f
+    id: 93594d61-c9fc-458d-8ee1-d09098c6d5c2
   - name: __load_date
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
-    id: 2a40bbd1-555c-4d95-ac06-99e6b44970b7
+    id: 0ac6c847-564e-44de-9b76-d59b129ca22a
   - name: load_date
     allowNulls: false
     dataType: date
     defaultValue: current_date()
     description: load date
-    id: 6f7704b0-4f5b-4287-8336-4d9684837c9b
+    id: 3e3f362d-6a1d-4f21-bea4-29ede25befce
 logic: |-
   with "stg_CUSTOMER_1" as (
       SELECT
@@ -80,7 +80,7 @@ logic: |-
           "C_MKTSEGMENT",
           "C_COMMENT",
           "__load_date"
-      FROM {{ref('RAW', 'stg_CUSTOMER_1')}}
+      FROM {{ref('STAGING', 'stg_CUSTOMER_1')}}
   )
   , 
   common as (
@@ -106,10 +106,10 @@ columnSets:
   - itemName: PK
     setName: PK_DIM_stg_CUSTOMER_1
     columns:
-      - columnId: b3744f1b-9f45-47b0-b0ae-dfc3114efbf3
+      - columnId: fd58e987-c6b2-4c3e-9af1-a0f906e75141
         position: 1
         name: pk_load_date
-    id: ffcf1056-04b2-4791-8d23-9d3687236498
+    id: e63141c8-43ac-4e3c-a5bd-2f33a0b0272d
 templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
 materialization: table
 storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
@@ -128,10 +128,10 @@ postRun:
 my_button: true
 my_dropdown: option 1
 rely_button: true
-id: 3c3ee084-2868-4d51-9259-ba2836599e5f
+id: 887717fc-1d4b-405c-bbb5-c0369765d2d1
 nodeFormat: dynamic
 parentName: EDW
 references:
-  39b3d442-1fa8-4af5-a2c6-350d3218aa1f:
-    parentTableId: 2511b0c3-2ba6-4182-8692-f1d878be1249
-    id: 39b3d442-1fa8-4af5-a2c6-350d3218aa1f
+  b22a05a4-75c5-4cc1-870e-772907fedb24:
+    parentTableId: 6f82523e-537b-4353-825b-356a5621fb38
+    id: b22a05a4-75c5-4cc1-870e-772907fedb24

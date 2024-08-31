@@ -1,0 +1,89 @@
+name: STG_PARTSUPP
+id: 57ab816e-b8da-48bf-96fc-de61f0cb5529
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: PS_PARTKEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 95c984f1-2e22-462e-ae54-950fadfc1ca9
+  - name: PS_SUPPKEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: fe0ff89c-66e7-4762-86ef-5ea77f0aea37
+  - name: PS_AVAILQTY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: d890269b-7344-4062-9323-69f637d76cbc
+  - name: PS_SUPPLYCOST
+    dataType: number(12,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 0fc87bcf-3fea-4ecc-9cc7-f758b7f792c5
+  - name: PS_COMMENT
+    dataType: varchar(199)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 0bc22d88-000c-42af-a738-2adcc5222cab
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: f287716b-797e-44bf-8bed-380f5164304e
+columnSets: []
+nodeFormat: dynamic
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGING
+color: '#FC7917'
+logic: |-
+  with "PARTSUPP" as (
+      SELECT
+          "PS_PARTKEY",
+          "PS_SUPPKEY",
+          "PS_AVAILQTY",
+          "PS_SUPPLYCOST",
+          "PS_COMMENT"
+      FROM {{ref('RAW', 'PARTSUPP')}}
+  )
+  , 
+  common as (
+      SELECT
+          "PARTSUPP"."PS_PARTKEY",
+          "PARTSUPP"."PS_SUPPKEY",
+          "PARTSUPP"."PS_AVAILQTY",
+          "PARTSUPP"."PS_SUPPLYCOST",
+          "PARTSUPP"."PS_COMMENT",
+          current_date() AS "__load_date"
+      FROM "PARTSUPP"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PARTSUPP dimension
+references:
+  e26d8f5a-520e-42e5-ac27-ef0425d4e8ef:
+    parentTableId: a35b0f24-2b45-4c9d-aaaf-82a0bdbe5e5c
+    id: e26d8f5a-520e-42e5-ac27-ef0425d4e8ef

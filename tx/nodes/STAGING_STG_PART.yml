@@ -1,0 +1,121 @@
+name: STG_PART
+id: e9c03667-32bc-46c2-87e4-a5f2508353f4
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: P_PARTKEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 421b4195-8647-437e-b23e-2f269292d223
+  - name: P_NAME
+    dataType: varchar(55)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: cd330f9b-89f4-42b6-b8d6-813cba972516
+  - name: P_MFGR
+    dataType: varchar(25)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: fb6c1cec-3e6a-4d05-9f39-eeb36cd2cc8f
+  - name: P_BRAND
+    dataType: varchar(10)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 7dc3159e-50ef-42cd-b744-f803f1330af2
+  - name: P_TYPE
+    dataType: varchar(25)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 0f3fa710-7df6-41ca-8a31-676caea826f9
+  - name: P_SIZE
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: ae318d7b-dfd8-44e5-b442-03e6e322fdcf
+  - name: P_CONTAINER
+    dataType: varchar(10)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: cac25929-a855-4d3c-84a2-a30e917e048f
+  - name: P_RETAILPRICE
+    dataType: number(12,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: da6ffdce-4243-4dd6-a424-2bcc8663a7c8
+  - name: P_COMMENT
+    dataType: varchar(23)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: c8c04353-8bcf-4308-9f3f-c03fcccf36ef
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 3d0eac4a-7e43-4407-97d3-10d22c91bab4
+columnSets: []
+nodeFormat: dynamic
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGING
+color: '#FC7917'
+logic: |-
+  with "PART" as (
+      SELECT
+          "P_PARTKEY",
+          "P_NAME",
+          "P_MFGR",
+          "P_BRAND",
+          "P_TYPE",
+          "P_SIZE",
+          "P_CONTAINER",
+          "P_RETAILPRICE",
+          "P_COMMENT"
+      FROM {{ref('RAW', 'PART')}}
+  )
+  , 
+  common as (
+      SELECT
+          "PART"."P_PARTKEY",
+          "PART"."P_NAME",
+          "PART"."P_MFGR",
+          "PART"."P_BRAND",
+          "PART"."P_TYPE",
+          "PART"."P_SIZE",
+          "PART"."P_CONTAINER",
+          "PART"."P_RETAILPRICE",
+          "PART"."P_COMMENT",
+          current_date() AS "__load_date"
+      FROM "PART"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PART dimension
+references:
+  27912120-eda4-4174-88f7-4820b4018fd7:
+    parentTableId: 2eea65f8-5fcf-4741-8b93-77b56b6d17c4
+    id: 27912120-eda4-4174-88f7-4820b4018fd7

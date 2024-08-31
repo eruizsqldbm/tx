@@ -1,0 +1,121 @@
+name: STG_CUSTOMER
+id: 191e04f6-f028-4dbe-bc65-d4b373017079
+storageLocationId: b74cc3c6-bfec-4ffb-89e0-a405343ab86d
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: C_CUSTKEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: d22b9d78-9b3f-4b30-ba48-cd4940ca991c
+  - name: C_NAME
+    dataType: varchar(25)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: f5888f0a-6c8c-4731-a80a-70a49c8ef79b
+  - name: C_ADDRESS
+    dataType: varchar(40)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 331fde7d-3b83-45d2-8e4c-895ba6aad4e1
+  - name: C_NATIONKEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: fb1a5237-2f4b-43d4-aab2-687a1fcc9f75
+  - name: C_PHONE
+    dataType: varchar(15)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5fa116bf-7ec7-4a07-b423-192ad0eb9e60
+  - name: C_ACCTBAL
+    dataType: number(12,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 13c6b5ce-f6a3-488d-b1ae-cf798b54d251
+  - name: C_MKTSEGMENT
+    dataType: varchar(10)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 64e9b49a-41a8-4323-84ac-931f1612c16c
+  - name: C_COMMENT
+    dataType: varchar(117)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: abbe4446-28b2-41ea-bd49-8a85ad8f647a
+  - name: __LOAD_DATE
+    dataType: date
+    allowNulls: false
+    defaultValue: ''
+    description: LOAD DATE
+    id: e90665b4-7dc5-4591-8344-9e5c93eebcec
+  - name: __load_date_1
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 717ff2db-c458-40b8-8734-c9c26ab1e11b
+columnSets: []
+nodeFormat: dynamic
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGING
+color: '#FC7917'
+logic: |-
+  with "STG_CUSTOMER" as (
+      SELECT
+          "C_CUSTKEY",
+          "C_NAME",
+          "C_ADDRESS",
+          "C_NATIONKEY",
+          "C_PHONE",
+          "C_ACCTBAL",
+          "C_MKTSEGMENT",
+          "C_COMMENT",
+          "__LOAD_DATE"
+      FROM {{ref('RAW', 'STG_CUSTOMER')}}
+  )
+  , 
+  common as (
+      SELECT
+          "STG_CUSTOMER"."C_CUSTKEY",
+          "STG_CUSTOMER"."C_NAME",
+          "STG_CUSTOMER"."C_ADDRESS",
+          "STG_CUSTOMER"."C_NATIONKEY",
+          "STG_CUSTOMER"."C_PHONE",
+          "STG_CUSTOMER"."C_ACCTBAL",
+          "STG_CUSTOMER"."C_MKTSEGMENT",
+          "STG_CUSTOMER"."C_COMMENT",
+          "STG_CUSTOMER"."__LOAD_DATE",
+          current_date() AS "__load_date_1"
+      FROM "STG_CUSTOMER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: STG_CUSTOMER dimension
+references:
+  659cd04e-62b9-457d-a863-af329ca0afd0:
+    parentTableId: 55d96945-da8f-4c28-bd95-0d85bcd04d5d
+    id: 659cd04e-62b9-457d-a863-af329ca0afd0
