@@ -4,205 +4,187 @@ isSource: false
 columns:
   - name: L_ORDERKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 4c0c180a-dc1b-4f3a-b6ed-d58e724b9766
   - name: L_PARTKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 0532b49f-2fe1-4652-9c37-830ed1b66162
   - name: L_SUPPKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 898a9b09-2be4-43ee-8c8f-9aea120dc125
   - name: L_LINENUMBER
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: f4fbfe89-dc64-44a8-82fd-94fdd1f99c4e
   - name: L_QUANTITY
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: 97287ed7-0db3-460d-89c0-891b85730667
   - name: L_EXTENDEDPRICE
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: cd305bf4-1713-4bd9-bb39-d9d1e082af88
   - name: L_DISCOUNT
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: aa77ac76-1898-4280-92ba-5a9b2016dfbd
   - name: L_TAX
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: 0dcfdaa4-25b3-496c-b071-15e3efc85725
   - name: L_RETURNFLAG
     allowNulls: true
-    dataType: varchar(1)
+    dataType: VARCHAR(1)
     defaultValue: ''
     description: ''
     id: 404f07ae-4f70-477f-b6fe-780790e74c3b
   - name: L_LINESTATUS
     allowNulls: true
-    dataType: varchar(1)
+    dataType: VARCHAR(1)
     defaultValue: ''
     description: ''
     id: 77f75e0f-01be-4ad2-88a3-c21a24fbff37
   - name: L_SHIPDATE
     allowNulls: true
-    dataType: date
+    dataType: DATE
     defaultValue: ''
     description: ''
     id: 8cc9364a-8182-4094-94cf-9b93c4f3221c
   - name: L_COMMITDATE
     allowNulls: true
-    dataType: date
+    dataType: DATE
     defaultValue: ''
     description: ''
     id: 240f8e98-0699-495c-bb91-96fbf0df3cd4
   - name: L_RECEIPTDATE
     allowNulls: true
-    dataType: date
+    dataType: DATE
     defaultValue: ''
     description: ''
     id: 387a9a1d-21a2-44a9-8672-7216374b2eab
   - name: L_SHIPINSTRUCT
     allowNulls: true
-    dataType: varchar(25)
+    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
     id: fc915982-26fc-4734-b19d-5af0c2d04cce
   - name: L_SHIPMODE
     allowNulls: true
-    dataType: varchar(10)
+    dataType: VARCHAR(10)
     defaultValue: ''
     description: ''
     id: d8da7acc-bef1-4757-88e6-d6594d6b36d1
   - name: L_COMMENT
     allowNulls: true
-    dataType: varchar(44)
+    dataType: VARCHAR(44)
     defaultValue: ''
     description: ''
     id: 08017c41-3576-44d7-9718-df0d23186eb7
-  - name: __load_date
-    allowNulls: false
-    dataType: date
-    defaultValue: current_date()
-    description: load date
-    id: c2f15322-21ae-4481-ad31-3e4203dbf1d0
   - name: O_ORDERKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: e0f3500d-2a26-4d31-aee7-6300fa4760aa
   - name: O_CUSTKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 6c234398-c908-4553-98df-f11e535040ce
   - name: O_ORDERSTATUS
     allowNulls: true
-    dataType: varchar(1)
+    dataType: VARCHAR(1)
     defaultValue: ''
     description: ''
     id: 383b76a1-e563-4c84-a531-9a97feb458bf
   - name: O_TOTALPRICE
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: d354072a-a26f-4f28-8666-be67c7b2eb13
   - name: O_ORDERDATE
     allowNulls: true
-    dataType: date
+    dataType: DATE
     defaultValue: ''
     description: ''
     id: 3cf15c87-84e6-44c4-b4e3-19aca0016efd
   - name: O_ORDERPRIORITY
     allowNulls: true
-    dataType: varchar(15)
+    dataType: VARCHAR(15)
     defaultValue: ''
     description: ''
     id: 94e408e7-8b91-4d4d-a834-01352bcd3b5f
   - name: O_CLERK
     allowNulls: true
-    dataType: varchar(15)
+    dataType: VARCHAR(15)
     defaultValue: ''
     description: ''
     id: 778e9962-2e49-43a8-a2b6-97bbe77ce87b
   - name: O_SHIPPRIORITY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 246378b4-ce8a-48ef-8dc7-a6b5cb4de1b3
   - name: O_COMMENT
     allowNulls: true
-    dataType: varchar(79)
+    dataType: VARCHAR(79)
     defaultValue: ''
     description: ''
     id: 85a717c4-f3dd-4049-9ad7-48ea93200ee0
-  - name: __load_date_1
-    allowNulls: false
-    dataType: date
-    defaultValue: current_date()
-    description: load date
-    id: c8c09777-bf7f-4b08-bb63-636a31e20f15
   - name: PS_PARTKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: f9ef966c-85d9-46aa-84a3-80e7e22f8e07
   - name: PS_SUPPKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 0de719e9-e48e-4d94-85ff-8332868dd58d
   - name: PS_AVAILQTY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: ea4868f6-c1e2-4376-a3a1-bed093840dfa
   - name: PS_SUPPLYCOST
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: d30b7342-9371-4932-aec8-cc49980b9ba5
   - name: PS_COMMENT
     allowNulls: true
-    dataType: varchar(199)
+    dataType: VARCHAR(199)
     defaultValue: ''
     description: ''
     id: 7c92f755-3533-4954-a1e2-33ff96bcb625
-  - name: __load_date_2
-    allowNulls: false
-    dataType: date
-    defaultValue: current_date()
-    description: load date
-    id: 1b7323d9-18a4-451f-b885-b9fa09a80037
   - name: __load_date_3
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
     id: 8b72a64f-7b1b-43a2-b9bd-9e499d91cf61
@@ -271,7 +253,6 @@ logic: |-
           "stg_LINEITEM"."L_SHIPINSTRUCT",
           "stg_LINEITEM"."L_SHIPMODE",
           "stg_LINEITEM"."L_COMMENT",
-          "stg_LINEITEM"."__load_date",
           "stg_ORDERS"."O_ORDERKEY",
           "stg_ORDERS"."O_CUSTKEY",
           "stg_ORDERS"."O_ORDERSTATUS",
@@ -281,19 +262,17 @@ logic: |-
           "stg_ORDERS"."O_CLERK",
           "stg_ORDERS"."O_SHIPPRIORITY",
           "stg_ORDERS"."O_COMMENT",
-          "stg_ORDERS"."__load_date" AS "__load_date_1",
           "stg_PARTSUPP"."PS_PARTKEY",
           "stg_PARTSUPP"."PS_SUPPKEY",
           "stg_PARTSUPP"."PS_AVAILQTY",
           "stg_PARTSUPP"."PS_SUPPLYCOST",
           "stg_PARTSUPP"."PS_COMMENT",
-          "stg_PARTSUPP"."__load_date" AS "__load_date_2",
           current_date() AS "__load_date_3"
       FROM "stg_LINEITEM"
       INNER JOIN "stg_ORDERS"
-      ON /*"stg_LINEITEM"."<column>" = "stg_ORDERS"."<column>"*/
+      ON "stg_LINEITEM".L_ORDERKEY = "stg_ORDERS".O_ORDERKEY
       INNER JOIN "stg_PARTSUPP"
-      ON /*"stg_LINEITEM"."<column>" = "stg_PARTSUPP"."<column>"*/
+      ON "stg_LINEITEM".L_PARTKEY = "stg_PARTSUPP".PS_PARTKEY
   )
 
   SELECT * FROM common

@@ -497,9 +497,6 @@ logic: |-
   , 
   common as (
       SELECT
-          "DIM_CUSTOMER_1"."pk_load_date",
-          "DIM_PART"."pk_load_date" AS "pk_load_date_1",
-          "DIM_SUPPLIER"."pk_load_date" AS "pk_load_date_2",
           "DIM_CUSTOMER_1"."C_CUSTKEY",
           "DIM_CUSTOMER_1"."C_NAME",
           "DIM_CUSTOMER_1"."C_ADDRESS",
@@ -508,8 +505,7 @@ logic: |-
           "DIM_CUSTOMER_1"."C_ACCTBAL",
           "DIM_CUSTOMER_1"."C_MKTSEGMENT",
           "DIM_CUSTOMER_1"."C_COMMENT",
-          "DIM_CUSTOMER_1"."__load_date",
-          "DIM_CUSTOMER_1"."load_date",
+
           "DIM_PART"."P_PARTKEY",
           "DIM_PART"."P_NAME",
           "DIM_PART"."P_MFGR",
@@ -519,8 +515,6 @@ logic: |-
           "DIM_PART"."P_CONTAINER",
           "DIM_PART"."P_RETAILPRICE",
           "DIM_PART"."P_COMMENT",
-          "DIM_PART"."__load_date" AS "__load_date_1",
-          "DIM_PART"."load_date" AS "load_date_1",
           "DIM_SUPPLIER"."S_SUPPKEY",
           "DIM_SUPPLIER"."S_NAME",
           "DIM_SUPPLIER"."S_ADDRESS",
@@ -528,8 +522,6 @@ logic: |-
           "DIM_SUPPLIER"."S_PHONE",
           "DIM_SUPPLIER"."S_ACCTBAL",
           "DIM_SUPPLIER"."S_COMMENT",
-          "DIM_SUPPLIER"."__load_date" AS "__load_date_2",
-          "DIM_SUPPLIER"."load_date" AS "load_date_2",
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_ORDERKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_PARTKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_SUPPKEY",
@@ -546,7 +538,6 @@ logic: |-
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_SHIPINSTRUCT",
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_SHIPMODE",
           "stg_LINEITEM_ORDERS_PARTSUPP"."L_COMMENT",
-          "stg_LINEITEM_ORDERS_PARTSUPP"."__load_date" AS "__load_date_3",
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_ORDERKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_CUSTKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_ORDERSTATUS",
@@ -556,15 +547,12 @@ logic: |-
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_CLERK",
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_SHIPPRIORITY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."O_COMMENT",
-          "stg_LINEITEM_ORDERS_PARTSUPP"."__load_date_1" AS "__load_date_1_1",
           "stg_LINEITEM_ORDERS_PARTSUPP"."PS_PARTKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."PS_SUPPKEY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."PS_AVAILQTY",
           "stg_LINEITEM_ORDERS_PARTSUPP"."PS_SUPPLYCOST",
           "stg_LINEITEM_ORDERS_PARTSUPP"."PS_COMMENT",
-          "stg_LINEITEM_ORDERS_PARTSUPP"."__load_date_2" AS "__load_date_2_1",
-          "stg_LINEITEM_ORDERS_PARTSUPP"."__load_date_3" AS "__load_date_3_1",
-          current_date() AS "__load_date_4"
+          current_date() AS "__load_date_"
       FROM "DIM_CUSTOMER_1"
       INNER JOIN "DIM_PART"
       ON /*"DIM_CUSTOMER_1"."<column>" = "DIM_PART"."<column>"*/

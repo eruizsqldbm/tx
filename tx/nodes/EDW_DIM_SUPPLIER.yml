@@ -4,61 +4,55 @@ isSource: false
 columns:
   - name: pk_load_date
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
     id: 04cdc033-2667-442b-80e1-4732639e65b4
   - name: S_SUPPKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 7b981367-ee72-4c5a-a1f7-78e45857644a
   - name: S_NAME
     allowNulls: true
-    dataType: varchar(25)
+    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
     id: ffcb9b43-2088-49f5-a913-1283b04ac387
   - name: S_ADDRESS
     allowNulls: true
-    dataType: varchar(40)
+    dataType: VARCHAR(40)
     defaultValue: ''
     description: ''
     id: 925c4f28-ffbc-42e8-9ff2-d1cc05197c0e
   - name: S_NATIONKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 0469004f-b291-407c-8050-849f08d9a3d3
   - name: S_PHONE
     allowNulls: true
-    dataType: varchar(15)
+    dataType: VARCHAR(15)
     defaultValue: ''
     description: ''
     id: cfcbfbbe-b83e-4643-a8c9-285a4248d0a0
   - name: S_ACCTBAL
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: 45cf52c9-7917-48f3-bacc-5adb3bbaca8c
   - name: S_COMMENT
     allowNulls: true
-    dataType: varchar(101)
+    dataType: VARCHAR(101)
     defaultValue: ''
     description: ''
     id: d333b3f2-4746-4d60-ae4b-1e0bd98188a6
-  - name: __load_date
-    allowNulls: false
-    dataType: date
-    defaultValue: current_date()
-    description: load date
-    id: f8dee841-649f-4b9a-9f4b-892e46c141c0
   - name: load_date
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
     id: b2a4dea5-1dcd-450f-997c-5e08ba52b9d9
@@ -86,7 +80,6 @@ logic: |-
           "stg_SUPPLIER"."S_PHONE",
           "stg_SUPPLIER"."S_ACCTBAL",
           "stg_SUPPLIER"."S_COMMENT",
-          "stg_SUPPLIER"."__load_date",
           current_date() AS "load_date"
       FROM "stg_SUPPLIER"
   )

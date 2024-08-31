@@ -4,67 +4,61 @@ isSource: false
 columns:
   - name: pk_load_date
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
     id: 7f174385-2a3e-40aa-87b8-7b29039321c5
   - name: C_CUSTKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: 9b91d5c6-b357-4190-9872-914724008114
   - name: C_NAME
     allowNulls: true
-    dataType: varchar(25)
+    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
     id: 510cfcc4-7134-412d-bbf4-5430b44238ab
   - name: C_ADDRESS
     allowNulls: true
-    dataType: varchar(40)
+    dataType: VARCHAR(40)
     defaultValue: ''
     description: ''
     id: b87cb260-bdf8-4e4b-ac85-b12e8b6b0012
   - name: C_NATIONKEY
     allowNulls: true
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
     id: acf9ec6f-135a-4dc1-aa61-5cca98e2c83c
   - name: C_PHONE
     allowNulls: true
-    dataType: varchar(15)
+    dataType: VARCHAR(15)
     defaultValue: ''
     description: ''
     id: 943346b8-6c11-4e7b-a8b3-8140de5e96ac
   - name: C_ACCTBAL
     allowNulls: true
-    dataType: number(12,2)
+    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
     id: 44b36a4e-ec29-4ea4-bfd2-109e11b3731f
   - name: C_MKTSEGMENT
     allowNulls: true
-    dataType: varchar(10)
+    dataType: VARCHAR(10)
     defaultValue: ''
     description: ''
     id: 657338c8-5395-4f2d-a03d-19e0ef646ef2
   - name: C_COMMENT
     allowNulls: true
-    dataType: varchar(117)
+    dataType: VARCHAR(117)
     defaultValue: ''
     description: ''
     id: b3562e22-f65e-4f44-a593-6b3ac3ee28d7
-  - name: __load_date
-    allowNulls: false
-    dataType: date
-    defaultValue: current_date()
-    description: load date
-    id: 7cf25e66-b5b9-48ff-ae65-b6630653dc05
   - name: load_date
     allowNulls: false
-    dataType: date
+    dataType: DATE
     defaultValue: current_date()
     description: load date
     id: 2e08080d-8e65-4f38-959d-6d1d804065fc
@@ -94,7 +88,6 @@ logic: |-
           "stg_CUSTOMER_1"."C_ACCTBAL",
           "stg_CUSTOMER_1"."C_MKTSEGMENT",
           "stg_CUSTOMER_1"."C_COMMENT",
-          "stg_CUSTOMER_1"."__load_date",
           current_date() AS "load_date"
       FROM "stg_CUSTOMER_1"
   )
