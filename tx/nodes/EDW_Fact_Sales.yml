@@ -71,12 +71,6 @@ columns:
     defaultValue: ''
     description: ''
     id: af775605-8807-431f-90c1-326814650c5a
-  - name: load_date
-    dataType: DATE
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: 43f164ff-e9a9-49a4-8d57-b3e273b18ee1
   - name: STORE_ID
     dataType: VARCHAR(50)
     allowNulls: false
@@ -155,12 +149,6 @@ columns:
     defaultValue: ''
     description: ''
     id: e8f2f43a-3847-4ac5-a594-eeb832c35614
-  - name: SUPPLIER_KEY_1
-    dataType: NUMBER(38,0)
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-    id: 37c471dc-2502-488c-83ca-c97e8d051ebc
   - name: PRICE
     dataType: NUMBER(10,2)
     allowNulls: true
@@ -251,12 +239,12 @@ columns:
     defaultValue: ''
     description: ''
     id: c7a80400-2e70-4e5b-be55-097a37a8765e
-  - name: load_date_1
+  - name: load_date
     dataType: DATE
     allowNulls: false
     defaultValue: current_date()
     description: load date
-    id: 26ec6e94-23f0-4052-b889-a6fdf74ad099
+    id: 43f164ff-e9a9-49a4-8d57-b3e273b18ee1
 columnSets:
   - id: aca3a626-09c0-4049-80d1-fa6e6242824a
     itemName: PK
@@ -401,7 +389,6 @@ logic: |-
           "DIM_SUPPLIER"."SUPPLIER_ID",
           "DIM_SUPPLIER"."SUPPLIER_NAME",
           "DIM_SUPPLIER"."CONTACT_INFO",
-          "DIM_SUPPLIER"."load_date",
           "DIM_STORE"."STORE_ID",
           "DIM_STORE"."STORE_NAME",
           "DIM_STORE"."CITY",
@@ -415,7 +402,6 @@ logic: |-
           "DIM_PRODUCT"."PRODUCT_ID",
           "DIM_PRODUCT"."PRODUCT_NAME",
           "DIM_PRODUCT"."CATEGORY_KEY",
-          "DIM_PRODUCT"."SUPPLIER_KEY",
           "DIM_PRODUCT"."PRICE",
           "DIM_EMPLOYEE"."EMPLOYEE_ID",
           "DIM_EMPLOYEE"."EMPLOYEE_NAME",
@@ -445,7 +431,6 @@ logic: |-
   SELECT * FROM common
 description: ''
 logicalName: Fact_Sales
-status: IncorrectStructure
 references:
   1d322423-059d-417d-a838-578e5136bd23:
     parentTableId: 4c687734-f49b-46cc-902b-1ca8e2c08119
