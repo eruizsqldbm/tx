@@ -1,119 +1,91 @@
 name: DIM_PART
-color: '#E53E3E'
+id: 56279263-e97b-45c6-8b6f-b1545adb1a0e
+storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
+templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
+materialization: table
 isSource: false
 columns:
   - name: pk_load_date
+    dataType: date
     allowNulls: false
-    dataType: DATE
     defaultValue: current_date()
     description: load date
-    id: 57990e11-3ef2-4eb1-8016-2a290a33c67b
+    id: 811e22f2-3809-4cae-adca-902e87629437
   - name: P_PARTKEY
+    dataType: number(38,0)
     allowNulls: true
-    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
-    id: 7e56a5e2-d2df-4c29-87eb-ea428ffdff41
+    id: 7f2f028b-56ac-4776-993c-84f29fbd49df
   - name: P_NAME
+    dataType: varchar(55)
     allowNulls: true
-    dataType: VARCHAR(55)
     defaultValue: ''
     description: ''
-    id: b87a6a9e-82bd-4ed1-9f48-fc436456ecaf
+    id: c1fa92aa-ec6f-4159-b7ac-0b79d485fc42
   - name: P_MFGR
+    dataType: varchar(25)
     allowNulls: true
-    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
-    id: 58a8a965-a49f-44de-80c9-661bfaf73dfc
+    id: a727530f-91ec-4623-95c2-c9cb09e21b10
   - name: P_BRAND
+    dataType: varchar(10)
     allowNulls: true
-    dataType: VARCHAR(10)
     defaultValue: ''
     description: ''
-    id: 993b59ed-9b50-4c97-b869-29e7ba827064
+    id: 50dc34f3-4d06-42d1-989d-93a0afb4982f
   - name: P_TYPE
+    dataType: varchar(25)
     allowNulls: true
-    dataType: VARCHAR(25)
     defaultValue: ''
     description: ''
-    id: 9b24b8c3-a581-41ed-8c48-9f8ad01794a5
+    id: 193e7053-7e97-46ae-a88a-8772e2a270fc
   - name: P_SIZE
+    dataType: number(38,0)
     allowNulls: true
-    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
-    id: a7cc9426-dfc1-47bf-bed6-0b7d0e71b771
+    id: 58abaf11-769c-41be-8694-cf3bc9ac7530
   - name: P_CONTAINER
+    dataType: varchar(10)
     allowNulls: true
-    dataType: VARCHAR(10)
     defaultValue: ''
     description: ''
-    id: ff2b4ae3-6bb9-412c-93d4-6e7ac59bebf7
+    id: 0b8260b4-0d5d-4b82-823e-a4cc60def25b
   - name: P_RETAILPRICE
+    dataType: number(12,2)
     allowNulls: true
-    dataType: NUMBER(12,2)
     defaultValue: ''
     description: ''
-    id: 5af67aeb-efa9-48fd-b23b-3041d20a6195
+    id: 0a68a2fd-e6af-428f-aa36-e2a686a8c1b3
   - name: P_COMMENT
+    dataType: varchar(23)
     allowNulls: true
-    dataType: VARCHAR(23)
     defaultValue: ''
     description: ''
-    id: 6f2f9226-7237-48a0-bc21-534a24437ec0
-  - name: load_date
+    id: 485abbfb-126c-4c84-8cf3-57c7430e1c29
+  - name: __load_date
+    dataType: date
     allowNulls: false
-    dataType: DATE
     defaultValue: current_date()
     description: load date
-    id: a1717fed-1b06-47c8-840e-d9c4fedd696b
-logic: |-
-  with "stg_PART" as (
-      SELECT
-          "P_PARTKEY",
-          "P_NAME",
-          "P_MFGR",
-          "P_BRAND",
-          "P_TYPE",
-          "P_SIZE",
-          "P_CONTAINER",
-          "P_RETAILPRICE",
-          "P_COMMENT",
-          "__load_date"
-      FROM {{ref('STAGING', 'stg_PART')}}
-  )
-  , 
-  common as (
-      SELECT
-          current_date() AS "pk_load_date",
-          "stg_PART"."P_PARTKEY",
-          "stg_PART"."P_NAME",
-          "stg_PART"."P_MFGR",
-          "stg_PART"."P_BRAND",
-          "stg_PART"."P_TYPE",
-          "stg_PART"."P_SIZE",
-          "stg_PART"."P_CONTAINER",
-          "stg_PART"."P_RETAILPRICE",
-          "stg_PART"."P_COMMENT",
-          current_date() AS "load_date"
-      FROM "stg_PART"
-  )
-
-  SELECT * FROM common
-description: ''
-logicalName: PART dimension dimension
+    id: a688f5b5-b5ad-4c24-a199-5b3dcbc8ee1d
+  - name: load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 062de020-57c5-4b19-8c5e-6e317017b86a
 columnSets:
-  - itemName: PK
-    setName: PK_DIM_stg_PART
+  - id: 9c770fef-9536-4001-8d84-740475ce6c34
+    itemName: PK
+    setName: PK_DIM_STG_PART
     columns:
-      - columnId: 57990e11-3ef2-4eb1-8016-2a290a33c67b
+      - columnId: 811e22f2-3809-4cae-adca-902e87629437
         position: 1
         name: pk_load_date
-    id: bb1e6db9-bfd3-409b-a78b-8e0ef2a29c3e
-templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
-materialization: table
-storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
+nodeFormat: dynamic
 preCreate:
   value: ''
   isValidated: false
@@ -129,10 +101,46 @@ postRun:
 my_button: true
 my_dropdown: option 1
 rely_button: true
-id: 7a948044-81ea-4611-ba01-e0eb5e826ff4
-nodeFormat: dynamic
 parentName: EDW
+status: RunFailed
+color: '#E53E3E'
+logic: |-
+  with "STG_PART" as (
+      SELECT
+          "P_PARTKEY",
+          "P_NAME",
+          "P_MFGR",
+          "P_BRAND",
+          "P_TYPE",
+          "P_SIZE",
+          "P_CONTAINER",
+          "P_RETAILPRICE",
+          "P_COMMENT",
+          "__load_date"
+      FROM {{ref('STAGING', 'STG_PART')}}
+  )
+  , 
+  common as (
+      SELECT
+          current_date() AS "pk_load_date",
+          "STG_PART"."P_PARTKEY",
+          "STG_PART"."P_NAME",
+          "STG_PART"."P_MFGR",
+          "STG_PART"."P_BRAND",
+          "STG_PART"."P_TYPE",
+          "STG_PART"."P_SIZE",
+          "STG_PART"."P_CONTAINER",
+          "STG_PART"."P_RETAILPRICE",
+          "STG_PART"."P_COMMENT",
+          "STG_PART"."__load_date",
+          current_date() AS "load_date"
+      FROM "STG_PART"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PART dimension dimension
 references:
-  cadb5887-b747-4672-9674-86355e876fef:
+  a7da5dc7-9085-4453-b9eb-97319aba4bcc:
     parentTableId: e9c03667-32bc-46c2-87e4-a5f2508353f4
-    id: cadb5887-b747-4672-9674-86355e876fef
+    id: a7da5dc7-9085-4453-b9eb-97319aba4bcc

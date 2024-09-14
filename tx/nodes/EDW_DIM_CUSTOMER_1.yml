@@ -1,67 +1,102 @@
 name: DIM_CUSTOMER_1
-color: '#E53E3E'
+id: 887717fc-1d4b-405c-bbb5-c0369765d2d1
+storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
+templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
+materialization: table
 isSource: false
 columns:
   - name: pk_load_date
+    dataType: date
     allowNulls: false
-    dataType: DATE
     defaultValue: current_date()
     description: load date
-    id: 7f174385-2a3e-40aa-87b8-7b29039321c5
+    id: fd58e987-c6b2-4c3e-9af1-a0f906e75141
   - name: C_CUSTKEY
-    allowNulls: true
     dataType: NUMBER(38,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: 9b91d5c6-b357-4190-9872-914724008114
+    id: a95fe14d-0896-483f-9c9c-cc7a2cb33208
   - name: C_NAME
-    allowNulls: true
     dataType: VARCHAR(25)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: 510cfcc4-7134-412d-bbf4-5430b44238ab
+    id: ea4cb56a-e48c-4747-bae5-f53baa263375
   - name: C_ADDRESS
-    allowNulls: true
     dataType: VARCHAR(40)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: b87cb260-bdf8-4e4b-ac85-b12e8b6b0012
+    id: c82138d4-bbce-4ac5-995a-e6d79634facb
   - name: C_NATIONKEY
-    allowNulls: true
     dataType: NUMBER(38,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: acf9ec6f-135a-4dc1-aa61-5cca98e2c83c
+    id: 64d48f31-5244-4403-b18a-b379257526e9
   - name: C_PHONE
-    allowNulls: true
     dataType: VARCHAR(15)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: 943346b8-6c11-4e7b-a8b3-8140de5e96ac
+    id: 90baf70e-2974-4272-87ed-56af506714c5
   - name: C_ACCTBAL
-    allowNulls: true
     dataType: NUMBER(12,2)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    id: 44b36a4e-ec29-4ea4-bfd2-109e11b3731f
+    id: 537edd14-899c-4d25-8b25-a4412b9e5a59
   - name: C_MKTSEGMENT
-    allowNulls: true
     dataType: VARCHAR(10)
-    defaultValue: ''
-    description: ''
-    id: 657338c8-5395-4f2d-a03d-19e0ef646ef2
-  - name: C_COMMENT
     allowNulls: true
-    dataType: VARCHAR(117)
     defaultValue: ''
     description: ''
-    id: b3562e22-f65e-4f44-a593-6b3ac3ee28d7
-  - name: load_date
-    allowNulls: false
+    id: 0d5a94c7-504f-4c06-815e-d63b4ef53106
+  - name: C_COMMENT
+    dataType: VARCHAR(117)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 93594d61-c9fc-458d-8ee1-d09098c6d5c2
+  - name: __load_date
     dataType: DATE
+    allowNulls: false
     defaultValue: current_date()
     description: load date
-    id: 2e08080d-8e65-4f38-959d-6d1d804065fc
+    id: 0ac6c847-564e-44de-9b76-d59b129ca22a
+  - name: load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 3e3f362d-6a1d-4f21-bea4-29ede25befce
+columnSets:
+  - id: e63141c8-43ac-4e3c-a5bd-2f33a0b0272d
+    itemName: PK
+    setName: PK_DIM_stg_CUSTOMER_1
+    columns:
+      - columnId: fd58e987-c6b2-4c3e-9af1-a0f906e75141
+        position: 1
+        name: pk_load_date
+nodeFormat: dynamic
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#E53E3E'
 logic: |-
   with "stg_CUSTOMER_1" as (
       SELECT
@@ -88,6 +123,7 @@ logic: |-
           "stg_CUSTOMER_1"."C_ACCTBAL",
           "stg_CUSTOMER_1"."C_MKTSEGMENT",
           "stg_CUSTOMER_1"."C_COMMENT",
+          "stg_CUSTOMER_1"."__load_date",
           current_date() AS "load_date"
       FROM "stg_CUSTOMER_1"
   )
@@ -95,36 +131,7 @@ logic: |-
   SELECT * FROM common
 description: ''
 logicalName: CUSTOMER dimension dimension
-columnSets:
-  - itemName: PK
-    setName: PK_DIM_stg_CUSTOMER_1
-    columns:
-      - columnId: 7f174385-2a3e-40aa-87b8-7b29039321c5
-        position: 1
-        name: pk_load_date
-    id: b4615f1f-a147-4e51-824f-79f5dba1f099
-templateId: 093e39c9-f65e-4de0-ab04-7868bf89609d
-materialization: table
-storageLocationId: 687bf7ac-bcec-4aac-9820-0021ec8cdc2d
-preCreate:
-  value: ''
-  isValidated: false
-postCreate:
-  value: ''
-  isValidated: false
-preRun:
-  value: ''
-  isValidated: false
-postRun:
-  value: ''
-  isValidated: false
-my_button: true
-my_dropdown: option 1
-rely_button: true
-id: b7f59d60-07b3-41f3-8e32-364d4b98782b
-nodeFormat: dynamic
-parentName: EDW
 references:
-  2359ebe0-f9f3-45e0-a8b7-cfe535b5d708:
+  b22a05a4-75c5-4cc1-870e-772907fedb24:
     parentTableId: 6f82523e-537b-4353-825b-356a5621fb38
-    id: 2359ebe0-f9f3-45e0-a8b7-cfe535b5d708
+    id: b22a05a4-75c5-4cc1-870e-772907fedb24
