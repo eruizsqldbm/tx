@@ -1,0 +1,473 @@
+name: Fact_Sales
+id: 13374a8c-d6df-4bb9-92c1-40586e82f9ff
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: 868ce611-8c34-40b7-8e89-5a3190b1e2c8
+materialization: table
+isSource: false
+columns:
+  - name: SUPPLIER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 8220d1f9-b3d2-4f0f-b684-4758bc08958c
+  - name: STORE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 84a80167-88c9-4356-a125-07bca7605167
+  - name: PROMOTION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c95a566c-b847-42d3-827d-948d0287d2a5
+  - name: PRODUCT_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0df2959d-8aa7-4c0c-b5d3-472aacf0a822
+  - name: EMPLOYEE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 3e54cda0-6689-4328-a822-2dce0cce8c63
+  - name: DATE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 711c40dd-0485-40d7-9dfc-a1eb60232320
+  - name: CUSTOMER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b3823c7d-f57f-4a08-9fbd-0403675cb274
+  - name: CHANNEL_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: dda6cfdd-51fb-4c6d-98a7-3d4db6c077b8
+  - name: SUPPLIER_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5d5f6775-6f0b-4795-b3af-8fef7f5cea15
+  - name: SUPPLIER_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 98c51083-e9e1-4b83-8d21-3776e6dfd2e2
+  - name: CONTACT_INFO
+    dataType: VARCHAR(100)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: af775605-8807-431f-90c1-326814650c5a
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 43f164ff-e9a9-49a4-8d57-b3e273b18ee1
+  - name: STORE_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ce623af0-82cf-4352-a73c-e7ebd16a5b69
+  - name: STORE_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b66323c5-cec9-47f2-ba2f-9bebef1e774d
+  - name: CITY
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 7f316431-47ea-497c-8ac6-a725824cf438
+  - name: STATE
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: b709f09e-a9d6-459a-b919-2e308916591d
+  - name: COUNTRY
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 5c7f21f7-c1a0-4d12-b1f7-1038cf1689ca
+  - name: REGION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: a9b831c7-eaf4-4421-b8ec-4945dded7763
+  - name: PROMOTION_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: a930887d-8289-4ab8-b6ff-66372198bb64
+  - name: PROMOTION_DESCRIPTION
+    dataType: VARCHAR(255)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 38691499-c47b-4d23-8941-3b1619c0ed2e
+  - name: START_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: c2964bdd-ee41-4f98-b456-129190bbab3e
+  - name: END_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 2888025d-8c47-4a15-a183-f935f558d217
+  - name: PRODUCT_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 4bed1786-25ea-4cbf-a7c7-47867230e53b
+  - name: PRODUCT_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 26ae84e0-e661-4142-a3f4-ae7ffdc5d689
+  - name: CATEGORY_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: e8f2f43a-3847-4ac5-a594-eeb832c35614
+  - name: SUPPLIER_KEY_1
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 37c471dc-2502-488c-83ca-c97e8d051ebc
+  - name: PRICE
+    dataType: NUMBER(10,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 9f3b00da-9a97-45bc-9130-187178e16808
+  - name: EMPLOYEE_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: de978596-4949-4343-bdec-c2ba943da4ac
+  - name: EMPLOYEE_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0be1b1a7-71d4-4bc4-8e74-207d97ebb04c
+  - name: JOB_TITLE
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: f0190ff1-3815-4250-b5f8-116ed8316559
+  - name: DATE
+    dataType: DATE
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 247785b5-04e9-4a37-9a98-57834c63a6aa
+  - name: DAY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c98c1990-5107-497a-a0a1-00f0afc057c7
+  - name: MONTH
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c4539eef-46ce-4127-a9c8-fb0cf84f02bf
+  - name: YEAR
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 76ce154c-7458-42ff-b175-41977672c3e7
+  - name: QUARTER
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 6b99f495-6cec-449b-b937-0eec82edab8a
+  - name: CUSTOMER_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: dc4fb62b-291f-417b-a53f-3cb01aff507f
+  - name: CUSTOMER_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: a2421996-4b5f-4c93-b564-5b1612c85f35
+  - name: EMAIL
+    dataType: VARCHAR(100)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 115ad1fa-f40e-4286-8b0e-93edd9c97209
+  - name: PHONE
+    dataType: VARCHAR(20)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: abddc8de-20bc-488e-9ea7-823fc1a023f2
+  - name: CHANNEL_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 713cecaa-ac5e-4dab-948e-a724e013898e
+  - name: CHANNEL_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c7a80400-2e70-4e5b-be55-097a37a8765e
+  - name: load_date_1
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 26ec6e94-23f0-4052-b889-a6fdf74ad099
+columnSets:
+  - id: aca3a626-09c0-4049-80d1-fa6e6242824a
+    itemName: PK
+    setName: >-
+      PK_tmp_DIM_SUPPLIER_DIM_STORE_DIM_PROMOTION_DIM_PRODUCT_DIM_EMPLOYEE_DIM_DATE_DIM_CUSTOMER_DIM_CHANNEL
+    columns:
+      - columnId: 8220d1f9-b3d2-4f0f-b684-4758bc08958c
+        position: 1
+        name: SUPPLIER_KEY
+      - columnId: 84a80167-88c9-4356-a125-07bca7605167
+        position: 2
+        name: STORE_KEY
+      - columnId: c95a566c-b847-42d3-827d-948d0287d2a5
+        position: 3
+        name: PROMOTION_KEY
+      - columnId: 0df2959d-8aa7-4c0c-b5d3-472aacf0a822
+        position: 4
+        name: PRODUCT_KEY
+      - columnId: 3e54cda0-6689-4328-a822-2dce0cce8c63
+        position: 5
+        name: EMPLOYEE_KEY
+      - columnId: 711c40dd-0485-40d7-9dfc-a1eb60232320
+        position: 6
+        name: DATE_KEY
+      - columnId: b3823c7d-f57f-4a08-9fbd-0403675cb274
+        position: 7
+        name: CUSTOMER_KEY
+      - columnId: dda6cfdd-51fb-4c6d-98a7-3d4db6c077b8
+        position: 8
+        name: CHANNEL_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#1C70FF'
+logic: |-
+  with "DIM_SUPPLIER" as (
+      SELECT
+          "SUPPLIER_KEY",
+          "SUPPLIER_ID",
+          "SUPPLIER_NAME",
+          "CONTACT_INFO",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_SUPPLIER')}}
+  ),
+  "DIM_STORE" as (
+      SELECT
+          "STORE_KEY",
+          "STORE_ID",
+          "STORE_NAME",
+          "CITY",
+          "STATE",
+          "COUNTRY",
+          "REGION_KEY",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_STORE')}}
+  ),
+  "DIM_PROMOTION" as (
+      SELECT
+          "PROMOTION_KEY",
+          "PROMOTION_ID",
+          "PROMOTION_DESCRIPTION",
+          "START_DATE",
+          "END_DATE",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_PROMOTION')}}
+  ),
+  "DIM_PRODUCT" as (
+      SELECT
+          "PRODUCT_KEY",
+          "PRODUCT_ID",
+          "PRODUCT_NAME",
+          "CATEGORY_KEY",
+          "SUPPLIER_KEY",
+          "PRICE",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_PRODUCT')}}
+  ),
+  "DIM_EMPLOYEE" as (
+      SELECT
+          "EMPLOYEE_KEY",
+          "EMPLOYEE_ID",
+          "EMPLOYEE_NAME",
+          "JOB_TITLE",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_EMPLOYEE')}}
+  ),
+  "DIM_DATE" as (
+      SELECT
+          "DATE_KEY",
+          "DATE",
+          "DAY",
+          "MONTH",
+          "YEAR",
+          "QUARTER",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_DATE')}}
+  ),
+  "DIM_CUSTOMER" as (
+      SELECT
+          "CUSTOMER_KEY",
+          "CUSTOMER_ID",
+          "CUSTOMER_NAME",
+          "EMAIL",
+          "PHONE",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_CUSTOMER')}}
+  ),
+  "DIM_CHANNEL" as (
+      SELECT
+          "CHANNEL_KEY",
+          "CHANNEL_ID",
+          "CHANNEL_NAME",
+          "load_date"
+      FROM {{ref('EDW', 'DIM_CHANNEL')}}
+  )
+  ,
+  common as (
+      SELECT
+          "DIM_SUPPLIER"."SUPPLIER_KEY",
+          "DIM_STORE"."STORE_KEY",
+          "DIM_PROMOTION"."PROMOTION_KEY",
+          "DIM_PRODUCT"."PRODUCT_KEY",
+          "DIM_EMPLOYEE"."EMPLOYEE_KEY",
+          "DIM_DATE"."DATE_KEY",
+          "DIM_CUSTOMER"."CUSTOMER_KEY",
+          "DIM_CHANNEL"."CHANNEL_KEY",
+          "DIM_SUPPLIER"."SUPPLIER_ID",
+          "DIM_SUPPLIER"."SUPPLIER_NAME",
+          "DIM_SUPPLIER"."CONTACT_INFO",
+          "DIM_SUPPLIER"."load_date",
+          "DIM_STORE"."STORE_ID",
+          "DIM_STORE"."STORE_NAME",
+          "DIM_STORE"."CITY",
+          "DIM_STORE"."STATE",
+          "DIM_STORE"."COUNTRY",
+          "DIM_STORE"."REGION_KEY",
+          "DIM_PROMOTION"."PROMOTION_ID",
+          "DIM_PROMOTION"."PROMOTION_DESCRIPTION",
+          "DIM_PROMOTION"."START_DATE",
+          "DIM_PROMOTION"."END_DATE",
+          "DIM_PRODUCT"."PRODUCT_ID",
+          "DIM_PRODUCT"."PRODUCT_NAME",
+          "DIM_PRODUCT"."CATEGORY_KEY",
+          "DIM_PRODUCT"."SUPPLIER_KEY",
+          "DIM_PRODUCT"."PRICE",
+          "DIM_EMPLOYEE"."EMPLOYEE_ID",
+          "DIM_EMPLOYEE"."EMPLOYEE_NAME",
+          "DIM_EMPLOYEE"."JOB_TITLE",
+          "DIM_DATE"."DATE",
+          "DIM_DATE"."DAY",
+          "DIM_DATE"."MONTH",
+          "DIM_DATE"."YEAR",
+          "DIM_DATE"."QUARTER",
+          "DIM_CUSTOMER"."CUSTOMER_ID",
+          "DIM_CUSTOMER"."CUSTOMER_NAME",
+          "DIM_CUSTOMER"."EMAIL",
+          "DIM_CUSTOMER"."PHONE",
+          "DIM_CHANNEL"."CHANNEL_ID",
+          "DIM_CHANNEL"."CHANNEL_NAME",
+          current_date() AS "load_date"
+      FROM "DIM_PRODUCT"
+      JOIN "DIM_SUPPLIER" ON "DIM_SUPPLIER"."SUPPLIER_KEY" = "DIM_PRODUCT"."SUPPLIER_KEY"
+      JOIN "DIM_STORE" ON "DIM_STORE"."REGION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_CUSTOMER" ON "DIM_CUSTOMER"."CUSTOMER_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_EMPLOYEE" ON "DIM_EMPLOYEE"."EMPLOYEE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_DATE" ON "DIM_DATE"."DATE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_CHANNEL" ON "DIM_CHANNEL"."CHANNEL_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      LEFT JOIN "DIM_PROMOTION" ON "DIM_PROMOTION"."PROMOTION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: Fact_Sales
+status: IncorrectStructure
+references:
+  1d322423-059d-417d-a838-578e5136bd23:
+    parentTableId: 4c687734-f49b-46cc-902b-1ca8e2c08119
+    id: 1d322423-059d-417d-a838-578e5136bd23
+  8e8fd5c8-6aaa-49ff-8eec-43ce2f89b5b9:
+    parentTableId: 16e1b412-433c-42e5-a672-5567cc2deb18
+    id: 8e8fd5c8-6aaa-49ff-8eec-43ce2f89b5b9
+  784d8043-a75a-4f0c-9c8d-8fd575ee2751:
+    parentTableId: 91da9beb-981d-4a70-9588-b85b07eee73a
+    id: 784d8043-a75a-4f0c-9c8d-8fd575ee2751
+  95e4eae3-c293-4d35-a996-bf4b80821623:
+    parentTableId: c5196c75-0ed4-4852-986a-7f2422fc35ae
+    id: 95e4eae3-c293-4d35-a996-bf4b80821623
+  c51bd74d-2c66-4612-aee7-f571fc51f59b:
+    parentTableId: e892c888-77d4-44c5-8fd3-3ff22a71737e
+    id: c51bd74d-2c66-4612-aee7-f571fc51f59b
+  09cc18bd-6b66-43c4-a763-48a131f9e5dd:
+    parentTableId: 8634bd95-7fb0-46ed-965f-dc8b6d919b21
+    id: 09cc18bd-6b66-43c4-a763-48a131f9e5dd
+  91430f95-126e-46b4-877a-739b62096f68:
+    parentTableId: a252e317-0123-4a90-a35f-de83e5adaa99
+    id: 91430f95-126e-46b4-877a-739b62096f68
+  e1ae4d75-4217-4c03-b870-204c51a451f2:
+    parentTableId: 3665583d-bc50-49bb-adfe-accac63eb861
+    id: e1ae4d75-4217-4c03-b870-204c51a451f2

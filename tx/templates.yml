@@ -2,100 +2,106 @@
   value: |2-
 
       name: stage
-              
-      physicalName: 'stg_${parentPhysicalName}'           
 
-      logicalName: '${parentLogicalName} dimension'
-                                                 
+      physicalName: 'stg_${parentPhysicalName}'
+
+      logicalName: 'stage ${parentLogicalName}'
+
       color: 'orange'                                             # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)
-      
-      inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)
-      inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)      
-      
-      defaultColumns:                                             
-        - name: '__load_date'                            
-          logicalName: 'load date'                     
-          dataType: date
-          comment: 'load date'                             
-          nullable: false                                      
-          unique: false                                        
-          default: 'current_date()'                             
-          position: last
-          logic: current_date()
 
-      nodeSettings:                                           
-      - groupName: 'System UI Items'                          
-        groupDesc: 'System UI Items'                          
-        isEnabled: true                                                                            
-      
-        items:                                                                                               
-        - itemType: materialization                              
-          default: 'table'                                       
-          options:                                               
-          - 'table'  
-          - 'view'     
-          isRequired: true                                      
+      inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)
+      inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)
+
+      defaultColumns:
+      - name: '__load_date'
+        logicalName: 'load date'
+        dataType: date
+        comment: 'load date'
+        nullable: false
+        unique: false
+        default: 'current_date()'
+        position: last
+        logic: current_date()
+
+      nodeSettings:
+      - groupName: 'System UI Items'
+        groupDesc: 'System UI Items'
+        isEnabled: true
+
+        items:
+        - itemType: materialization
+          default: 'table'
+          options:
+          - 'table'
+          - 'view'
+          isRequired: true
           isEnabled: true
-        
+
+        - itemType: toggleButton
+          itemDesc: Truncate before
+          itemName: truncateBefore
+          default: false
+          isRequired: false
+          isEnabled: true
+
         - itemType: prePostSql
           itemDesc: Pre Create SQL
           itemName: preCreate
-          default: ''                                                 # Some default SQL text (string, optional)                              
-          isRequired: false                                       
+          default: ''                                                 # Some default SQL text (string, optional)
+          isRequired: false
           isEnabled: true
-          isValidated: false  
-        
+          isValidated: false
+
         - itemType: prePostSql
           itemDesc: Post Create SQL
           itemName: postCreate
           default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false                                       
+          isRequired: false
           isEnabled: true
-          isValidated: false  
-        
+          isValidated: false
+
         - itemType: prePostSql
           itemDesc: Pre Run SQL
           itemName: preRun
           default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false                                       
+          isRequired: false
           isEnabled: true
-          isValidated: false  
-        
+          isValidated: false
+
         - itemType: prePostSql
           itemDesc: Post Run SQL
           itemName: postRun
           default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false                                       
+          isRequired: false
           isEnabled: true
-          isValidated: false  
-                                                
-      - groupName: 'Column settings' 
+          isValidated: false
+
+      - groupName: 'Column settings'
         groupDesc: 'Column settings'
         isEnabled: true
-      
-        items: 
-        - itemType: columnSet                            
+
+        items:
+        - itemType: columnSet
           itemName: PK
           itemDesc: 'Primary key'
           isRequired: false
           isEnabled: true
-      
-        - itemType: columnSet                            
+
+        - itemType: columnSet
           itemName: AK
           itemDesc: 'Alternate key'
           isRequired: false
           isEnabled: true
-        
-      - groupName: 'User UI Items'                            
-        groupDesc: 'Optional user configured items'                            
-        isEnabled: true
-                                                                                                  
-        items:           
 
-        - itemType: toggleButton                              
-          itemDesc: 'Rely on constraints'                               
-          itemName: rely_button                                 
-          default: true                                     
+      - groupName: 'User UI Items'
+        groupDesc: 'Optional user configured items'
+        isEnabled: true
+
+        items:
+        - itemType: toggleButton
+          itemDesc: 'Rely on constraints'
+          itemName: rely_button
+          default: true
           isEnabled: true
   name: stage
   color: '#FC7917'
@@ -107,13 +113,13 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}          
+            "{{ col.name }}" {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
-        {% endfor -%} 
+        {% endfor -%}
         {% for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
@@ -121,7 +127,7 @@
                     "{{pkCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
         {%- endfor %}
@@ -132,16 +138,17 @@
                     "{{akCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
-        {%- endfor %}        
+        {%- endfor %}
     )
 
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
     ;
-        
+
+
     {%- elif materialization == 'view' %}
 
     CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
@@ -154,7 +161,7 @@
         {% endfor %}
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
-    )    
+    )
 
     AS
 
@@ -166,7 +173,7 @@
   runScript: |
     {% if materialization == 'table' %}
     INSERT INTO {{ location.mapping }}.{{name}}
-    ( 
+    (
         {%- for col in columns %}
         "{{ col.name }}"
         {%- if not loop.last %}, {% endif %}
@@ -179,86 +186,109 @@
   value: |2-
 
       name: Persistent Stage
-      physicalName: 'stg_${parentPhysicalName}'           
-      logicalName: '${parentLogicalName} dimension'
-      color: 'purple'                                             # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)
+
+      physicalName: 'stg_${parentPhysicalName}'
+
+      logicalName: 'stage ${parentLogicalName}'
+
+      color: 'orange'                                             # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)
+      
       inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)
-      inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)      
-      defaultColumns:                                             
-      - name: '__load_date'                            
-        logicalName: 'load date'                     
+      inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)
+      
+      defaultColumns:
+      - name: '__load_date'
+        logicalName: 'load date'
         dataType: date
-        comment: 'load date'                             
-        nullable: false                                      
-        unique: false                                        
-        default: 'current_date()'                             
+        comment: 'load date'
+        nullable: false
+        unique: false
+        default: 'current_date()'
         position: last
         logic: current_date()
-      nodeSettings:                                           
-      - groupName: 'System UI Items'                          
-        groupDesc: 'System UI Items'                          
-        isEnabled: true                                                                            
-        items:                                                                                               
-        - itemType: materialization                              
-          default: 'table'                                       
-          options:                                               
-          - 'table'  
-          - 'view'     
-          isRequired: true                                      
+
+      nodeSettings:
+      - groupName: 'System UI Items'
+        groupDesc: 'System UI Items'
+        isEnabled: true
+
+        items:
+        - itemType: materialization
+          default: 'table'
+          options:
+          - 'table'
+          - 'view'
+          isRequired: true
           isEnabled: true
+        
+        - itemType: toggleButton
+          itemDesc: Truncate before
+          itemName: truncateBefore
+          default: false
+          isRequired: false
+          isEnabled: true
+      
         - itemType: prePostSql
           itemDesc: Pre Create SQL
           itemName: preCreate
-          default: ''                                              # Some default SQL text (string, optional)                            
-          isRequired: false                                       
-          isEnabled: true  
+          default: ''                                              # Some default SQL text (string, optional)
+          isRequired: false
+          isEnabled: true
           isValidated: false
+        
         - itemType: prePostSql
           itemDesc: Post Create SQL
           itemName: postCreate
-          default: ''                                              # Some default SQL text (string, optional)                            
-          isRequired: false                                       
-          isEnabled: true  
+          default: ''                                              # Some default SQL text (string, optional)
+          isRequired: false
+          isEnabled: true
           isValidated: false
+
         - itemType: prePostSql
           itemDesc: Pre Run SQL
           itemName: preRun
-          default: ''                                              # Some default SQL text (string, optional)                              
-          isRequired: false                                       
-          isEnabled: true  
+          default: ''                                              # Some default SQL text (string, optional)
+          isRequired: false
+          isEnabled: true
           isValidated: false
+
         - itemType: prePostSql
           itemDesc: Post Run SQL
           itemName: postRun
-          default: ''                                              # Some default SQL text (string, optional)                              
-          isRequired: false                                       
-          isEnabled: true  
+          default: ''                                              # Some default SQL text (string, optional)
+          isRequired: false
+          isEnabled: true
           isValidated: false
-      - groupName: 'Column settings' 
+
+      - groupName: 'Column settings'
         groupDesc: 'Column settings'
         isEnabled: true
-        items: 
-        - itemType: columnSet                            
+
+        items:
+        - itemType: columnSet
           itemName: PK
           itemDesc: 'Primary key'
           isRequired: false
           isEnabled: true
-        - itemType: columnSet                            
+        
+        - itemType: columnSet
           itemName: AK
           itemDesc: 'Alternate key'
           isRequired: false
           isEnabled: true
-      - groupName: 'User UI Items'                            
-        groupDesc: 'Optional user configured items'                            
+
+      - groupName: 'User UI Items'
+        groupDesc: 'Optional user configured items'
         isEnabled: true
-        items:           
-        - itemType: toggleButton                              
-          itemDesc: 'Rely on constraints'                               
-          itemName: rely_button                                 
-          default: true                                     
+
+        items:
+        - itemType: toggleButton
+          itemDesc: 'Rely on constraints'
+          itemName: rely_button
+          default: true
           isEnabled: true
   name: persistent stage
-  color: '#8E44AD'
+  color: '#FC7917'
   createScript: >
     {%- if materialization == 'table' %}
 
@@ -267,13 +297,13 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}          
+            "{{ col.name }}" {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
-        {% endfor -%} 
+        {% endfor -%}
         {% for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
@@ -281,7 +311,7 @@
                     "{{pkCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
         {%- endfor %}
@@ -292,16 +322,17 @@
                     "{{akCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
-        {%- endfor %}        
+        {%- endfor %}
     )
 
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
     ;
-        
+
+
     {%- elif materialization == 'view' %}
 
     CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
@@ -314,7 +345,7 @@
         {% endfor %}
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
-    )    
+    )
 
     AS
 
@@ -328,14 +359,14 @@
     MERGE INTO {{ location.mapping }}.{{ name }} AS TxObject
     USING (
         {{ logic }}
-    ) AS TxLogic 
-    ON 
+    ) AS TxLogic
+    ON
         {%- for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
                 {%- for pkCol in colSet.columns %}
         TxObject."{{pkCol.name}}" = TxLogic."{{pkCol.name}}"
         {%- if not loop.last %}  AND  {% endif %}
-                {%- endfor -%}                       
+                {%- endfor -%}
             {%- endif -%}
         {%- endfor %}
 
@@ -359,10 +390,10 @@
     ;
     {%- endif %}
   isDefault: true
-- id: 093e39c9-f65e-4de0-ab04-7868bf89609d
-  value: "name: Dimensional\r\n    \r\nphysicalName: 'DIM_${parentPhysicalName}'           \r\n                                                          \r\nlogicalName: '${parentLogicalName} dimension'\r\n                                                         \r\ncolor: 'red'                                                # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)\r\n\r\ninheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)\r\ninheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)\r\n\r\nprimaryColumns:                                                                                                                                       \r\n  - name: 'pk_load_date'                                    # Column name  (string, required)\r\n    logicalName: 'load date'                                # Logical name of the column (string, optional)\r\n    dataType: date                                          # Column data type  (string, required)\r\n    comment: 'load date'                                    # Comment or description  (string, optional)\r\n    nullable: false                                         # Set not null constraint (boolean, default false)\r\n    unique: false                                   \r\n    default: 'current_date()'                       \r\n    position: first              \r\n    logic: 'current_date()' \r\n\r\ndefaultColumns:                                             \r\n  - name: 'load_date'                            \r\n    logicalName: 'load date'                     \r\n    dataType: date                             \r\n    comment: 'load date'                             \r\n    nullable: false                                      \r\n    unique: false                                        \r\n    default: 'current_date()'                             \r\n    position: last\r\n    logic: 'current_date()' \r\n\r\n\r\nnodeSettings:                                           \r\n- groupName: 'System UI Items'                          \r\n  groupDesc: 'System UI Items'                          \r\n  isEnabled: true                                                                            \r\n\r\n  items:                                                                                               \r\n  - itemType: materialization                              \r\n    default: 'table'                                       \r\n    options:                                               \r\n    - 'table'  \r\n    - 'view'     \r\n    isRequired: true                                      \r\n    isEnabled: true\r\n   \r\n  - itemType: prePostSql\r\n    itemDesc: Pre Create SQL\r\n    itemName: preCreate\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n  \r\n  - itemType: prePostSql\r\n    itemDesc: Post Create SQL\r\n    itemName: postCreate\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n    \r\n  - itemType: prePostSql\r\n    itemDesc: Pre Run SQL\r\n    itemName: preRun\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false\r\n    \r\n  - itemType: prePostSql\r\n    itemDesc: Post Run SQL\r\n    itemName: postRun\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n                        \r\n- groupName: 'Column settings' \r\n  groupDesc: 'Column settings'\r\n  isEnabled: true\r\n\r\n  items:   \r\n  - itemType: columnSet                            \r\n    itemName: PK                                                # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Primary key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: AK                                                # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Alternate key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: BK                                               # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Business key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: DELTA\r\n    itemDesc: 'Change tracking for type.2 SCD'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n- groupName: 'User UI Items'                            \r\n  groupDesc: 'Optional user configured items'                            \r\n  isEnabled: true                                                          \r\n                                                                                            \r\n  items:                                                \r\n                                               \r\n  - itemType: toggleButton                              \r\n    itemDesc: 'My Button'                               \r\n    itemName: my_button                                 \r\n    default: true                                     \r\n    isEnabled: true                                     \r\n    \r\n  - itemType: dropdownSelector                     \r\n    itemDesc: 'My dropdown selector'                    \r\n    itemName: my_dropdown                               \r\n    default: 'option 1'                                 \r\n    options:                                            \r\n    - 'option 1'\r\n    - 'option 2'\r\n    isRequired: false                                   \r\n    isEnabled: true                                                     \r\n\r\n  - itemType: columnSet                            \r\n    itemDesc: 'My column selector'                \r\n    itemName: my_columnSelector                         \r\n    isRequired: false                                   \r\n    isEnabled: true                                                    \r\n    \r\n  - itemType: multiSelector                             \r\n    itemDesc: 'My multi selector'                       \r\n    itemName: my_multi_selector                         \r\n    options:                                            \r\n    - 'option 1'                                        \r\n    - 'option 2'                                        \r\n    isRequired: false                                   \r\n    isEnabled: true                                     \r\n                                               \r\n  - itemType: textArea                                  \r\n    itemDesc: 'My Text Area'                            \r\n    itemName: my_textArea                                                          \r\n    isRequired: false                                   \r\n    isEnabled: true                                     \r\n\r\n  - itemType: textLine                                   \r\n    itemDesc: 'My text line'                             \r\n    itemName: my_textline                                       \r\n    isRequired: false                                    \r\n    isEnabled: true\r\n    \r\n  - itemType: toggleButton                              \r\n    itemDesc: 'Rely on constraints'\r\n    itemName: rely_button\r\n    default: true\r\n    isEnabled: true"
-  name: Dimensional
-  color: '#E53E3E'
+- id: d49262ec-7dbe-4818-99d8-483ac56ef34c
+  value: "\r\n  name: Dimension\r\n\r\n  physicalName: 'tmp_${parentPhysicalName}'\r\n\r\n  logicalName: '${parentLogicalName} dimension'\r\n\r\n  color: 'Purple'                                                # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)\r\n\r\n  inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)\r\n  inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)\r\n\r\n  inheritColumnSet:                                           # Inherit columnSet columns from parent table(s) (AK | BK | DELTA | FK | custom string)\r\n  - BK \r\n  - DELTA\r\n  - AK\r\n  - custom\r\n\r\n  primaryColumns:\r\n  - name: 'pk_load_date'                                    # Column name  (string, required)\r\n    logicalName: 'load date'                                # Logical name of the column (string, optional)\r\n    dataType: date                                          # Column data type  (string, required)\r\n    comment: 'load date'                                    # Comment or description  (string, optional)\r\n    nullable: false                                         # Set not null constraint (boolean, default false)\r\n    unique: false\r\n    default: 'current_date()'\r\n    position: first\r\n    logic: 'current_date()'\r\n\r\n  defaultColumns:\r\n  - name: 'load_date'\r\n    logicalName: 'load date'\r\n    dataType: date\r\n    comment: 'load date'\r\n    nullable: false\r\n    unique: false\r\n    default: 'current_date()'\r\n    position: last\r\n    logic: 'current_date()'\r\n\r\n  nodeSettings:\r\n  - groupName: 'System UI Items'\r\n    groupDesc: 'System UI Items'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: materialization\r\n      default: 'table'\r\n      options:\r\n      - 'table'\r\n      - 'view'\r\n      isRequired: true\r\n      isEnabled: true\r\n\r\n    - itemType: toggleButton\r\n      itemDesc: Truncate before\r\n      itemName: truncateBefore\r\n      default: false\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Pre Create SQL\r\n      itemName: preCreate\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Post Create SQL\r\n      itemName: postCreate\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Pre Run SQL\r\n      itemName: preRun\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Post Run SQL\r\n      itemName: postRun\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n  - groupName: 'Column settings'\r\n    groupDesc: 'Column settings'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: columnSet\r\n      itemName: PK                                                # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Primary key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: AK                                                # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Alternate key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: BK                                               # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Business key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: DELTA\r\n      itemDesc: 'Change tracking for type.2 SCD'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n  - groupName: 'User UI Items'\r\n    groupDesc: 'Optional user configured items'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: toggleButton\r\n      itemDesc: 'My Button'\r\n      itemName: my_button\r\n      default: true\r\n      isEnabled: true\r\n\r\n    - itemType: dropdownSelector\r\n      itemDesc: 'My dropdown selector'\r\n      itemName: my_dropdown\r\n      default: 'option 1'\r\n      options:\r\n      - 'option 1'\r\n      - 'option 2'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemDesc: 'My column selector'\r\n      itemName: my_columnSelector\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: multiSelector\r\n      itemDesc: 'My multi selector'\r\n      itemName: my_multi_selector\r\n      options:\r\n      - 'option 1'\r\n      - 'option 2'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: textArea\r\n      itemDesc: 'My Text Area'\r\n      itemName: my_textArea\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: textLine\r\n      itemDesc: 'My text line'\r\n      itemName: my_textline\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: toggleButton\r\n      itemDesc: 'Rely on constraints'\r\n      itemName: rely_button\r\n      default: true\r\n      isEnabled: true"
+  name: Dimension
+  color: '#8E44AD'
   createScript: >
     {%- if materialization == 'table' %}
 
@@ -371,13 +402,13 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}          
+            "{{ col.name }}" {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
-        {% endfor -%} 
+        {% endfor -%}
         {% for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
@@ -385,7 +416,7 @@
                     "{{pkCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
         {%- endfor %}
@@ -396,16 +427,17 @@
                     "{{akCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
-        {%- endfor %}        
+        {%- endfor %}
     )
 
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
     ;
-        
+
+
     {%- elif materialization == 'view' %}
 
     CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
@@ -418,7 +450,7 @@
         {% endfor %}
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
-    )    
+    )
 
     AS
 
@@ -430,7 +462,7 @@
   runScript: |
     {% if materialization == 'table' %}
     INSERT INTO {{ location.mapping }}.{{name}}
-    ( 
+    (
         {%- for col in columns %}
         "{{ col.name }}"
         {%- if not loop.last %}, {% endif %}
@@ -439,8 +471,8 @@
     {{ logic }};
     {%- endif %}
   isDefault: false
-- id: dfc3ee9a-3eb2-4bf6-83b9-ae256727e3de
-  value: "name: Fact\r\n    \r\nphysicalName: 'fact_${parentPhysicalName}'           \r\n                                                          \r\nlogicalName: '${parentLogicalName} dimension'\r\n                                                         \r\ncolor: 'blue'                                                # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)\r\n\r\ninheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)\r\ninheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)\r\n\r\nprimaryColumns:                                                                                                                                       \r\n  - name: 'pk_load_date'                                    # Column name  (string, required)\r\n    logicalName: 'load date'                                # Logical name of the column (string, optional)\r\n    dataType: date                                          # Column data type  (string, required)\r\n    comment: 'load date'                                    # Comment or description  (string, optional)\r\n    nullable: false                                         # Set not null constraint (boolean, default false)\r\n    unique: false                                   \r\n    default: 'current_date()'                       \r\n    position: first              \r\n    logic: 'current_date()' \r\n\r\ndefaultColumns:                                             \r\n  - name: 'load_date'                            \r\n    logicalName: 'load date'                     \r\n    dataType: date                             \r\n    comment: 'load date'                             \r\n    nullable: false                                      \r\n    unique: false                                        \r\n    default: 'current_date()'                             \r\n    position: last\r\n    logic: 'current_date()' \r\n\r\n\r\nnodeSettings:                                           \r\n- groupName: 'System UI Items'                          \r\n  groupDesc: 'System UI Items'                          \r\n  isEnabled: true                                                                            \r\n\r\n  items:                                                                                               \r\n  - itemType: materialization                              \r\n    default: 'table'                                       \r\n    options:                                               \r\n    - 'table'  \r\n    - 'view'     \r\n    isRequired: true                                      \r\n    isEnabled: true\r\n   \r\n  - itemType: prePostSql\r\n    itemDesc: Pre Create SQL\r\n    itemName: preCreate\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n  \r\n  - itemType: prePostSql\r\n    itemDesc: Post Create SQL\r\n    itemName: postCreate\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n    \r\n  - itemType: prePostSql\r\n    itemDesc: Pre Run SQL\r\n    itemName: preRun\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false\r\n    \r\n  - itemType: prePostSql\r\n    itemDesc: Post Run SQL\r\n    itemName: postRun\r\n    default: ''                                                 # Some default SQL text (string, optional)\r\n    isRequired: false                                       \r\n    isEnabled: true\r\n    isValidated: false \r\n                        \r\n- groupName: 'Column settings' \r\n  groupDesc: 'Column settings'\r\n  isEnabled: true\r\n\r\n  items:   \r\n  - itemType: columnSet                            \r\n    itemName: PK                                                # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Primary key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: AK                                                # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Alternate key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: BK                                               # PK | AK | BK | DELTA | FK | custom string\r\n    itemDesc: 'Business key'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n  - itemType: columnSet                            \r\n    itemName: DELTA\r\n    itemDesc: 'Change tracking for type.2 SCD'\r\n    isRequired: false\r\n    isEnabled: true\r\n\r\n- groupName: 'User UI Items'                            \r\n  groupDesc: 'Optional user configured items'                            \r\n  isEnabled: true                                                          \r\n                                                                                            \r\n  items:                                                \r\n                                               \r\n  - itemType: toggleButton                              \r\n    itemDesc: 'My Button'                               \r\n    itemName: my_button                                 \r\n    default: true                                     \r\n    isEnabled: true                                     \r\n    \r\n  - itemType: dropdownSelector                     \r\n    itemDesc: 'My dropdown selector'                    \r\n    itemName: my_dropdown                               \r\n    default: 'option 1'                                 \r\n    options:                                            \r\n    - 'option 1'\r\n    - 'option 2'\r\n    isRequired: false                                   \r\n    isEnabled: true                                                     \r\n\r\n  - itemType: columnSet                            \r\n    itemDesc: 'My column selector'                \r\n    itemName: my_columnSelector                         \r\n    isRequired: false                                   \r\n    isEnabled: true                                                    \r\n    \r\n  - itemType: multiSelector                             \r\n    itemDesc: 'My multi selector'                       \r\n    itemName: my_multi_selector                         \r\n    options:                                            \r\n    - 'option 1'                                        \r\n    - 'option 2'                                        \r\n    isRequired: false                                   \r\n    isEnabled: true                                     \r\n                                               \r\n  - itemType: textArea                                  \r\n    itemDesc: 'My Text Area'                            \r\n    itemName: my_textArea                                                          \r\n    isRequired: false                                   \r\n    isEnabled: true                                     \r\n\r\n  - itemType: textLine                                   \r\n    itemDesc: 'My text line'                             \r\n    itemName: my_textline                                       \r\n    isRequired: false                                    \r\n    isEnabled: true\r\n    \r\n  - itemType: toggleButton                              \r\n    itemDesc: 'Rely on constraints'\r\n    itemName: rely_button\r\n    default: true\r\n    isEnabled: true"
+- id: 868ce611-8c34-40b7-8e89-5a3190b1e2c8
+  value: "\r\n  name: Fact\r\n\r\n  physicalName: 'tmp_${parentPhysicalName}'\r\n\r\n  logicalName: '${parentLogicalName} dimension'\r\n\r\n  color: 'blue'                                                # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)\r\n\r\n  inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)\r\n  inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)\r\n\r\n  inheritColumnSet:                                           # Inherit columnSet columns from parent table(s) (AK | BK | DELTA | FK | custom string)\r\n  - BK \r\n  - DELTA\r\n  - AK\r\n  - custom\r\n\r\n  primaryColumns:\r\n  - name: 'pk_load_date'                                    # Column name  (string, required)\r\n    logicalName: 'load date'                                # Logical name of the column (string, optional)\r\n    dataType: date                                          # Column data type  (string, required)\r\n    comment: 'load date'                                    # Comment or description  (string, optional)\r\n    nullable: false                                         # Set not null constraint (boolean, default false)\r\n    unique: false\r\n    default: 'current_date()'\r\n    position: first\r\n    logic: 'current_date()'\r\n\r\n  defaultColumns:\r\n  - name: 'load_date'\r\n    logicalName: 'load date'\r\n    dataType: date\r\n    comment: 'load date'\r\n    nullable: false\r\n    unique: false\r\n    default: 'current_date()'\r\n    position: last\r\n    logic: 'current_date()'\r\n\r\n  nodeSettings:\r\n  - groupName: 'System UI Items'\r\n    groupDesc: 'System UI Items'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: materialization\r\n      default: 'table'\r\n      options:\r\n      - 'table'\r\n      - 'view'\r\n      isRequired: true\r\n      isEnabled: true\r\n\r\n    - itemType: toggleButton\r\n      itemDesc: Truncate before\r\n      itemName: truncateBefore\r\n      default: false\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Pre Create SQL\r\n      itemName: preCreate\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Post Create SQL\r\n      itemName: postCreate\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Pre Run SQL\r\n      itemName: preRun\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n    - itemType: prePostSql\r\n      itemDesc: Post Run SQL\r\n      itemName: postRun\r\n      default: ''                                                 # Some default SQL text (string, optional)\r\n      isRequired: false\r\n      isEnabled: true\r\n      isValidated: false\r\n\r\n  - groupName: 'Column settings'\r\n    groupDesc: 'Column settings'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: columnSet\r\n      itemName: PK                                                # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Primary key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: AK                                                # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Alternate key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: BK                                               # PK | AK | BK | DELTA | FK | custom string\r\n      itemDesc: 'Business key'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemName: DELTA\r\n      itemDesc: 'Change tracking for type.2 SCD'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n  - groupName: 'User UI Items'\r\n    groupDesc: 'Optional user configured items'\r\n    isEnabled: true\r\n\r\n    items:\r\n    - itemType: toggleButton\r\n      itemDesc: 'My Button'\r\n      itemName: my_button\r\n      default: true\r\n      isEnabled: true\r\n\r\n    - itemType: dropdownSelector\r\n      itemDesc: 'My dropdown selector'\r\n      itemName: my_dropdown\r\n      default: 'option 1'\r\n      options:\r\n      - 'option 1'\r\n      - 'option 2'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: columnSet\r\n      itemDesc: 'My column selector'\r\n      itemName: my_columnSelector\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: multiSelector\r\n      itemDesc: 'My multi selector'\r\n      itemName: my_multi_selector\r\n      options:\r\n      - 'option 1'\r\n      - 'option 2'\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: textArea\r\n      itemDesc: 'My Text Area'\r\n      itemName: my_textArea\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: textLine\r\n      itemDesc: 'My text line'\r\n      itemName: my_textline\r\n      isRequired: false\r\n      isEnabled: true\r\n\r\n    - itemType: toggleButton\r\n      itemDesc: 'Rely on constraints'\r\n      itemName: rely_button\r\n      default: true\r\n      isEnabled: true"
   name: Fact
   color: '#1C70FF'
   createScript: >
@@ -451,13 +483,13 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}          
+            "{{ col.name }}" {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
-        {% endfor -%} 
+        {% endfor -%}
         {% for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
@@ -465,7 +497,7 @@
                     "{{pkCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
         {%- endfor %}
@@ -476,16 +508,17 @@
                     "{{akCol.name}}"
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
-                )                         
+                )
                 {%- if rely_button %} RELY {% endif -%}
             {%- endif -%}
-        {%- endfor %}        
+        {%- endfor %}
     )
 
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
     ;
-        
+
+
     {%- elif materialization == 'view' %}
 
     CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
@@ -498,7 +531,7 @@
         {% endfor %}
     {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
 
-    )    
+    )
 
     AS
 
@@ -510,7 +543,7 @@
   runScript: |
     {% if materialization == 'table' %}
     INSERT INTO {{ location.mapping }}.{{name}}
-    ( 
+    (
         {%- for col in columns %}
         "{{ col.name }}"
         {%- if not loop.last %}, {% endif %}
