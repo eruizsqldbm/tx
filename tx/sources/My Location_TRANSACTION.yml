@@ -1,0 +1,77 @@
+sourceId: 7cbd1a64-e506-4dd4-9c65-d88338358340
+name: TRANSACTION
+locationId: c421f907-a895-46f4-ad2d-6c727c9644a8
+description: ''
+columns:
+  - name: TRANSACTION_KEY
+    dataType: number(38,0)
+    id: 33432c9c-fd39-41d0-8d2b-a70126494115
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: DATE_KEY
+    dataType: number(38,0)
+    id: d182220f-043b-4142-835d-e07dc7110bd8
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: PRODUCT_KEY
+    dataType: number(38,0)
+    id: 6823a9cb-d021-4c92-8d76-85971427859a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: CUSTOMER_KEY
+    dataType: number(38,0)
+    id: e4984057-6bd9-479b-a936-4d2cdd07f4e9
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: STORE_KEY
+    dataType: number(38,0)
+    id: 3c15106b-9664-4672-bfe1-89de322d40bc
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: CHANNEL_KEY
+    dataType: number(38,0)
+    id: 9821f4cf-350b-4b90-95b7-ec7a23ddd825
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: EMPLOYEE_KEY
+    dataType: number(38,0)
+    id: 99a57979-7798-439b-a92a-9df373f8a91e
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: PROMOTION_KEY
+    dataType: number(38,0)
+    id: 915c988a-76f5-4ef2-8890-23275b6b4340
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+  - name: QUANTITY_SOLD
+    dataType: number(10,0)
+    id: 4937ea67-5d1f-4ca5-8c4f-93045789d4e3
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: SALES_AMOUNT
+    dataType: number(10,2)
+    id: 4060853b-830d-4a3d-afd9-53f811526811
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+  - name: DISCOUNT_AMOUNT
+    dataType: number(10,2)
+    id: a4852ccb-8e93-48c0-b577-b56ff8eac17a
+    allowNulls: true
+    defaultValue: '0'
+    description: ''
+  - name: TOTAL_COST
+    dataType: number(10,2)
+    id: c26e7b00-e5de-4932-849a-d13483479930
+    allowNulls: false
+    defaultValue: ''
+    description: ''
