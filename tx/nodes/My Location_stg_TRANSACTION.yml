@@ -77,12 +77,6 @@ columns:
     defaultValue: ''
     description: ''
     id: ad845b51-1f56-4e0c-b109-43e4d36e0a38
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: 32c3d112-1de5-4418-92eb-64bc1fcd6a2e
 columnSets:
   - id: 549f3f44-5e3f-4c1f-b2a5-3abd4c7d5e4d
     itemName: PK
