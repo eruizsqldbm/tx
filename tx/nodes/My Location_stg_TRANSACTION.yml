@@ -6,73 +6,73 @@ materialization: table
 isSource: false
 columns:
   - name: TRANSACTION_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 42be7de3-bcd7-42a0-a81b-33ce2549a621
   - name: DATE_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 1f492c96-4b91-4e37-bd27-41eab9796a4d
   - name: PRODUCT_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: dbdf3381-2ee2-4817-9295-515b0b203448
   - name: CUSTOMER_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: ba7b92e4-a668-4647-9f6e-03241d810ce6
   - name: STORE_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 9395b858-d34d-4c9a-9a48-eb3e82a7a70f
   - name: CHANNEL_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: aa99d205-0d88-4ba7-ac11-34dd3d916e4a
   - name: EMPLOYEE_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: ce391f02-90c7-4103-9f5c-7540465d05b9
   - name: PROMOTION_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 7acc02ac-e114-45dd-aeb2-768146286d6c
   - name: QUANTITY_SOLD
-    dataType: number(10,0)
+    dataType: NUMBER(10,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: c142d4cd-b217-4173-8bd0-095f0c843b9c
   - name: SALES_AMOUNT
-    dataType: number(10,2)
+    dataType: NUMBER(10,2)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 2d736efb-3969-4b92-bd64-5250a99b337d
   - name: DISCOUNT_AMOUNT
-    dataType: number(10,2)
+    dataType: NUMBER(10,2)
     allowNulls: true
     defaultValue: '0'
     description: ''
     id: 2ae0b901-60f5-4f23-84e0-a74b1afe1a66
   - name: TOTAL_COST
-    dataType: number(10,2)
+    dataType: NUMBER(10,2)
     allowNulls: false
     defaultValue: ''
     description: ''
