@@ -134,7 +134,6 @@ logic: |-
           "TRANSACTION"."SALES_AMOUNT",
           "TRANSACTION"."DISCOUNT_AMOUNT",
           "TRANSACTION"."TOTAL_COST",
-          current_date() AS "__load_date"
       FROM "TRANSACTION"
   )
 
