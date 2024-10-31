@@ -1,0 +1,81 @@
+name: stg_CATEGORY
+color: '#FC7917'
+isSource: false
+columns:
+  - name: CATEGORY_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 773661e0-74cf-4ec8-8d50-4b8292177344
+  - name: CATEGORY_ID
+    allowNulls: false
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: b648aaa6-8f92-475c-a009-ad5e06c6b971
+  - name: CATEGORY_NAME
+    allowNulls: false
+    dataType: varchar(100)
+    defaultValue: ''
+    description: ''
+    id: df831020-6750-4a41-aa4c-d784b116f922
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: a43e890e-119f-4e5d-9c5d-d3678187c4ae
+logic: |-
+  with "CATEGORY" as (
+      SELECT
+          "CATEGORY_KEY",
+          "CATEGORY_ID",
+          "CATEGORY_NAME"
+      FROM {{ref('RAW', 'CATEGORY')}}
+  )
+  ,
+  common as (
+      SELECT
+          "CATEGORY"."CATEGORY_KEY",
+          "CATEGORY"."CATEGORY_ID",
+          "CATEGORY"."CATEGORY_NAME",
+          current_date() AS "__load_date"
+      FROM "CATEGORY"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CATEGORY
+columnSets:
+  - itemName: PK
+    setName: PK_stg_CATEGORY
+    columns:
+      - columnId: 773661e0-74cf-4ec8-8d50-4b8292177344
+        position: 1
+        name: CATEGORY_KEY
+    id: 9682481a-b90b-431f-811e-16756504be3e
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 6e3329ee-540a-4ed3-a9e8-1e1b3fdb3bf8
+nodeFormat: dynamic
+parentName: RAW
+references:
+  f33fc46b-8b3c-4857-bb2d-c9f5b715f426:
+    parentTableId: bcd43b91-9343-4f03-ab8e-cbbd83b437b8
+    id: f33fc46b-8b3c-4857-bb2d-c9f5b715f426

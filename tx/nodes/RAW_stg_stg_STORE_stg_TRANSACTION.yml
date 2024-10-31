@@ -1,0 +1,217 @@
+name: stg_stg_STORE_stg_TRANSACTION
+color: '#FC7917'
+isSource: false
+columns:
+  - name: STORE_KEY
+    allowNulls: false
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 8fad2a5e-7c5f-4caa-9af3-d6008fe174ef
+  - name: TRANSACTION_KEY
+    allowNulls: false
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 3b0d66d1-6e6d-476a-a04a-56993c1ac76c
+  - name: STORE_ID
+    allowNulls: false
+    dataType: VARCHAR(50)
+    defaultValue: ''
+    description: ''
+    id: f5cf46e7-ac97-4516-bb1a-0a40cacd7d58
+  - name: STORE_NAME
+    allowNulls: false
+    dataType: VARCHAR(100)
+    defaultValue: ''
+    description: ''
+    id: 3e2d977c-e500-424f-8215-624c71c7ec1a
+  - name: CITY
+    allowNulls: true
+    dataType: VARCHAR(50)
+    defaultValue: ''
+    description: ''
+    id: dcbdc9f3-a74d-40ed-95b4-243adba3b43b
+  - name: STATE
+    allowNulls: true
+    dataType: VARCHAR(50)
+    defaultValue: ''
+    description: ''
+    id: a5b36da0-c481-47df-9121-bc3cccda9cd0
+  - name: COUNTRY
+    allowNulls: true
+    dataType: VARCHAR(50)
+    defaultValue: ''
+    description: ''
+    id: db15a3a8-8bff-4183-a441-ca1d7c5e5fdf
+  - name: REGION_KEY
+    allowNulls: true
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 1ca80410-4f2d-456e-a0b9-3f60e3441f7d
+  - name: DATE_KEY
+    allowNulls: false
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: b917c511-b21d-44bc-9e02-74ec686e7033
+  - name: PRODUCT_KEY
+    allowNulls: false
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 2756d344-6117-46dd-aa95-ff8b68289c5d
+  - name: CUSTOMER_KEY
+    allowNulls: false
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: a369b16c-9c71-41ff-b2f6-7e78ab840979
+  - name: STORE_KEY_TRANSACTION
+    allowNulls: true
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: ecd9d12b-f12a-4cda-8f00-1796336bb649
+  - name: CHANNEL_KEY
+    allowNulls: true
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: afd0e020-381a-4825-84bb-44d76fe5daed
+  - name: EMPLOYEE_KEY
+    allowNulls: true
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 746b7c2e-1271-4cee-8a92-3b7dcb1d7b86
+  - name: PROMOTION_KEY
+    allowNulls: true
+    dataType: NUMBER(38,0)
+    defaultValue: ''
+    description: ''
+    id: 7ccd777f-46bd-4cd5-92f3-fede73a336b6
+  - name: QUANTITY_SOLD
+    allowNulls: false
+    dataType: NUMBER(10,0)
+    defaultValue: ''
+    description: ''
+    id: a6d91f56-bcec-4243-81c9-864d18160f6a
+  - name: SALES_AMOUNT
+    allowNulls: false
+    dataType: NUMBER(10,2)
+    defaultValue: ''
+    description: ''
+    id: 2484bf78-5714-4d96-8e04-00a6ef18f8b2
+  - name: DISCOUNT_AMOUNT
+    allowNulls: true
+    dataType: NUMBER(10,2)
+    defaultValue: '0'
+    description: ''
+    id: df233810-32c0-40d3-afe3-1f3740f902ea
+  - name: TOTAL_COST
+    allowNulls: false
+    dataType: NUMBER(10,2)
+    defaultValue: ''
+    description: ''
+    id: f758b040-b2f4-4f4c-b6ed-3f6748645535
+logic: |-
+  with "stg_STORE" as (
+      SELECT
+          "STORE_KEY",
+          "STORE_ID",
+          "STORE_NAME",
+          "CITY",
+          "STATE",
+          "COUNTRY",
+          "REGION_KEY",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_STORE')}}
+  ),
+  "stg_TRANSACTION" as (
+      SELECT
+          "TRANSACTION_KEY",
+          "DATE_KEY",
+          "PRODUCT_KEY",
+          "CUSTOMER_KEY",
+          "STORE_KEY",
+          "CHANNEL_KEY",
+          "EMPLOYEE_KEY",
+          "PROMOTION_KEY",
+          "QUANTITY_SOLD",
+          "SALES_AMOUNT",
+          "DISCOUNT_AMOUNT",
+          "TOTAL_COST",
+          "__load_date"
+      FROM {{ref('RAW', 'stg_TRANSACTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_STORE"."STORE_KEY",
+          "stg_TRANSACTION"."TRANSACTION_KEY",
+          "stg_STORE"."STORE_ID",
+          "stg_STORE"."STORE_NAME",
+          "stg_STORE"."CITY",
+          "stg_STORE"."STATE",
+          "stg_STORE"."COUNTRY",
+          "stg_STORE"."REGION_KEY",
+          "stg_TRANSACTION"."DATE_KEY",
+          "stg_TRANSACTION"."PRODUCT_KEY",
+          "stg_TRANSACTION"."CUSTOMER_KEY",
+          "stg_TRANSACTION"."STORE_KEY" AS "STORE_KEY_TRANSACTION",
+          "stg_TRANSACTION"."CHANNEL_KEY",
+          "stg_TRANSACTION"."EMPLOYEE_KEY",
+          "stg_TRANSACTION"."PROMOTION_KEY",
+          "stg_TRANSACTION"."QUANTITY_SOLD",
+          "stg_TRANSACTION"."SALES_AMOUNT",
+          "stg_TRANSACTION"."DISCOUNT_AMOUNT",
+          "stg_TRANSACTION"."TOTAL_COST"
+      FROM "stg_STORE"
+      INNER JOIN "stg_TRANSACTION"
+      ON "stg_STORE"."STORE_KEY" = "stg_TRANSACTION"."STORE_KEY"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage stage STORE_stage TRANSACTION
+columnSets:
+  - itemName: PK
+    setName: PK_stg_stg_STORE_stg_TRANSACTION
+    columns:
+      - columnId: 8fad2a5e-7c5f-4caa-9af3-d6008fe174ef
+        position: 1
+        name: STORE_KEY
+      - columnId: 3b0d66d1-6e6d-476a-a04a-56993c1ac76c
+        position: 2
+        name: TRANSACTION_KEY
+    id: 7da22b78-73a8-44af-9df0-35556146f108
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 5758d77b-895b-46d1-922f-404e78bf89ee
+nodeFormat: dynamic
+parentName: RAW
+status: RunSuccess
+references:
+  392e6d37-e12a-4bc3-b70e-5fc9f3370f49:
+    parentTableId: f6eea866-b172-403c-8d3f-3307f2961b1a
+    id: 392e6d37-e12a-4bc3-b70e-5fc9f3370f49
+  78bdf88e-54ff-4737-b229-84845e7e5fa9:
+    parentTableId: 7ab8624d-828b-487f-8b00-e9b95db26fd7
+    id: 78bdf88e-54ff-4737-b229-84845e7e5fa9
