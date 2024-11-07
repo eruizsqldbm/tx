@@ -1,0 +1,92 @@
+name: DIM_SUPPLIER
+id: 4c687734-f49b-46cc-902b-1ca8e2c08119
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: SUPPLIER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: df68a50a-5cca-4e30-b8e4-dd5adcf3f186
+  - name: SUPPLIER_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: fa26c068-d315-47c3-bc9e-c34bd08175d9
+  - name: SUPPLIER_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 53234853-dc99-4d9e-957e-79d885cfacf0
+  - name: CONTACT_INFO
+    dataType: VARCHAR(100)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: a8410db3-d13b-4724-9d49-111ca334b10f
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 3c70a59c-679e-4911-8c0b-628aa4723553
+columnSets:
+  - id: ef0669ad-e9b4-46d7-ad4a-78587d46bf42
+    itemName: PK
+    setName: PK_tmp_stg_SUPPLIER
+    columns:
+      - columnId: df68a50a-5cca-4e30-b8e4-dd5adcf3f186
+        position: 1
+        name: SUPPLIER_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_SUPPLIER" as (
+      SELECT
+          "SUPPLIER_KEY",
+          "SUPPLIER_ID",
+          "SUPPLIER_NAME",
+          "CONTACT_INFO",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_SUPPLIER')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_SUPPLIER"."SUPPLIER_KEY",
+          "stg_SUPPLIER"."SUPPLIER_ID",
+          "stg_SUPPLIER"."SUPPLIER_NAME",
+          "stg_SUPPLIER"."CONTACT_INFO",
+          current_date() AS "load_date"
+      FROM "stg_SUPPLIER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage SUPPLIER dimension
+references:
+  f7676dee-2c2f-4f5f-9f86-235d3c1cf3b3:
+    parentTableId: de463375-3c79-4787-88eb-0a6aedd13304
+    id: f7676dee-2c2f-4f5f-9f86-235d3c1cf3b3

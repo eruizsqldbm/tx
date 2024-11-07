@@ -1,0 +1,81 @@
+name: stg_REGION
+id: e900219b-dc82-4983-9cfa-5e89846a0e0a
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: REGION_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 14783873-4ff7-47d2-94ae-220abf964b5f
+  - name: REGION_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 1d0d1664-0ecf-4aa9-838c-fc05847ba13d
+  - name: COUNTRY
+    dataType: varchar(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 9aa08292-261b-4b52-96ea-273efad1bebf
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 30dfde89-0477-4312-94e3-91bb409fac6f
+columnSets:
+  - id: 1d3b5b1b-2514-4c02-9a02-855f37d4358f
+    itemName: PK
+    setName: PK_stg_REGION
+    columns:
+      - columnId: 14783873-4ff7-47d2-94ae-220abf964b5f
+        position: 1
+        name: REGION_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "REGION" as (
+      SELECT
+          "REGION_KEY",
+          "REGION_NAME",
+          "COUNTRY"
+      FROM {{ref('RAW', 'REGION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "REGION"."REGION_KEY",
+          "REGION"."REGION_NAME",
+          "REGION"."COUNTRY",
+          current_date() AS "__load_date"
+      FROM "REGION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage REGION
+references:
+  f459d977-ede1-40f7-a798-e1d0396e01d8:
+    parentTableId: 247d8d06-26fb-4e7e-b874-cf3457b3e58b
+    id: f459d977-ede1-40f7-a798-e1d0396e01d8

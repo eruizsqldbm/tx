@@ -217,7 +217,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "fa80004d-abae-4296-b6bf-e65e4c243923": {
@@ -552,16 +552,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -611,7 +603,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "b347c712-0bbe-4698-8340-908b5ac0a285": {
@@ -946,16 +938,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -1005,7 +989,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "467ece32-2af6-4081-8cbf-a0de9d215427": {
@@ -1571,16 +1555,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -1630,7 +1606,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "fc76604b-d266-40ff-a482-39df13d2e0cc": {
@@ -2119,16 +2095,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -2178,7 +2146,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "6fd61f0f-4146-482d-8981-785b7e98c7d1": {
@@ -2590,16 +2558,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -2649,7 +2609,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "534e5e15-fc34-4ddd-b030-7ad9cba219a3": {
@@ -3215,16 +3175,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           },
           "6a134d33-c10b-431c-b8f9-e312ffe2ac23": {
@@ -3326,16 +3278,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           },
           "8e0fb92a-2b07-4cc5-ae4b-77475d5a7f2e": {
@@ -3437,16 +3381,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -3541,7 +3477,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "4f9fbd89-f6e0-4df4-8453-5ea60a626746": {
@@ -4030,16 +3966,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -4089,7 +4017,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "d8105cd6-88b9-4fa1-a223-14f1a4d036b1": {
@@ -4424,16 +4352,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -4483,7 +4403,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "806bace3-b5b3-41d4-9d1f-22b5528337e1": {
@@ -5126,16 +5046,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -5185,7 +5097,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "3355064f-1d6b-4b9d-b457-635464010adc": {
@@ -5597,16 +5509,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -5656,7 +5560,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "417b7b8e-e1a2-47bc-9997-a3e4f80f93d0": {
@@ -5991,16 +5895,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -6050,7 +5946,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "edc7c3b8-4f8b-447e-966d-a216b366749a": {
@@ -6385,16 +6281,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -6444,7 +6332,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "260d76e8-604a-4f9c-9585-5443653f33b4": {
@@ -6933,16 +6821,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -6992,7 +6872,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "878f6ef6-7ad0-427b-b283-3c5d70156aea": {
@@ -7558,16 +7438,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -7617,7 +7489,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "882a7a8d-e0fa-450a-9311-ca721f4c6081": {
@@ -8029,16 +7901,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -8088,7 +7952,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "1ae938fb-790f-4325-b03c-8f41584af1ae": {
@@ -8654,16 +8518,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           },
           "d538d326-190d-4cb0-b639-dc702cf6db9a": {
@@ -8765,16 +8621,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           },
           "6143dfab-79aa-41af-b08a-ecf0e4f062a4": {
@@ -8876,16 +8724,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -8980,7 +8820,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "97f731cd-3417-4703-aa29-5ca403789400": {
@@ -9469,16 +9309,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -9528,7 +9360,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "99d06bbd-bbda-436f-8dc1-2ba77a776ae4": {
@@ -9863,16 +9695,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -9922,7 +9746,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "dcad0ef8-c58b-4dca-9947-c04a6da00445": {
@@ -10565,16 +10389,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -10624,7 +10440,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "540b6ff0-f874-45ba-80ad-03b2ac5eab0b",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "251e1236-12e1-4195-a547-c1c15303b949": {
@@ -11036,16 +10852,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
@@ -11095,7 +10903,7 @@
         "TemplateIds": [],
         "TableTemplateId": null,
         "TableType": 1,
-        "LocationId": "b5ca061d-99a8-40d1-802e-5add915f8314",
+        "LocationId": "b46b844c-11fa-4c86-bdc4-c503b8dceb0d",
         "Visibility": 1,
         "Columns": {
           "35417a13-3198-4447-a421-647f68ebd409": {
@@ -12046,16 +11854,8 @@
               "Properties": null
             },
             "GoogleBigQuery": {
-              "PartitionKeyOptions": {
-                "PartitionType": null,
-                "PartitionTypePeriod": null,
-                "Start": null,
-                "End": null,
-                "Interval": null
-              },
-              "SearchIndexOptions": {
-                "TextAnalyzer": null
-              }
+              "PartitionKeyOptions": null,
+              "SearchIndexOptions": null
             }
           }
         },
