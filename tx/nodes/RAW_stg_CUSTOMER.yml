@@ -1,0 +1,97 @@
+name: stg_CUSTOMER
+color: '#FC7917'
+isSource: false
+columns:
+  - name: CUSTOMER_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 02efe334-0a0b-4940-a959-fc64b3eed08e
+  - name: CUSTOMER_ID
+    allowNulls: false
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: 6e995286-25ba-403f-8e06-4fe024a7acb2
+  - name: CUSTOMER_NAME
+    allowNulls: false
+    dataType: varchar(100)
+    defaultValue: ''
+    description: ''
+    id: 445dc319-5771-42ca-8e42-4294be619dc7
+  - name: EMAIL
+    allowNulls: true
+    dataType: varchar(100)
+    defaultValue: ''
+    description: ''
+    id: 2200e69e-2ce4-4088-b870-397342f18c53
+  - name: PHONE
+    allowNulls: true
+    dataType: varchar(20)
+    defaultValue: ''
+    description: ''
+    id: ec982d91-54dd-4ccf-99de-f86ca8616ba7
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: e5613c69-a200-4bac-99bf-63de624f87c1
+logic: |-
+  with "CUSTOMER" as (
+      SELECT
+          "CUSTOMER_KEY",
+          "CUSTOMER_ID",
+          "CUSTOMER_NAME",
+          "EMAIL",
+          "PHONE"
+      FROM {{ref('RAW', 'CUSTOMER')}}
+  )
+  ,
+  common as (
+      SELECT
+          "CUSTOMER"."CUSTOMER_KEY",
+          "CUSTOMER"."CUSTOMER_ID",
+          "CUSTOMER"."CUSTOMER_NAME",
+          "CUSTOMER"."EMAIL",
+          "CUSTOMER"."PHONE",
+          current_date() AS "__load_date"
+      FROM "CUSTOMER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CUSTOMER
+columnSets:
+  - itemName: PK
+    setName: PK_stg_CUSTOMER
+    columns:
+      - columnId: 02efe334-0a0b-4940-a959-fc64b3eed08e
+        position: 1
+        name: CUSTOMER_KEY
+    id: 56603f28-4e2f-463c-a4b0-e8bf3f028e04
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 9ac2051f-01d1-4b07-8480-352170d5b0df
+nodeFormat: dynamic
+parentName: RAW
+references:
+  486a740e-f6b5-4a9b-af44-d1a04456a250:
+    parentTableId: 52d3f2ce-e354-46ab-8c1f-aeb602fefd24
+    id: 486a740e-f6b5-4a9b-af44-d1a04456a250

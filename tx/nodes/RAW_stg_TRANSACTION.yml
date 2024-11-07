@@ -1,0 +1,153 @@
+name: stg_TRANSACTION
+color: '#FC7917'
+isSource: false
+columns:
+  - name: TRANSACTION_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: a5a90686-e6cc-41e1-b4a5-53555d4d9270
+  - name: DATE_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: a49ae2d1-e167-4d10-9b07-a350674dbf6d
+  - name: PRODUCT_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: e3265950-2a36-4d3e-ae58-0173730c5122
+  - name: CUSTOMER_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: fe4d7ae8-da04-4f95-8937-8814bd5d0297
+  - name: STORE_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 3cabfdcb-856f-43a6-a57b-961bf5b60131
+  - name: CHANNEL_KEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 90bb965e-fbd6-4027-b685-1ee6974dbd60
+  - name: EMPLOYEE_KEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 3e121241-4dcc-44f1-adff-3028bbce1ffb
+  - name: PROMOTION_KEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: fc341ccc-c04e-4a8f-8b2e-7e93ec63ad99
+  - name: QUANTITY_SOLD
+    allowNulls: false
+    dataType: number(10,0)
+    defaultValue: ''
+    description: ''
+    id: 9b093b5b-9821-4080-9e38-cf335f301a90
+  - name: SALES_AMOUNT
+    allowNulls: false
+    dataType: number(10,2)
+    defaultValue: ''
+    description: ''
+    id: 5ee69d1f-a48b-4d24-88a3-5b99b903d27d
+  - name: DISCOUNT_AMOUNT
+    allowNulls: true
+    dataType: number(10,2)
+    defaultValue: '0'
+    description: ''
+    id: 0e4b5187-2809-4562-9037-feaadde30241
+  - name: TOTAL_COST
+    allowNulls: false
+    dataType: number(10,2)
+    defaultValue: ''
+    description: ''
+    id: c7f4ba28-3ec3-4f96-bbf9-6efda1e5a7b2
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: c0132857-acce-4143-bc9d-a675e14bbcbd
+logic: |-
+  with "TRANSACTION" as (
+      SELECT
+          "TRANSACTION_KEY",
+          "DATE_KEY",
+          "PRODUCT_KEY",
+          "CUSTOMER_KEY",
+          "STORE_KEY",
+          "CHANNEL_KEY",
+          "EMPLOYEE_KEY",
+          "PROMOTION_KEY",
+          "QUANTITY_SOLD",
+          "SALES_AMOUNT",
+          "DISCOUNT_AMOUNT",
+          "TOTAL_COST"
+      FROM {{ref('RAW', 'TRANSACTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "TRANSACTION"."TRANSACTION_KEY",
+          "TRANSACTION"."DATE_KEY",
+          "TRANSACTION"."PRODUCT_KEY",
+          "TRANSACTION"."CUSTOMER_KEY",
+          "TRANSACTION"."STORE_KEY",
+          "TRANSACTION"."CHANNEL_KEY",
+          "TRANSACTION"."EMPLOYEE_KEY",
+          "TRANSACTION"."PROMOTION_KEY",
+          "TRANSACTION"."QUANTITY_SOLD",
+          "TRANSACTION"."SALES_AMOUNT",
+          "TRANSACTION"."DISCOUNT_AMOUNT",
+          "TRANSACTION"."TOTAL_COST",
+          current_date() AS "__load_date"
+      FROM "TRANSACTION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage TRANSACTION
+columnSets:
+  - itemName: PK
+    setName: PK_stg_TRANSACTION
+    columns:
+      - columnId: a5a90686-e6cc-41e1-b4a5-53555d4d9270
+        position: 1
+        name: TRANSACTION_KEY
+    id: 13972be3-0f03-4554-a375-4fef00954c5a
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: 7ab8624d-828b-487f-8b00-e9b95db26fd7
+nodeFormat: dynamic
+parentName: RAW
+references:
+  4bde7d59-786e-4af1-bf53-1ea268ecea4b:
+    parentTableId: f5ca2307-c934-4510-8ad7-1d29433b7bcc
+    id: 4bde7d59-786e-4af1-bf53-1ea268ecea4b

@@ -1,0 +1,6 @@
+{% macro forloops(params) %}
+{% set dog_names = ['skylord', 'sky', 'jaws'] %}
+{% for dog_name in dog_names %}
+The current dog's name is {{ dog_name }}
+{% endfor %}
+{% endmacro %}

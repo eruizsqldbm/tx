@@ -1,0 +1,113 @@
+name: stg_STORE
+color: '#FC7917'
+isSource: false
+columns:
+  - name: STORE_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 706ea7b1-aa12-47c4-862b-8becb634bd94
+  - name: STORE_ID
+    allowNulls: false
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: 0ae3e53c-3c9f-4276-884a-08ec711e82cb
+  - name: STORE_NAME
+    allowNulls: false
+    dataType: varchar(100)
+    defaultValue: ''
+    description: ''
+    id: b3218c4e-272f-4add-832f-4cb51d769a3a
+  - name: CITY
+    allowNulls: true
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: a4c640b6-90d3-43c1-be77-0de8b53abe21
+  - name: STATE
+    allowNulls: true
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: 7fa5b83f-4ec7-4bb3-b776-49f021eba6d6
+  - name: COUNTRY
+    allowNulls: true
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: f787c8a6-fcd0-4bcb-85ed-600c6ac1c4f8
+  - name: REGION_KEY
+    allowNulls: true
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 89cbd424-8e8c-44de-b5d9-ce98416e2ab7
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: fa850e6f-6c29-429a-aee4-7ebc58bb98c1
+logic: |-
+  with "STORE" as (
+      SELECT
+          "STORE_KEY",
+          "STORE_ID",
+          "STORE_NAME",
+          "CITY",
+          "STATE",
+          "COUNTRY",
+          "REGION_KEY"
+      FROM {{ref('RAW', 'STORE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "STORE"."STORE_KEY",
+          "STORE"."STORE_ID",
+          "STORE"."STORE_NAME",
+          "STORE"."CITY",
+          "STORE"."STATE",
+          "STORE"."COUNTRY",
+          "STORE"."REGION_KEY",
+          current_date() AS "__load_date"
+      FROM "STORE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage STORE
+columnSets:
+  - itemName: PK
+    setName: PK_stg_STORE
+    columns:
+      - columnId: 706ea7b1-aa12-47c4-862b-8becb634bd94
+        position: 1
+        name: STORE_KEY
+    id: d70406f5-5a8a-4fdc-9431-9b6b005f6276
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: f6eea866-b172-403c-8d3f-3307f2961b1a
+nodeFormat: dynamic
+parentName: RAW
+references:
+  a3ccefde-a636-49c9-9f38-d8d277b9c6e9:
+    parentTableId: 4bfacc99-973b-4217-b4ff-1947f2ee8ac1
+    id: a3ccefde-a636-49c9-9f38-d8d277b9c6e9

@@ -1,0 +1,139 @@
+name: stg_TRANSACTION
+id: d49e1384-0cd0-44a6-89e1-7201fd7a3035
+storageLocationId: c421f907-a895-46f4-ad2d-6c727c9644a8
+templateId: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+materialization: table
+isSource: false
+columns:
+  - name: TRANSACTION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 42be7de3-bcd7-42a0-a81b-33ce2549a621
+  - name: DATE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 1f492c96-4b91-4e37-bd27-41eab9796a4d
+  - name: PRODUCT_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: dbdf3381-2ee2-4817-9295-515b0b203448
+  - name: CUSTOMER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ba7b92e4-a668-4647-9f6e-03241d810ce6
+  - name: STORE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 9395b858-d34d-4c9a-9a48-eb3e82a7a70f
+  - name: CHANNEL_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: aa99d205-0d88-4ba7-ac11-34dd3d916e4a
+  - name: EMPLOYEE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: ce391f02-90c7-4103-9f5c-7540465d05b9
+  - name: QUANTITY_SOLD
+    dataType: NUMBER(10,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c142d4cd-b217-4173-8bd0-095f0c843b9c
+  - name: SALES_AMOUNT
+    dataType: NUMBER(10,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 2d736efb-3969-4b92-bd64-5250a99b337d
+  - name: DISCOUNT_AMOUNT
+    dataType: NUMBER(10,2)
+    allowNulls: true
+    defaultValue: '0'
+    description: ''
+    id: 2ae0b901-60f5-4f23-84e0-a74b1afe1a66
+  - name: TOTAL_COST
+    dataType: NUMBER(10,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ad845b51-1f56-4e0c-b109-43e4d36e0a38
+columnSets:
+  - id: 549f3f44-5e3f-4c1f-b2a5-3abd4c7d5e4d
+    itemName: PK
+    setName: PK_stg_TRANSACTION
+    columns:
+      - columnId: 42be7de3-bcd7-42a0-a81b-33ce2549a621
+        position: 1
+        name: TRANSACTION_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: My Location
+color: '#FC7917'
+logic: |-
+  with "TRANSACTION" as (
+      SELECT
+          "TRANSACTION_KEY",
+          "DATE_KEY",
+          "PRODUCT_KEY",
+          "CUSTOMER_KEY",
+          "STORE_KEY",
+          "CHANNEL_KEY",
+          "EMPLOYEE_KEY",
+          "PROMOTION_KEY",
+          "QUANTITY_SOLD",
+          "SALES_AMOUNT",
+          "DISCOUNT_AMOUNT",
+          "TOTAL_COST"
+      FROM {{ref('My Location', 'TRANSACTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "TRANSACTION"."TRANSACTION_KEY",
+          "TRANSACTION"."DATE_KEY",
+          "TRANSACTION"."PRODUCT_KEY",
+          "TRANSACTION"."CUSTOMER_KEY",
+          "TRANSACTION"."STORE_KEY",
+          "TRANSACTION"."CHANNEL_KEY",
+          "TRANSACTION"."EMPLOYEE_KEY",
+          "TRANSACTION"."QUANTITY_SOLD",
+          "TRANSACTION"."SALES_AMOUNT",
+          "TRANSACTION"."DISCOUNT_AMOUNT",
+          "TRANSACTION"."TOTAL_COST",
+      FROM "TRANSACTION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage TRANSACTION
+references:
+  55da26d5-af34-4f23-9eb6-4510fbe075f2:
+    parentTableId: 7cbd1a64-e506-4dd4-9c65-d88338358340
+    id: 55da26d5-af34-4f23-9eb6-4510fbe075f2

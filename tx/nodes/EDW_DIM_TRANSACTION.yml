@@ -1,0 +1,156 @@
+name: DIM_TRANSACTION
+id: a42ae2f9-085c-470c-a815-2c1e7c31c2b6
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: TRANSACTION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 28e9d51d-e053-4cf2-97f8-1455b5e89241
+  - name: DATE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b189ef5f-1c0d-4094-a21b-7a9976c988a6
+  - name: PRODUCT_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 606f3109-b1cb-457a-a069-90d62ac48340
+  - name: CUSTOMER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 13d37530-c3c0-4b27-942c-29d612dc99aa
+  - name: STORE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b292f5a5-37e1-4a57-bef1-5e5acbca49db
+  - name: CHANNEL_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 01aa0f90-d971-4d24-9245-d87786744058
+  - name: EMPLOYEE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: b619ee96-f0c0-4314-a7ea-397aad4b743a
+  - name: PROMOTION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: d066321b-dd3d-4145-9698-079ae99f93d7
+  - name: QUANTITY_SOLD
+    dataType: NUMBER(10,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: d74e6fa8-d5bc-43de-91cf-90fb6dc4b554
+  - name: SALES_AMOUNT
+    dataType: NUMBER(10,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: d199dd85-2696-473a-a6a7-4f81ee886d19
+  - name: DISCOUNT_AMOUNT
+    dataType: NUMBER(10,2)
+    allowNulls: true
+    defaultValue: '0'
+    description: ''
+    id: 59588023-8770-4180-a364-4c8103436f85
+  - name: TOTAL_COST
+    dataType: NUMBER(10,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 666d7d59-caa0-4cf5-9479-2cbe3cb0bee1
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 9035abdc-d9b7-4716-ab3a-88d483acf6c1
+columnSets:
+  - id: 0de4343f-381c-4571-84ee-930e3e68b7bb
+    itemName: PK
+    setName: PK_tmp_stg_TRANSACTION
+    columns:
+      - columnId: 28e9d51d-e053-4cf2-97f8-1455b5e89241
+        position: 1
+        name: TRANSACTION_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_TRANSACTION" as (
+      SELECT
+          "TRANSACTION_KEY",
+          "DATE_KEY",
+          "PRODUCT_KEY",
+          "CUSTOMER_KEY",
+          "STORE_KEY",
+          "CHANNEL_KEY",
+          "EMPLOYEE_KEY",
+          "PROMOTION_KEY",
+          "QUANTITY_SOLD",
+          "SALES_AMOUNT",
+          "DISCOUNT_AMOUNT",
+          "TOTAL_COST",
+          "__load_date",
+      FROM {{ref('STAGE', 'stg_TRANSACTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_TRANSACTION"."TRANSACTION_KEY",
+          "stg_TRANSACTION"."DATE_KEY",
+          "stg_TRANSACTION"."PRODUCT_KEY",
+          "stg_TRANSACTION"."CUSTOMER_KEY",
+          "stg_TRANSACTION"."STORE_KEY",
+          "stg_TRANSACTION"."CHANNEL_KEY",
+          "stg_TRANSACTION"."EMPLOYEE_KEY",
+          "stg_TRANSACTION"."PROMOTION_KEY",
+          "stg_TRANSACTION"."QUANTITY_SOLD",
+          "stg_TRANSACTION"."SALES_AMOUNT",
+          "stg_TRANSACTION"."DISCOUNT_AMOUNT",
+          "stg_TRANSACTION"."TOTAL_COST",
+          current_date() AS "load_date"
+      FROM "stg_TRANSACTION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage TRANSACTION dimension
+references:
+  7090085f-ba9f-4e84-b5c6-c131de5db75a:
+    parentTableId: d7279cc5-f485-404a-a236-d261ab957b84
+    id: 7090085f-ba9f-4e84-b5c6-c131de5db75a

@@ -1,0 +1,89 @@
+name: stg_EMPLOYEE
+color: '#FC7917'
+isSource: false
+columns:
+  - name: EMPLOYEE_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: c7d51ea7-425f-4a4c-94b8-b90d0bae0d56
+  - name: EMPLOYEE_ID
+    allowNulls: false
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: 2dc7a054-d25d-404f-86cc-62f3e7482dfc
+  - name: EMPLOYEE_NAME
+    allowNulls: false
+    dataType: varchar(100)
+    defaultValue: ''
+    description: ''
+    id: d8906949-8908-4841-a6a0-c8b3db6112cf
+  - name: JOB_TITLE
+    allowNulls: true
+    dataType: varchar(50)
+    defaultValue: ''
+    description: ''
+    id: 01a1db8c-eb5e-4801-90cd-1cac1eba21de
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: 2afbc790-97e0-45ef-b520-6b523d3f3243
+logic: |-
+  with "EMPLOYEE" as (
+      SELECT
+          "EMPLOYEE_KEY",
+          "EMPLOYEE_ID",
+          "EMPLOYEE_NAME",
+          "JOB_TITLE"
+      FROM {{ref('RAW', 'EMPLOYEE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "EMPLOYEE"."EMPLOYEE_KEY",
+          "EMPLOYEE"."EMPLOYEE_ID",
+          "EMPLOYEE"."EMPLOYEE_NAME",
+          "EMPLOYEE"."JOB_TITLE",
+          current_date() AS "__load_date"
+      FROM "EMPLOYEE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage EMPLOYEE
+columnSets:
+  - itemName: PK
+    setName: PK_stg_EMPLOYEE
+    columns:
+      - columnId: c7d51ea7-425f-4a4c-94b8-b90d0bae0d56
+        position: 1
+        name: EMPLOYEE_KEY
+    id: 3ec7c510-a500-46ee-a2e9-f4a13e0d7edf
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: dfc4e6cd-af88-4634-a2cc-abfac3ae4e83
+nodeFormat: dynamic
+parentName: RAW
+references:
+  e561cbc2-6127-4ba1-998b-6ecf60e5047c:
+    parentTableId: a2dbb610-48ce-44e5-86a5-d5c9966aeb0c
+    id: e561cbc2-6127-4ba1-998b-6ecf60e5047c

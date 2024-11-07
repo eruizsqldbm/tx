@@ -1,0 +1,12 @@
+{% macro generate_select_statement(columns, table_name) %}
+{% set columns = ['id', 'name', 'created_at'] %}
+{% set table_name = 'my_table' %}
+
+    
+    {# Start building the SQL SELECT statement #}
+    SELECT
+    {% for column in columns %}
+        "{{ column }}"{{ ", " if not loop.last }}
+    {% endfor %}
+    FROM {{ table_name }};
+{% endmacro %}

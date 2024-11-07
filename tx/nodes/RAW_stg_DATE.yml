@@ -1,0 +1,105 @@
+name: stg_DATE
+color: '#FC7917'
+isSource: false
+columns:
+  - name: DATE_KEY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 13afcaf5-6398-4f09-8d19-b18ea9c278dd
+  - name: DATE
+    allowNulls: false
+    dataType: date
+    defaultValue: ''
+    description: ''
+    id: f92fdccf-5296-47ce-a633-2fe1a167ed37
+  - name: DAY
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: a3fd579b-6952-4cb9-bb88-7f65d13d90a5
+  - name: MONTH
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: fe6c2fb1-f898-4c23-aea1-5bedd6490f79
+  - name: YEAR
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: e74bdbab-64a3-44ba-9518-ba7f56fee4a7
+  - name: QUARTER
+    allowNulls: false
+    dataType: number(38,0)
+    defaultValue: ''
+    description: ''
+    id: 091c34d1-c23a-4eb5-820a-3d19eeeba8e7
+  - name: __load_date
+    allowNulls: false
+    dataType: date
+    defaultValue: current_date()
+    description: load date
+    id: cf44ca8f-2196-466f-a188-87bb40724f1d
+logic: |-
+  with "DATE" as (
+      SELECT
+          "DATE_KEY",
+          "DATE",
+          "DAY",
+          "MONTH",
+          "YEAR",
+          "QUARTER"
+      FROM {{ref('RAW', 'DATE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "DATE"."DATE_KEY",
+          "DATE"."DATE",
+          "DATE"."DAY",
+          "DATE"."MONTH",
+          "DATE"."YEAR",
+          "DATE"."QUARTER",
+          current_date() AS "__load_date"
+      FROM "DATE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage DATE
+columnSets:
+  - itemName: PK
+    setName: PK_stg_DATE
+    columns:
+      - columnId: 13afcaf5-6398-4f09-8d19-b18ea9c278dd
+        position: 1
+        name: DATE_KEY
+    id: 2af143f5-7983-491a-a96d-a9faff11e491
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+storageLocationId: 86389a94-7d3e-41bf-ab4a-8af70fa7a1b9
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+id: aa1623dd-9fd8-4473-9e85-63c3a12dcdfd
+nodeFormat: dynamic
+parentName: RAW
+references:
+  b7cc4ec3-9bd5-4485-a0e0-7556947be65b:
+    parentTableId: e93f35bf-fba9-49f9-af10-8aeb80ee0623
+    id: b7cc4ec3-9bd5-4485-a0e0-7556947be65b
