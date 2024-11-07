@@ -1,0 +1,108 @@
+name: DIM_DATE
+id: 8634bd95-7fb0-46ed-965f-dc8b6d919b21
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: DATE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 90a48f7f-0084-4a74-b010-8dcd0a2f4c34
+  - name: DATE
+    dataType: DATE
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 38585746-62a9-49b4-8033-86d90c83427b
+  - name: DAY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b4674ff6-aa56-495f-9334-21fd10e74e0c
+  - name: MONTH
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b6de80a3-9c9c-4731-acee-61ee956fde8a
+  - name: YEAR
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: fedcf598-1cd4-45b8-a55a-c987d84baccb
+  - name: QUARTER
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 968b2b0e-918e-42df-b6ee-9784b4251923
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 700db410-8dff-4d38-a0d3-47815192cdbe
+columnSets:
+  - id: c3aa3e84-817f-467d-8beb-c58d75d79667
+    itemName: PK
+    setName: PK_tmp_stg_DATE
+    columns:
+      - columnId: 90a48f7f-0084-4a74-b010-8dcd0a2f4c34
+        position: 1
+        name: DATE_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_DATE" as (
+      SELECT
+          "DATE_KEY",
+          "DATE",
+          "DAY",
+          "MONTH",
+          "YEAR",
+          "QUARTER",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_DATE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_DATE"."DATE_KEY",
+          "stg_DATE"."DATE",
+          "stg_DATE"."DAY",
+          "stg_DATE"."MONTH",
+          "stg_DATE"."YEAR",
+          "stg_DATE"."QUARTER",
+          current_date() AS "load_date"
+      FROM "stg_DATE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage DATE dimension
+references:
+  f12fda76-0968-45cf-b2d9-a78f7f9d5ec8:
+    parentTableId: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
+    id: f12fda76-0968-45cf-b2d9-a78f7f9d5ec8

@@ -1,0 +1,89 @@
+name: stg_EMPLOYEE
+id: 3516eb95-6b18-42d5-a12c-4d225bf623e8
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: EMPLOYEE_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: a0a76044-268e-4730-bce7-f57a2ce75e7d
+  - name: EMPLOYEE_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 53cb8c23-3bdd-4c11-8ad1-c0337c41eec9
+  - name: EMPLOYEE_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: fabbe900-7e50-4c13-a9de-e2e2eb3a794f
+  - name: JOB_TITLE
+    dataType: varchar(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 99113a6f-92c6-4276-99ef-4745d52ccc30
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: fb9efe52-333d-482a-a989-9e10ac682c16
+columnSets:
+  - id: 4919ac7b-9422-4f71-a089-dd840142cc7d
+    itemName: PK
+    setName: PK_stg_EMPLOYEE
+    columns:
+      - columnId: a0a76044-268e-4730-bce7-f57a2ce75e7d
+        position: 1
+        name: EMPLOYEE_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "EMPLOYEE" as (
+      SELECT
+          "EMPLOYEE_KEY",
+          "EMPLOYEE_ID",
+          "EMPLOYEE_NAME",
+          "JOB_TITLE"
+      FROM {{ref('RAW', 'EMPLOYEE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "EMPLOYEE"."EMPLOYEE_KEY",
+          "EMPLOYEE"."EMPLOYEE_ID",
+          "EMPLOYEE"."EMPLOYEE_NAME",
+          "EMPLOYEE"."JOB_TITLE",
+          current_date() AS "__load_date"
+      FROM "EMPLOYEE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage EMPLOYEE
+references:
+  0f712b2f-082d-4920-bce9-5d438b36e897:
+    parentTableId: 8754e203-c974-465a-a91d-bd069a4f664d
+    id: 0f712b2f-082d-4920-bce9-5d438b36e897
