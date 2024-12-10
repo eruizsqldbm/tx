@@ -6,7 +6,7 @@ materialization: table
 isSource: false
 columns:
   - name: PART_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: part of unique identifier with ps_suppkey
@@ -14,7 +14,7 @@ columns:
     useQuotes: false
     isPK: true
   - name: SUPPLIER_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: part of unique identifier with ps_partkey
@@ -22,39 +22,39 @@ columns:
     useQuotes: false
     isPK: true
   - name: AVAILABLE_AMOUNT
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: number of parts available for sale
     id: 99eafe7f-e3a5-4024-aa4b-2c481335f002
     useQuotes: false
   - name: SUPPLIER_COST_USD
-    dataType: number(12,2)
+    dataType: NUMBER(18,2)
     allowNulls: false
     defaultValue: ''
     description: original cost paid to supplier
     id: 4e5e1c28-9325-4e22-80a4-60171ca774e5
     useQuotes: false
   - name: COMMENT
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: e865c8ad-2dc9-4c93-a8e9-32876c8ee9a7
     useQuotes: false
-  - name: __LOAD_DTS
-    dataType: timestamp_ltz(9)
+  - name: SOURCE_LOAD_DTS
+    dataType: TIMESTAMP_LTZ(9)
     allowNulls: true
     defaultValue: ''
     description: ''
-    id: 935d2ca2-d9e5-4382-9211-e9a0b57c489c
+    id: 97c0c3f2-8031-4b13-a824-04e999dc75b2
     useQuotes: false
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: c85a8fc9-833b-4412-9e9a-5b8a7e60082f
+  - name: __LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 5fa7a9c8-d951-4f3c-ba60-875f4dad0f0c
     useQuotes: false
 columnSets:
   - id: b5aece58-d49a-4106-82b2-6efc91347438
@@ -90,8 +90,8 @@ postRun:
   isValidated: false
 rely_button: true
 color: '#1C70FF'
-logic: |-
-  with INVENTORY as (
+logic: |
+  WITH INVENTORY AS (
       SELECT
           PART_ID,
           SUPPLIER_ID,
@@ -99,25 +99,52 @@ logic: |-
           SUPPLIER_COST_USD,
           COMMENT,
           __LOAD_DTS
-      FROM {{ref('BRONZE', 'INVENTORY')}}
+      FROM {{ref('BRONZE', 'INVENTORY')}} -- Change this to the appropriate schema.table reference
   )
   ,
   common as (
       SELECT
-          INVENTORY.PART_ID,
-          INVENTORY.SUPPLIER_ID,
-          INVENTORY.AVAILABLE_AMOUNT,
-          INVENTORY.SUPPLIER_COST_USD,
-          INVENTORY.COMMENT,
-          INVENTORY.__LOAD_DTS,
-          current_date() AS __load_date
+          --Remove duplicate rows by keeping only the latest version for each PART_ID + SUPPLIER_ID
+          ROW_NUMBER() OVER (PARTITION BY INVENTORY.PART_ID, INVENTORY.SUPPLIER_ID ORDER BY INVENTORY.__LOAD_DTS DESC NULLS FIRST) AS row_num,
+
+          --Handle nulls for PART_ID
+          COALESCE(TRIM(INVENTORY.PART_ID), 'UNKNOWN') AS PART_ID,
+          
+          -- Handle nulls for SUPPLIER_ID
+          COALESCE(TRIM(INVENTORY.SUPPLIER_ID), 'UNKNOWN') AS SUPPLIER_ID,
+
+          -- Handle available amount as a numeric value, cast from VARIANT (if applicable)
+          COALESCE(TRY_TO_NUMBER(CAST(INVENTORY.AVAILABLE_AMOUNT AS TEXT)), 0) AS AVAILABLE_AMOUNT,
+
+          -- Handle supplier cost as a decimal (cast VARIANT to TEXT first to avoid errors)
+          COALESCE(TRY_TO_DECIMAL(CAST(INVENTORY.SUPPLIER_COST_USD AS TEXT), 18, 2), 0) AS SUPPLIER_COST_USD,
+
+          --Remove special characters from COMMENT field
+          REGEXP_REPLACE(TRIM(INVENTORY.COMMENT), '[^A-Za-z0-9 .,]', '') AS COMMENT,
+
+          --Store original load timestamp from Bronze
+          INVENTORY.__LOAD_DTS AS SOURCE_LOAD_DTS,
+
+          -- Use the Snowflake current date function to track when the row was processed
+          CURRENT_DATE() AS __LOAD_DATE
       FROM INVENTORY
+
+      --Filter only the most recent row per PART_ID + SUPPLIER_ID
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY INVENTORY.PART_ID, INVENTORY.SUPPLIER_ID ORDER BY INVENTORY.__LOAD_DTS DESC NULLS FIRST) = 1
   )
 
-  SELECT * FROM common
+  SELECT 
+      PART_ID,
+      SUPPLIER_ID,
+      AVAILABLE_AMOUNT,
+      SUPPLIER_COST_USD,
+      COMMENT,
+      SOURCE_LOAD_DTS,
+      __LOAD_DATE
+  FROM common
 description: ''
 logicalName: INVENTORY Silver Table
 references:
-  28484674-84d4-441e-8b66-1b1d1978eecc:
+  c8a05023-83c3-47c5-82c9-fdac563fac01:
     parentTableId: d5d3133a-d442-4b2f-bd1c-60c319dd0497
-    id: 28484674-84d4-441e-8b66-1b1d1978eecc
+    id: c8a05023-83c3-47c5-82c9-fdac563fac01

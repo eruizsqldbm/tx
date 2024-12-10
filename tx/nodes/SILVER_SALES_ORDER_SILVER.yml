@@ -6,7 +6,7 @@ materialization: table
 isSource: false
 columns:
   - name: SALES_ORDER_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
@@ -14,74 +14,74 @@ columns:
     useQuotes: false
     isPK: true
   - name: CUSTOMER_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 8ffc9f53-772e-42f4-bdcb-22f13feaae14
     useQuotes: false
   - name: ORDER_STATUS
-    dataType: varchar(1)
+    dataType: VARCHAR(3)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: a8b74a32-2c90-4355-b0d2-03d56d6682b5
     useQuotes: false
   - name: TOTAL_PRICE_USD
-    dataType: number(12,2)
+    dataType: NUMBER(18,2)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 42751614-6bc5-4167-9f06-4d5e8e625df3
     useQuotes: false
   - name: ORDER_DATE
-    dataType: date
+    dataType: DATE
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 8075bcd5-f9e6-4fa1-8fe3-d8831d54c3ac
     useQuotes: false
   - name: ORDER_PRIORITY
-    dataType: varchar(15)
+    dataType: VARCHAR(45)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: b6a15ac6-cced-45d1-80c2-e79a218763e1
     useQuotes: false
   - name: CLERK
-    dataType: varchar(15)
+    dataType: VARCHAR(45)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 3cd9d07e-b4e4-4bef-a025-753059c9131f
     useQuotes: false
   - name: SHIP_PRIORITY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 0a43a2a8-4dce-468f-a0d4-13ddf2b1b40f
     useQuotes: false
   - name: COMMENT
-    dataType: varchar(79)
+    dataType: VARCHAR(16777216)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 79b94c00-2c8a-43ab-902a-fae519779c59
     useQuotes: false
-  - name: __LOAD_DTS
-    dataType: timestamp_ltz(9)
+  - name: SOURCE_LOAD_DTS
+    dataType: TIMESTAMP_LTZ(9)
     allowNulls: true
     defaultValue: ''
     description: ''
-    id: b37e357f-4520-4c7c-b462-c3114fba2ec8
+    id: c54b0c4b-ac77-4051-823b-e951831bee35
     useQuotes: false
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: 259be3c2-927c-44ac-8d2f-6add790d3f6e
+  - name: __LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 88e9b7ae-f869-4cd5-a548-99160940acb4
     useQuotes: false
 columnSets:
   - id: 5cbb6a0c-676a-43f5-a875-d8ba6565cf49
@@ -114,7 +114,7 @@ postRun:
 rely_button: true
 color: '#1C70FF'
 logic: |-
-  with SALES_ORDER as (
+  WITH SALES_ORDER AS (
       SELECT
           SALES_ORDER_ID,
           CUSTOMER_ID,
@@ -126,29 +126,64 @@ logic: |-
           SHIP_PRIORITY,
           COMMENT,
           __LOAD_DTS
-      FROM {{ref('BRONZE', 'SALES_ORDER')}}
+      FROM {{ref('BRONZE', 'SALES_ORDER')}} -- Change this to the appropriate schema.table reference
   )
   ,
   common as (
       SELECT
-          SALES_ORDER.SALES_ORDER_ID,
-          SALES_ORDER.CUSTOMER_ID,
-          SALES_ORDER.ORDER_STATUS,
-          SALES_ORDER.TOTAL_PRICE_USD,
-          SALES_ORDER.ORDER_DATE,
-          SALES_ORDER.ORDER_PRIORITY,
-          SALES_ORDER.CLERK,
-          SALES_ORDER.SHIP_PRIORITY,
-          SALES_ORDER.COMMENT,
-          SALES_ORDER.__LOAD_DTS,
-          current_date() AS __load_date
+          -- 1. Remove duplicate rows by keeping only the latest version for each SALES_ORDER_ID
+          ROW_NUMBER() OVER (PARTITION BY SALES_ORDER.SALES_ORDER_ID ORDER BY SALES_ORDER.__LOAD_DTS DESC NULLS FIRST) AS row_num,
+
+          -- 2. Handle nulls for SALES_ORDER_ID and CUSTOMER_ID
+          COALESCE(TRIM(SALES_ORDER.SALES_ORDER_ID), 'UNKNOWN') AS SALES_ORDER_ID,
+          COALESCE(TRIM(SALES_ORDER.CUSTOMER_ID), 'UNKNOWN') AS CUSTOMER_ID,
+
+          -- 3. Clean and standardize ORDER_STATUS and ORDER_PRIORITY
+          UPPER(TRIM(SALES_ORDER.ORDER_STATUS)) AS ORDER_STATUS,
+          INITCAP(TRIM(SALES_ORDER.ORDER_PRIORITY)) AS ORDER_PRIORITY,
+
+          -- 4. Handle numeric fields (cast VARIANT to TEXT first to avoid errors)
+          COALESCE(TRY_TO_DECIMAL(CAST(SALES_ORDER.TOTAL_PRICE_USD AS TEXT), 18, 2), 0) AS TOTAL_PRICE_USD,
+
+          -- 5. Convert ORDER_DATE to a DATE type
+          TRY_TO_DATE(SALES_ORDER.ORDER_DATE) AS ORDER_DATE,
+
+          -- 6. Clean and standardize CLERK
+          INITCAP(TRIM(SALES_ORDER.CLERK)) AS CLERK,
+
+          -- 7. Handle SHIP_PRIORITY as a numeric field
+          COALESCE(TRY_TO_NUMBER(CAST(SALES_ORDER.SHIP_PRIORITY AS TEXT)), 0) AS SHIP_PRIORITY,
+
+          -- 8. Remove special characters from COMMENT field
+          REGEXP_REPLACE(TRIM(SALES_ORDER.COMMENT), '[^A-Za-z0-9 .,]', '') AS COMMENT,
+
+          -- 9. Store original load timestamp from Bronze
+          SALES_ORDER.__LOAD_DTS AS SOURCE_LOAD_DTS,
+
+          -- 10. Use the Snowflake current date function to track when the row was processed
+          CURRENT_DATE() AS __LOAD_DATE
       FROM SALES_ORDER
+
+      -- 11. Filter only the most recent row per SALES_ORDER_ID
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY SALES_ORDER.SALES_ORDER_ID ORDER BY SALES_ORDER.__LOAD_DTS DESC NULLS FIRST) = 1
   )
 
-  SELECT * FROM common
+  SELECT 
+      SALES_ORDER_ID,
+      CUSTOMER_ID,
+      ORDER_STATUS,
+      TOTAL_PRICE_USD,
+      ORDER_DATE,
+      ORDER_PRIORITY,
+      CLERK,
+      SHIP_PRIORITY,
+      COMMENT,
+      SOURCE_LOAD_DTS,
+      __LOAD_DATE
+  FROM common
 description: ''
 logicalName: SALES_ORDER Silver Table
 references:
-  83f54e58-2efa-4cf7-a9f3-45014d9e31c0:
+  9a67c1d8-918e-4578-a012-aef598df3055:
     parentTableId: 46bd1008-1f05-432d-ac02-573ad34f5e41
-    id: 83f54e58-2efa-4cf7-a9f3-45014d9e31c0
+    id: 9a67c1d8-918e-4578-a012-aef598df3055

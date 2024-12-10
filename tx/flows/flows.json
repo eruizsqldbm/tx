@@ -1,1 +1,1 @@
-[{"Id":"52fa8547-f01d-4bab-bcea-bde20c688593","Name":"Silver Load","Description":"","Selector":"+{location: 'SILVER'}","Nodes":null}]
+[{"Id":"52fa8547-f01d-4bab-bcea-bde20c688593","Name":"Silver Load","Description":"","Selector":"{location: 'BRONZE'} OR {location: 'SILVER'}","Nodes":null},{"Id":"ef8e8614-f85c-463c-b102-17fbce7c51f4","Name":"Fact Load","Description":"","Selector":"+{location: 'GOLD'}","Nodes":null}]

@@ -6,7 +6,7 @@ materialization: table
 isSource: false
 columns:
   - name: CUSTOMER_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
@@ -14,67 +14,67 @@ columns:
     useQuotes: false
     isPK: true
   - name: NAME
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 76a716d1-f450-4211-8976-519a48b46702
     useQuotes: false
   - name: ADDRESS
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: d11693fa-f1d7-49ba-be12-dc03d9c0472b
     useQuotes: false
   - name: LOCATION_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 04f8de3b-9840-42af-9749-d2fa3ff3d2bf
     useQuotes: false
   - name: PHONE
-    dataType: varchar(15)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 0d356461-0874-4ebc-9b7f-4e6e7f571729
     useQuotes: false
   - name: ACCOUNT_BALANCE_USD
-    dataType: number(12,2)
+    dataType: NUMBER(18,2)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 4f7f3335-bc39-4a9a-bf38-5300d8391adb
     useQuotes: false
   - name: MARKET_SEGMENT
-    dataType: varchar(10)
+    dataType: VARCHAR(30)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 46e60c06-483a-43f3-9001-e34a356fd862
     useQuotes: false
   - name: COMMENT
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 1d67723c-9b7a-46ba-b48f-5071f952e82a
     useQuotes: false
-  - name: __LOAD_DTS
-    dataType: timestamp_ltz(9)
+  - name: SOURCE_LOAD_DTS
+    dataType: TIMESTAMP_LTZ(9)
     allowNulls: true
     defaultValue: ''
     description: ''
-    id: 24765bb0-d467-43fc-99e1-18d40d0009f3
+    id: 15125322-b891-4290-a0e5-eed1b670fded
     useQuotes: false
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: fb2b5657-bea4-4051-a036-7a457f454bec
+  - name: __LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: d62625b2-0f4d-4ec8-bbb0-35271dc33391
     useQuotes: false
 columnSets:
   - id: 9829838c-da0e-41bb-8314-e51050092e5c
@@ -106,8 +106,8 @@ postRun:
   isValidated: false
 rely_button: true
 color: '#1C70FF'
-logic: |-
-  with CUSTOMER as (
+logic: |
+  WITH CUSTOMER AS (
       SELECT
           CUSTOMER_ID,
           NAME,
@@ -118,28 +118,64 @@ logic: |-
           MARKET_SEGMENT,
           COMMENT,
           __LOAD_DTS
-      FROM {{ref('BRONZE', 'CUSTOMER')}}
+      FROM {{ref('BRONZE', 'CUSTOMER')}} -- Change this to the appropriate schema.table reference
   )
   ,
   common as (
       SELECT
-          CUSTOMER.CUSTOMER_ID,
-          CUSTOMER.NAME,
-          CUSTOMER.ADDRESS,
-          CUSTOMER.LOCATION_ID,
-          CUSTOMER.PHONE,
-          CUSTOMER.ACCOUNT_BALANCE_USD,
-          CUSTOMER.MARKET_SEGMENT,
-          CUSTOMER.COMMENT,
-          CUSTOMER.__LOAD_DTS,
-          current_date() AS __load_date
+          -- Remove duplicate rows by keeping only the latest version for each CUSTOMER_ID
+          ROW_NUMBER() OVER (PARTITION BY CUSTOMER.CUSTOMER_ID ORDER BY CUSTOMER.__LOAD_DTS DESC NULLS FIRST) AS row_num,
+
+          -- Handle nulls for CUSTOMER_ID
+          COALESCE(TRIM(CUSTOMER.CUSTOMER_ID), 'UNKNOWN') AS CUSTOMER_ID,
+          
+          -- Clean and standardize names (capitalize first letters)
+          INITCAP(TRIM(CUSTOMER.NAME)) AS NAME,
+          
+          -- Normalize addresses (remove extra whitespace)
+          REGEXP_REPLACE(TRIM(CUSTOMER.ADDRESS), '\\s+', ' ') AS ADDRESS,
+          
+          -- Replace nulls for LOCATION_ID with 'UNKNOWN'
+          COALESCE(TRIM(CUSTOMER.LOCATION_ID), 'UNKNOWN') AS LOCATION_ID,
+
+          -- Clean phone numbers by removing non-numeric characters
+          REGEXP_REPLACE(CUSTOMER.PHONE, '[^0-9]', '') AS PHONE,
+          
+          -- 7. Handle nulls and invalid data in ACCOUNT_BALANCE_USD (CAST VARIANT to TEXT first)
+          COALESCE(TRY_TO_DECIMAL(CAST(CUSTOMER.ACCOUNT_BALANCE_USD AS TEXT), 18, 2), 0) AS ACCOUNT_BALANCE_USD,
+
+          -- Clean and standardize market segment (convert to uppercase)
+          UPPER(TRIM(CUSTOMER.MARKET_SEGMENT)) AS MARKET_SEGMENT,
+
+          -- Remove special characters from COMMENT field
+          REGEXP_REPLACE(TRIM(CUSTOMER.COMMENT), '[^A-Za-z0-9 .,]', '') AS COMMENT,
+
+          -- Store original load timestamp from Bronze
+          CUSTOMER.__LOAD_DTS AS SOURCE_LOAD_DTS,
+
+          -- Use the Snowflake current date function to track when the row was processed
+          CURRENT_DATE() AS __LOAD_DATE
       FROM CUSTOMER
+
+      -- Filter only the most recent row per CUSTOMER_ID
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY CUSTOMER.CUSTOMER_ID ORDER BY CUSTOMER.__LOAD_DTS DESC NULLS FIRST) = 1
   )
 
-  SELECT * FROM common
+  SELECT 
+      CUSTOMER_ID,
+      NAME,
+      ADDRESS,
+      LOCATION_ID,
+      PHONE,
+      ACCOUNT_BALANCE_USD,
+      MARKET_SEGMENT,
+      COMMENT,
+      SOURCE_LOAD_DTS,
+      __LOAD_DATE
+  FROM common
 description: ''
 logicalName: CUSTOMER Silver Table
 references:
-  eb42acf6-67b9-449e-aa95-7ea41a0f37e9:
+  123d1ef3-c2cb-4f8e-8e2b-303568c9cdc6:
     parentTableId: 617b5f82-1951-478d-8a7a-5a9133d69e07
-    id: eb42acf6-67b9-449e-aa95-7ea41a0f37e9
+    id: 123d1ef3-c2cb-4f8e-8e2b-303568c9cdc6

@@ -6,7 +6,7 @@ materialization: table
 isSource: false
 columns:
   - name: PART_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
@@ -14,74 +14,74 @@ columns:
     useQuotes: false
     isPK: true
   - name: NAME
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 2dd10ddc-1c8c-4f3b-90d6-8a919638513d
     useQuotes: false
   - name: MANUFACTURER
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 7c8a5bcb-3b2a-4701-8739-92161e15852c
     useQuotes: false
   - name: BRAND
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 5bd22e53-f5d4-48fe-a282-76d987f521b7
     useQuotes: false
   - name: TYPE
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 47400a5e-0f88-4135-b0cb-3092c164d9c2
     useQuotes: false
   - name: SIZE_CENTIMETERS
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 92d47803-bfa8-475b-ae3a-78a01c68b823
     useQuotes: false
   - name: CONTAINER
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 8e79748a-a5dc-4c58-bac3-73d16dbc0fdd
     useQuotes: false
   - name: RETAIL_PRICE_USD
-    dataType: number(12,2)
+    dataType: NUMBER(18,2)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 4a41de60-0594-4e87-9dce-cedb52bec38b
     useQuotes: false
   - name: COMMENT
-    dataType: varchar(16777216)
+    dataType: VARCHAR(16777216)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: 72de4637-fb8e-45a4-ad25-910dcb6eb7e0
     useQuotes: false
-  - name: __LOAD_DTS
-    dataType: timestamp_ltz(9)
+  - name: SOURCE_LOAD_DTS
+    dataType: TIMESTAMP_LTZ(9)
     allowNulls: true
     defaultValue: ''
     description: ''
-    id: 26c42f00-5052-4522-997d-0a0a04939a18
+    id: 3dee42d4-5693-4824-b878-0c73d7d3530a
     useQuotes: false
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: b01b86a4-a6c3-428d-9b81-4c7b62375ad1
+  - name: __LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 7ffb084d-5ed1-44f7-8e11-b757d0f9e8b8
     useQuotes: false
 columnSets:
   - id: 5df7e913-23cc-4efb-ad5f-95f9c7dae898
@@ -114,7 +114,7 @@ postRun:
 rely_button: true
 color: '#1C70FF'
 logic: |-
-  with PART as (
+  WITH PART AS (
       SELECT
           PART_ID,
           NAME,
@@ -131,24 +131,53 @@ logic: |-
   ,
   common as (
       SELECT
-          PART.PART_ID,
-          PART.NAME,
-          PART.MANUFACTURER,
-          PART.BRAND,
-          PART.TYPE,
-          PART.SIZE_CENTIMETERS,
-          PART.CONTAINER,
-          PART.RETAIL_PRICE_USD,
-          PART.COMMENT,
-          PART.__LOAD_DTS,
-          current_date() AS __load_date
+          --Remove duplicate rows by keeping only the latest version for each PART_ID
+          ROW_NUMBER() OVER (PARTITION BY PART.PART_ID ORDER BY PART.__LOAD_DTS DESC NULLS FIRST) AS row_num,
+
+          --Handle nulls for PART_ID
+          COALESCE(TRIM(PART.PART_ID), 'UNKNOWN') AS PART_ID,
+          
+          --Clean and standardize NAME, MANUFACTURER, BRAND, TYPE, CONTAINER
+          INITCAP(TRIM(PART.NAME)) AS NAME,
+          INITCAP(TRIM(PART.MANUFACTURER)) AS MANUFACTURER,
+          INITCAP(TRIM(PART.BRAND)) AS BRAND,
+          INITCAP(TRIM(PART.TYPE)) AS TYPE,
+          UPPER(TRIM(PART.CONTAINER)) AS CONTAINER,
+
+          --Handle numeric fields (cast VARIANT to TEXT first to avoid errors)
+          COALESCE(TRY_TO_NUMBER(CAST(PART.SIZE_CENTIMETERS AS TEXT)), 0) AS SIZE_CENTIMETERS,
+          COALESCE(TRY_TO_DECIMAL(CAST(PART.RETAIL_PRICE_USD AS TEXT), 18, 2), 0) AS RETAIL_PRICE_USD,
+
+          --Remove special characters from COMMENT field
+          REGEXP_REPLACE(TRIM(PART.COMMENT), '[^A-Za-z0-9 .,]', '') AS COMMENT,
+
+          --Store original load timestamp from Bronze
+          PART.__LOAD_DTS AS SOURCE_LOAD_DTS,
+
+          --Use the Snowflake current date function to track when the row was processed
+          CURRENT_DATE() AS __LOAD_DATE
       FROM PART
+
+      --Filter only the most recent row per PART_ID
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY PART.PART_ID ORDER BY PART.__LOAD_DTS DESC NULLS FIRST) = 1
   )
 
-  SELECT * FROM common
+  SELECT 
+      PART_ID,
+      NAME,
+      MANUFACTURER,
+      BRAND,
+      TYPE,
+      SIZE_CENTIMETERS,
+      CONTAINER,
+      RETAIL_PRICE_USD,
+      COMMENT,
+      SOURCE_LOAD_DTS,
+      __LOAD_DATE
+  FROM common
 description: ''
 logicalName: PART Silver Table
 references:
-  8329d03f-ed0a-4d09-b9ea-462213446827:
+  a97d6008-f83f-4606-9d53-651199397487:
     parentTableId: 55b4c42b-42c8-44fd-9808-6ca2082cae98
-    id: 8329d03f-ed0a-4d09-b9ea-462213446827
+    id: a97d6008-f83f-4606-9d53-651199397487

@@ -6,7 +6,7 @@ materialization: table
 isSource: false
 columns:
   - name: LOCATION_ID
-    dataType: number(38,0)
+    dataType: VARCHAR(16777216)
     allowNulls: false
     defaultValue: ''
     description: ''
@@ -14,39 +14,39 @@ columns:
     useQuotes: false
     isPK: true
   - name: NAME
-    dataType: varchar(25)
+    dataType: VARCHAR(75)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: c6da2894-a656-498f-8277-5d756733402f
     useQuotes: false
   - name: REGION_ID
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
     id: 6f88b129-023b-4178-8f2c-0083648b8fea
     useQuotes: false
   - name: COMMENT
-    dataType: varchar(152)
+    dataType: VARCHAR(16777216)
     allowNulls: true
     defaultValue: ''
     description: ''
     id: b21deb16-64ce-40e1-8d67-93c90c488285
     useQuotes: false
-  - name: __LOAD_DTS
-    dataType: timestamp_ltz(9)
+  - name: SOURCE_LOAD_DTS
+    dataType: TIMESTAMP_LTZ(9)
     allowNulls: true
     defaultValue: ''
     description: ''
-    id: 282681c4-ec9d-4a47-a700-c59bb6dee6f3
+    id: 9209e825-dcf2-4b11-8c3f-ec5b4784282d
     useQuotes: false
-  - name: __load_date
-    dataType: date
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: 545f094b-cd98-4b27-9fcd-074b214f4000
+  - name: __LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: e2b113a4-6045-4668-8a34-2016e120d423
     useQuotes: false
 columnSets:
   - id: d3006897-d581-468a-b72b-538793e2880f
@@ -79,7 +79,7 @@ postRun:
 rely_button: true
 color: '#1C70FF'
 logic: |-
-  with LOCATION as (
+  WITH LOCATION AS (
       SELECT
           LOCATION_ID,
           NAME,
@@ -91,19 +91,43 @@ logic: |-
   ,
   common as (
       SELECT
-          LOCATION.LOCATION_ID,
-          LOCATION.NAME,
-          LOCATION.REGION_ID,
-          LOCATION.COMMENT,
-          LOCATION.__LOAD_DTS,
-          current_date() AS __load_date
+          -- 1. Remove duplicate rows by keeping only the latest version for each LOCATION_ID
+          ROW_NUMBER() OVER (PARTITION BY LOCATION.LOCATION_ID ORDER BY LOCATION.__LOAD_DTS DESC NULLS FIRST) AS row_num,
+
+          -- 2. Handle nulls for LOCATION_ID
+          COALESCE(TRIM(LOCATION.LOCATION_ID), 'UNKNOWN') AS LOCATION_ID,
+          
+          -- 3. Clean and standardize NAME
+          INITCAP(TRIM(LOCATION.NAME)) AS NAME,
+
+          -- 4. Handle numeric fields (cast VARIANT to TEXT first to avoid errors)
+          COALESCE(TRY_TO_NUMBER(CAST(LOCATION.REGION_ID AS TEXT)), 0) AS REGION_ID,
+
+          -- 5. Remove special characters from COMMENT field
+          REGEXP_REPLACE(TRIM(LOCATION.COMMENT), '[^A-Za-z0-9 .,]', '') AS COMMENT,
+
+          -- 6. Store original load timestamp from Bronze
+          LOCATION.__LOAD_DTS AS SOURCE_LOAD_DTS,
+
+          -- 7. Use the Snowflake current date function to track when the row was processed
+          CURRENT_DATE() AS __LOAD_DATE
       FROM LOCATION
+
+      -- 8. Filter only the most recent row per LOCATION_ID
+      QUALIFY ROW_NUMBER() OVER (PARTITION BY LOCATION.LOCATION_ID ORDER BY LOCATION.__LOAD_DTS DESC NULLS FIRST) = 1
   )
 
-  SELECT * FROM common
+  SELECT 
+      LOCATION_ID,
+      NAME,
+      REGION_ID,
+      COMMENT,
+      SOURCE_LOAD_DTS,
+      __LOAD_DATE
+  FROM common
 description: ''
 logicalName: LOCATION Silver Table
 references:
-  c102eb6f-6b91-46a7-8e52-cb560420c67e:
+  56f847d1-23f6-47ef-b886-eb078b650a57:
     parentTableId: aee2cbca-c458-4cf5-b8cc-7e8b5d57b75d
-    id: c102eb6f-6b91-46a7-8e52-cb560420c67e
+    id: 56f847d1-23f6-47ef-b886-eb078b650a57
