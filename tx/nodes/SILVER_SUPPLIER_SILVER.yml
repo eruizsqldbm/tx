@@ -1,0 +1,136 @@
+name: SUPPLIER_SILVER
+id: f01fa6cd-cc5f-4690-a97d-e1d3274215c6
+storageLocationId: 12b1677e-627b-400d-b257-a26c04e6c2f1
+templateId: e46ef9bc-30f7-4348-be90-17df448c7615
+materialization: table
+isSource: false
+columns:
+  - name: SUPPLIER_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: aef473d8-52cd-4249-980a-315b61ed6270
+    useQuotes: false
+    isPK: true
+  - name: NAME
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0961bcad-4173-46be-80d0-74b2b97ce5a3
+    useQuotes: false
+  - name: ADDRESS
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: a100e82b-ae53-4d20-a46f-f5f428096757
+    useQuotes: false
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ce43700a-e43a-4bc6-9c3f-aa7208b9fede
+    useQuotes: false
+  - name: PHONE
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 4b458c10-fb08-448f-a1db-a4e0e6eaa41e
+    useQuotes: false
+  - name: ACCOUNT_BALANCE_USD
+    dataType: number(12,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5bce73eb-c870-466f-886c-1a0b8bc35f3b
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 92a98743-8b61-4e57-8d2d-c44b21358801
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 4298069c-36b4-453d-8483-97b720d6834b
+    useQuotes: false
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: ade0df9c-d257-469c-a7a9-6462abb5d60b
+    useQuotes: false
+columnSets:
+  - id: 60211760-2c84-46ae-abff-8801ffc1c135
+    itemName: PK
+    setName: PK_SUPPLIER_SILVER
+    columns:
+      - columnId: aef473d8-52cd-4249-980a-315b61ed6270
+        position: 1
+        name: SUPPLIER_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#1C70FF'
+logic: |-
+  with SUPPLIER as (
+      SELECT
+          SUPPLIER_ID,
+          NAME,
+          ADDRESS,
+          LOCATION_ID,
+          PHONE,
+          ACCOUNT_BALANCE_USD,
+          COMMENT,
+          __LOAD_DTS
+      FROM {{ref('BRONZE', 'SUPPLIER')}}
+  )
+  ,
+  common as (
+      SELECT
+          SUPPLIER.SUPPLIER_ID,
+          SUPPLIER.NAME,
+          SUPPLIER.ADDRESS,
+          SUPPLIER.LOCATION_ID,
+          SUPPLIER.PHONE,
+          SUPPLIER.ACCOUNT_BALANCE_USD,
+          SUPPLIER.COMMENT,
+          SUPPLIER.__LOAD_DTS,
+          current_date() AS __load_date
+      FROM SUPPLIER
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: SUPPLIER Silver Table
+references:
+  952541a4-6c2b-4036-af5e-0e3dfef1faa4:
+    parentTableId: 078d0ad4-37e8-48ba-a9e5-4f4418be869f
+    id: 952541a4-6c2b-4036-af5e-0e3dfef1faa4

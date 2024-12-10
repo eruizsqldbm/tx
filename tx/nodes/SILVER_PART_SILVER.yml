@@ -1,0 +1,154 @@
+name: PART_SILVER
+id: 2af4e5dc-2d04-447d-9de5-a954a352f227
+storageLocationId: 12b1677e-627b-400d-b257-a26c04e6c2f1
+templateId: e46ef9bc-30f7-4348-be90-17df448c7615
+materialization: table
+isSource: false
+columns:
+  - name: PART_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: d698528f-cc86-42d9-9c5d-db8aff892fbe
+    useQuotes: false
+    isPK: true
+  - name: NAME
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 2dd10ddc-1c8c-4f3b-90d6-8a919638513d
+    useQuotes: false
+  - name: MANUFACTURER
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 7c8a5bcb-3b2a-4701-8739-92161e15852c
+    useQuotes: false
+  - name: BRAND
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5bd22e53-f5d4-48fe-a282-76d987f521b7
+    useQuotes: false
+  - name: TYPE
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 47400a5e-0f88-4135-b0cb-3092c164d9c2
+    useQuotes: false
+  - name: SIZE_CENTIMETERS
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 92d47803-bfa8-475b-ae3a-78a01c68b823
+    useQuotes: false
+  - name: CONTAINER
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 8e79748a-a5dc-4c58-bac3-73d16dbc0fdd
+    useQuotes: false
+  - name: RETAIL_PRICE_USD
+    dataType: number(12,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 4a41de60-0594-4e87-9dce-cedb52bec38b
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 72de4637-fb8e-45a4-ad25-910dcb6eb7e0
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 26c42f00-5052-4522-997d-0a0a04939a18
+    useQuotes: false
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: b01b86a4-a6c3-428d-9b81-4c7b62375ad1
+    useQuotes: false
+columnSets:
+  - id: 5df7e913-23cc-4efb-ad5f-95f9c7dae898
+    itemName: PK
+    setName: PK_PART_SILVER
+    columns:
+      - columnId: d698528f-cc86-42d9-9c5d-db8aff892fbe
+        position: 1
+        name: PART_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#1C70FF'
+logic: |-
+  with PART as (
+      SELECT
+          PART_ID,
+          NAME,
+          MANUFACTURER,
+          BRAND,
+          TYPE,
+          SIZE_CENTIMETERS,
+          CONTAINER,
+          RETAIL_PRICE_USD,
+          COMMENT,
+          __LOAD_DTS
+      FROM {{ref('BRONZE', 'PART')}}
+  )
+  ,
+  common as (
+      SELECT
+          PART.PART_ID,
+          PART.NAME,
+          PART.MANUFACTURER,
+          PART.BRAND,
+          PART.TYPE,
+          PART.SIZE_CENTIMETERS,
+          PART.CONTAINER,
+          PART.RETAIL_PRICE_USD,
+          PART.COMMENT,
+          PART.__LOAD_DTS,
+          current_date() AS __load_date
+      FROM PART
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: PART Silver Table
+references:
+  8329d03f-ed0a-4d09-b9ea-462213446827:
+    parentTableId: 55b4c42b-42c8-44fd-9808-6ca2082cae98
+    id: 8329d03f-ed0a-4d09-b9ea-462213446827

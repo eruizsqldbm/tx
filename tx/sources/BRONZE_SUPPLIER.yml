@@ -1,0 +1,61 @@
+sourceId: 078d0ad4-37e8-48ba-a9e5-4f4418be869f
+name: SUPPLIER
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: Suppliers who we buy from
+columns:
+  - name: SUPPLIER_ID
+    dataType: number(38,0)
+    id: bb345cbd-9a58-4fbc-97de-10d6ceb996b6
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: NAME
+    dataType: varchar(16777216)
+    id: c734870d-a40c-414b-b674-bf2c6b99ebb9
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ADDRESS
+    dataType: varchar(16777216)
+    id: 138be596-9cf7-44b4-aec3-efb95decc4f7
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    id: 5f75a71e-1bdf-401d-9a50-3cc638a3f13a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PHONE
+    dataType: varchar(16777216)
+    id: 63e09410-ebc1-4029-99e7-ba51cd540c37
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ACCOUNT_BALANCE_USD
+    dataType: number(12,2)
+    id: 72cac2d4-c607-417c-b5be-3d7d1bce203c
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    id: ca8b35d5-1676-4319-bd23-c8007802ba82
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: e94cb396-21d6-4d28-a813-681fba31be28
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

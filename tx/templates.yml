@@ -23,6 +23,8 @@
         position: last
         logic: current_date()
 
+      whereCondition: ''                                          # Some SQL text (string, optional)
+
       nodeSettings:
       - groupName: 'System UI Items'
         groupDesc: 'System UI Items'
@@ -109,11 +111,11 @@
     {%- if materialization == 'table' %}
 
     CREATE OR REPLACE TABLE {{ location.databaseName }}.{{ location.schemaName
-    }}.{{name}}
+    }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{% endif %}
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
@@ -124,7 +126,7 @@
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
                 {%- for pkCol in colSet.columns -%}
-                    "{{pkCol.name}}"
+                    {%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -135,7 +137,7 @@
             {%- if colSet.itemName == 'AK' -%}
             , CONSTRAINT  {{ colSet.setName }} UNIQUE (
                 {%- for akCol in colSet.columns -%}
-                    "{{akCol.name}}"
+                    {%- if akCol.useQuotes %}"{{ akCol.name }}"{% else %}{{ akCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -155,7 +157,7 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}"
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
         {% endfor %}
@@ -170,16 +172,21 @@
     ;
 
     {%- endif %}
-  runScript: |
+  runScript: >
     {% if materialization == 'table' %}
-    INSERT INTO {{ location.mapping }}.{{name}}
+
+    INSERT INTO {{ location.mapping }}.{%- if useQuotes %}"{{ name }}"{% else
+    %}{{ name }}{% endif %}
+
     (
         {%- for col in columns %}
-        "{{ col.name }}"
+        {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
         {%- if not loop.last %}, {% endif %}
         {%- endfor %}
     )
+
     {{ logic }};
+
     {%- endif %}
   isDefault: true
 - id: 2168e0c1-186b-4952-ae36-9b93af4f4a35
@@ -192,10 +199,10 @@
       logicalName: 'stage ${parentLogicalName}'
 
       color: 'orange'                                             # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)
-      
+
       inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)
       inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)
-      
+
       defaultColumns:
       - name: '__load_date'
         logicalName: 'load date'
@@ -206,6 +213,8 @@
         default: 'current_date()'
         position: last
         logic: current_date()
+
+      whereCondition: ''                                          # Some SQL text (string, optional)
 
       nodeSettings:
       - groupName: 'System UI Items'
@@ -220,14 +229,14 @@
           - 'view'
           isRequired: true
           isEnabled: true
-        
+
         - itemType: toggleButton
           itemDesc: Truncate before
           itemName: truncateBefore
           default: false
           isRequired: false
           isEnabled: true
-      
+
         - itemType: prePostSql
           itemDesc: Pre Create SQL
           itemName: preCreate
@@ -235,7 +244,7 @@
           isRequired: false
           isEnabled: true
           isValidated: false
-        
+
         - itemType: prePostSql
           itemDesc: Post Create SQL
           itemName: postCreate
@@ -270,7 +279,7 @@
           itemDesc: 'Primary key'
           isRequired: false
           isEnabled: true
-        
+
         - itemType: columnSet
           itemName: AK
           itemDesc: 'Alternate key'
@@ -293,11 +302,11 @@
     {%- if materialization == 'table' %}
 
     CREATE OR REPLACE TABLE {{ location.databaseName }}.{{ location.schemaName
-    }}.{{name}}
+    }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{% endif %}
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
@@ -308,7 +317,7 @@
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
                 {%- for pkCol in colSet.columns -%}
-                    "{{pkCol.name}}"
+                    {%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -319,7 +328,7 @@
             {%- if colSet.itemName == 'AK' -%}
             , CONSTRAINT  {{ colSet.setName }} UNIQUE (
                 {%- for akCol in colSet.columns -%}
-                    "{{akCol.name}}"
+                    {%- if akCol.useQuotes %}"{{ akCol.name }}"{% else %}{{ akCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -339,7 +348,7 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}"
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
         {% endfor %}
@@ -364,7 +373,7 @@
         {%- for colSet in columnSets %}
             {%- if colSet.itemName == 'PK' -%}
                 {%- for pkCol in colSet.columns %}
-        TxObject."{{pkCol.name}}" = TxLogic."{{pkCol.name}}"
+        TxObject.{%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %} = TxLogic.{%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
         {%- if not loop.last %}  AND  {% endif %}
                 {%- endfor -%}
             {%- endif -%}
@@ -373,211 +382,311 @@
     WHEN NOT MATCHED THEN
         INSERT (
         {%- for col in columns %}
-            "{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}{%- if not loop.last -%}, {%- endif %}
         {%- endfor -%}
         )
         VALUES (
         {%- for col in columns %}
-            TxLogic."{{ col.name }}" {%- if not loop.last -%}, {%- endif %}
+            TxLogic.{%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}{%- if not loop.last -%}, {%- endif %}
         {%- endfor -%}
         )
 
     WHEN MATCHED THEN
         UPDATE SET
         {%- for col in columns %}
-            TxObject."{{ col.name }}" = TxLogic."{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
+            TxObject.{%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} = TxLogic.{%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}{%- if not loop.last -%}, {%- endif %}
         {%- endfor -%}
     ;
     {%- endif %}
   isDefault: true
-- id: dd67c35a-908d-4f64-ac8e-9dad011129d5
-  value: |2-
+- id: 349d32a3-f178-4fc9-8a10-18b91ebc5345
+  value: |-
+    name: Dimension
 
-      name: All Props Template
+    usageInfo: |
+      The Dimension Tx Template generates a Type 2 dimension. By default, all attributes (i.e., non-system and non-identifying columns) are considered to be delta-tracking columns. To work properly, this template requires the user to set the following Tx Object properties in the properties panel:
 
-      physicalName: 'tmp_${parentPhysicalName}'
+      - Business key [itemName: BK]: the column(s) uniquely identifying a unique record of this dimension in the source system. (Do not include __FROM_DTS)
+      - 'All columns are Type 2' flag [itemName: AllDelta]: causes all attributes (i.e., non-system and non-identifying columns) to be considered as delta tracking for Type 2 changes. 
+      - 'Type 2 change tracking columns' [itemName: DELTA]: if the above flag is not set, manually set columns as Type 2 change tracking relevant. Any attributes not mentioned in this list will be treated as Type 1.
+      ** The two properties above are mutually exclusive. If 'All columns are Type 2' flag is set to true, it will take precedence over 'Type 2 change tracking columns' and the latter will be ignored **
+      - System timestamp column [itemName: sysTimestamp]: the loaded-at column for the incoming source records (e.g., load_date, etl_date_timestamp, dw_insert_date)
 
-      logicalName: '${parentLogicalName} dimension'
+      The Dimension Tx Template uses timestamp (i.e., nanosecond) granularity for valid from/to logic. If you prefer day granularity instead, change all timestamp type default columns (i.e., __FROM_DTS, __TO_DTS, __CREATE_DTS) to type "DATE" and change the following code in the run template:
+      DATEADD(NANOSECOND,-1, logic.__FROM_DTS)
+      to:
+      DATEADD(DAY,-1, logic.__FROM_DTS)
 
-      color: 'red'                                                # Color of object on diagram (string, green | blue | red | SqlDBM  colors, optional)
+      The Dimension Tx Template uses column value hashing to quickly compare changes in multiple Type 2 and Type 1 columns. The  __T2DIFF_HASH and __T1DIFF_HASH columns store a hash value that represents the content of a record (excluding metadata like timestamps or version numbers). This value is used to detect changes between different versions of a record.
 
-      inheritIdentifiersAs: pk                                    # Inherit primary key columns from parent table(s) as PK or non-PK attributes (string, pk | non-pk | none, default non-pk)
-      inheritAttributes: true                                     # Inherit non-pk columns from parent table(s) (boolean, default true)
+      System columns used by this template:
+      __FROM_DTS: This column captures the date and time when a specific record becomes effective. It is set to the System timestamp column of the incoming record.
+      __TO_DTS: This column holds the date and time when a record ceases to be effective, indicating the end of the validity period for that row. For active records (i.e., the current version of the dimension), this is set to a high future date (e.g., 9999-12-31). For non-active/expired records, this is set to one nanosecond less than the __FROM_DTS of the succeeding record.
+      __REC_VERSION: This column tracks the version of each record in the dimension. It increments with each type 2 change, allowing users to distinguish between different historical versions of the same record.
+      __IS_LATEST: This boolean flag indicates whether the record is the most recent version. 
+      __CREATE_DTS: This column records the date and time the record was first inserted into the dimension table. 
+      __UPDATE_DTS: This column captures the date and time when the record was last updated. 
+      __T2DIFF_HASH: stores a hash value representing the content of all Type 2 enabled attributes for a record (excluding metadata like timestamps or version numbers). 
+      __T1DIFF_HASH: stores a hash value representing the content of all Type 1 enabled attributes for a record (excluding metadata like timestamps or version numbers).   
 
-      inheritColumnSet:                                           # Inherit columnSet columns from parent table(s) (AK | BK | DELTA | FK | custom string)
-      - BK 
-      - DELTA
-      - AK
-      - custom
+    physicalName: 'dim_${parentPhysicalName}'           
 
-      primaryColumns:
-      - name: 'pk_load_date'                                    # Column name  (string, required)
-        logicalName: 'load date'                                # Logical name of the column (string, optional)
-        dataType: date                                          # Column data type  (string, required)
-        comment: 'load date'                                    # Comment or description  (string, optional)
-        nullable: false                                         # Set not null constraint (boolean, default false)
-        unique: false
-        default: 'current_date()'
+    logicalName: '${parentLogicalName} dimension'
+                                                
+    color: 'purple'                                             
+
+    inheritIdentifiersAs: pk
+    inheritAttributes: true 
+
+    whereCondition: |
+      TRUE 
+      AND {% for colSet in columnSets -%}
+                   {%- if colSet.itemName == 'sysTimestamp' -%}
+                     {%- if colSet.columns[0].name | length > 0 -%}   {{ wrapColInQuotes(colSet.columns[0]) }} {{' '-}}
+                     {%- else -%} 'Please designate the system timestamp field in the ''System timestamp column'' column set'
+                     {%- endif -%}
+                   {%- endif -%}
+                 {%- endfor -%} 
+      = (SELECT MAX( {%- for colSet in columnSets -%}
+                   {%- if colSet.itemName == 'sysTimestamp' -%}
+                     {%- if colSet.columns[0].name | length > 0 -%}   {{ wrapColInQuotes(colSet.columns[0]) }} 
+                     {%- else -%} 'Please designate the system timestamp field in the ''System timestamp column'' column set'
+                     {%- endif -%}
+                   {%- endif -%}
+                 {%- endfor -%}) FROM ${parentRef})  
+
+    primaryColumns:
+      - name: __FROM_DTS                            
+        logicalName: from date timestamp
+        dataType: timestamp_ntz
+        comment: when record was loaded into the warehouse
+        nullable: false                                      
+        unique: false                                        
+        default: CURRENT_TIMESTAMP()
+        position: last
+        logic: |
+          {% for colSet in columnSets -%}
+            {%- if colSet.itemName == 'sysTimestamp' -%}
+              {%- if colSet.columns[0].name | length > 0 -%}   {{ wrapColInQuotes(colSet.columns[0]) }} {{' '-}}
+              {%- else -%} 'Please designate the system timestamp field in the ''System timestamp column'' column set'
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%} 
+
+    defaultColumns:                                             
+      - name: __TO_DTS                            
+        logicalName: to date timestamp
+        dataType: timestamp_ntz
+        comment: effective date or surrogate high date (9999-12-31)
+        nullable: false                                      
+        unique: false                                        
+        default: CURRENT_TIMESTAMP()
         position: first
-        logic: 'current_date()'
+        logic: "'9999-12-31'::TIMESTAMP_NTZ"
 
-      defaultColumns:
-      - name: 'load_date'
-        logicalName: 'load date'
-        dataType: date
-        comment: 'load date'
+      - name: __REC_VERSION                            
+        logicalName: record version
+        dataType: number(38,0)
+        comment: incremental change version counter for the record                             
+        nullable: false                                      
+        unique: false                                        
+        default: '1'
+        position: last
+        logic: '1'
+
+      - name: __IS_LATEST                          
+        logicalName: is latest
+        dataType: boolean
+        comment: true only on the latest effective dated record
+        nullable: false                                      
+        unique: false                                        
+        default: 'true'
+        position: last
+        logic: 'true'
+
+      - name: __CREATE_DTS                            
+        logicalName: create date
+        dataType: timestamp_ntz
+        comment: date when record was first created
+        nullable: false                                      
+        unique: false                                        
+        default: CURRENT_TIMESTAMP()
+        position: last
+        logic: CURRENT_TIMESTAMP()
+
+      - name: __UPDATE_DTS                            
+        logicalName: update date
+        dataType: timestamp_ntz
+        comment: date when record was last updated
+        nullable: false                                      
+        unique: false                                        
+        default: CURRENT_TIMESTAMP()
+        position: last
+        logic: CURRENT_TIMESTAMP()
+
+      - name: __T2DIFF_HASH
+        logicalName: Type 2 hash diff
+        dataType: binary(20)
+        comment: hash of all columns used for quick compare
         nullable: false
         unique: false
-        default: 'current_date()'
         position: last
-        logic: 'current_date()'
+        logic: |-
+          SHA1_BINARY( {%- for col in columns if ( not ( col.name == '__REC_VERSION' or
+                                         col.name == '__IS_LATEST' or
+                                         col.name == '__FROM_DTS' or
+                                         col.name == '__TO_DTS' or
+                                         col.name == '__CREATE_DTS' or
+                                         col.name == '__UPDATE_DTS' or
+                                         col.name == '__T2DIFF_HASH' or
+                                         col.name == '__T1DIFF_HASH' or
+                                         col.isSysTimestamp )
+                                         and (
+                                         col.isDELTA or
+                                         isAllDelta
+                                         )
+                                         ) %}
+              NVL(UPPER(TRIM({{wrapColInQuotes(col)}}::VARCHAR)),'^^') {%- if not loop.last %} || '|' || {% endif %}
+            {%- endfor %}
+                  )::BINARY(20)
+      - name: __T1DIFF_HASH
+        logicalName: Type 1 hash diff
+        dataType: binary(20)
+        comment: hash of all columns used for quick compare
+        nullable: false
+        unique: false
+        position: last
+        logic: |-
+          SHA1_BINARY({% if isAllDelta -%} '*null*'{% else %}
+              {%- for col in columns if not ( col.name == '__REC_VERSION' or
+                                            col.name == '__IS_LATEST' or
+                                            col.name == '__FROM_DTS' or
+                                            col.name == '__TO_DTS' or
+                                            col.name == '__CREATE_DTS' or
+                                            col.name == '__UPDATE_DTS' or
+                                            col.name == '__T2DIFF_HASH' or
+                                            col.name == '__T1DIFF_HASH' or
+                                            col.isDELTA or
+                                            col.isSysTimestamp ) %}
+               NVL(UPPER(TRIM({{wrapColInQuotes(col)}}::VARCHAR)),'^^') {%- if not loop.last %} || '|' || {% endif %}
+                {%- endfor -%}
+            {% endif -%}
+            )::BINARY(20)
 
-      nodeSettings:
-      - groupName: 'System UI Items'
-        groupDesc: 'System UI Items'
+    nodeSettings:                                           
+    - groupName: 'System UI Items'                          
+      groupDesc: 'System UI Items'                          
+      isEnabled: true                                                                            
+
+      items:                                                                                               
+      - itemType: materialization                              
+        default: 'table'                                       
+        options:                                               
+        - 'table'     
+        isRequired: true                                      
+        isEnabled: true
+      
+      - itemType: prePostSql
+        itemDesc: Pre Create SQL
+        itemName: preCreate
+        default: ''                                                                             
+        isRequired: false                                       
+        isEnabled: true  
+        isValidated: true
+      
+      - itemType: prePostSql
+        itemDesc: Post Create SQL
+        itemName: postCreate
+        default: ''
+        isRequired: false                                       
+        isEnabled: true  
+        isValidated: true
+      
+      - itemType: prePostSql
+        itemDesc: Pre Run SQL
+        itemName: preRun
+        default: ''                                                 
+        isRequired: false                                       
+        isEnabled: true  
+        isValidated: true
+      
+      - itemType: prePostSql
+        itemDesc: Post Run SQL
+        itemName: postRun
+        default: ''
+        isRequired: false                                       
+        isEnabled: true  
+        isValidated: true
+                                              
+    - groupName: 'Dimension settings' 
+      groupDesc: 'Type 2  settings'
+      isEnabled: true
+
+      items: 
+      - itemType: columnSet                            
+        itemName: BK
+        itemDesc: 'Business key'
+        isRequired: true 
         isEnabled: true
 
-        items:
-        - itemType: materialization
-          default: 'table'
-          options:
-          - 'table'
-          - 'view'
-          isRequired: true
-          isEnabled: true
-
-        - itemType: toggleButton
-          itemDesc: Truncate before
-          itemName: truncateBefore
-          default: false
-          isRequired: false
-          isEnabled: true
-
-        - itemType: prePostSql
-          itemDesc: Pre Create SQL
-          itemName: preCreate
-          default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false
-          isEnabled: true
-          isValidated: false
-
-        - itemType: prePostSql
-          itemDesc: Post Create SQL
-          itemName: postCreate
-          default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false
-          isEnabled: true
-          isValidated: false
-
-        - itemType: prePostSql
-          itemDesc: Pre Run SQL
-          itemName: preRun
-          default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false
-          isEnabled: true
-          isValidated: false
-
-        - itemType: prePostSql
-          itemDesc: Post Run SQL
-          itemName: postRun
-          default: ''                                                 # Some default SQL text (string, optional)
-          isRequired: false
-          isEnabled: true
-          isValidated: false
-
-      - groupName: 'Column settings'
-        groupDesc: 'Column settings'
+      - itemType: toggleButton                              
+        itemDesc: 'All columns are Type 2'                               
+        itemName: isAllDelta                                 
+        default: true                                     
+        isEnabled: true
+        
+      - itemType: columnSet                            
+        itemName: DELTA
+        itemDesc: 'Or select Type 2 change tracking columns. The rest are considered Type 1'
+        isRequired: false
         isEnabled: true
 
-        items:
-        - itemType: columnSet
-          itemName: PK                                                # PK | AK | BK | DELTA | FK | custom string
-          itemDesc: 'Primary key'
-          isRequired: false
-          isEnabled: true
-
-        - itemType: columnSet
-          itemName: AK                                                # PK | AK | BK | DELTA | FK | custom string
-          itemDesc: 'Alternate key'
-          isRequired: false
-          isEnabled: true
-
-        - itemType: columnSet
-          itemName: BK                                               # PK | AK | BK | DELTA | FK | custom string
-          itemDesc: 'Business key'
-          isRequired: false
-          isEnabled: true
-
-        - itemType: columnSet
-          itemName: DELTA
-          itemDesc: 'Change tracking for type.2 SCD'
-          isRequired: false
-          isEnabled: true
-
-      - groupName: 'User UI Items'
-        groupDesc: 'Optional user configured items'
+      - itemType: columnSet                            
+        itemName: sysTimestamp
+        itemDesc: 'System timestamp column'
+        isRequired: true
         isEnabled: true
 
-        items:
-        - itemType: toggleButton
-          itemDesc: 'My Button'
-          itemName: my_button
-          default: true
-          isEnabled: true
+    - groupName: 'Column settings' 
+      groupDesc: 'Column settings'
+      isEnabled: true
 
-        - itemType: dropdownSelector
-          itemDesc: 'My dropdown selector'
-          itemName: my_dropdown
-          default: 'option 1'
-          options:
-          - 'option 1'
-          - 'option 2'
-          isRequired: false
-          isEnabled: true
+      items:   
+      - itemType: columnSet                            
+        itemName: PK
+        itemDesc: 'Primary key'
+        isRequired: false
+        isEnabled: true
 
-        - itemType: columnSet
-          itemDesc: 'My column selector'
-          itemName: my_columnSelector
-          isRequired: false
-          isEnabled: true
+      - itemType: columnSet                            
+        itemName: AK
+        itemDesc: 'Alternate key'
+        isRequired: false
+        isEnabled: true
 
-        - itemType: multiSelector
-          itemDesc: 'My multi selector'
-          itemName: my_multi_selector
-          options:
-          - 'option 1'
-          - 'option 2'
-          isRequired: false
-          isEnabled: true
 
-        - itemType: textArea
-          itemDesc: 'My Text Area'
-          itemName: my_textArea
-          isRequired: false
-          isEnabled: true
 
-        - itemType: textLine
-          itemDesc: 'My text line'
-          itemName: my_textline
-          isRequired: false
-          isEnabled: true
-
-        - itemType: toggleButton
-          itemDesc: 'Rely on constraints'
-          itemName: rely_button
-          default: true
-          isEnabled: true
-  name: All Props Template
-  color: '#E53E3E'
+    - groupName: 'User UI Items'                            
+      groupDesc: 'Optional user configured items'                            
+      isEnabled: true      
+                                                                                          
+      items:           
+      - itemType: toggleButton                              
+        itemDesc: 'Rely on constraints'                               
+        itemName: rely_button                                 
+        default: true                                     
+        isEnabled: true
+  name: Dimension
+  color: purple
   createScript: >
     {%- if materialization == 'table' %}
 
     CREATE OR REPLACE TABLE {{ location.databaseName }}.{{ location.schemaName
-    }}.{{name}}
+    }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{% endif %}
 
     (
         {% for col in columns -%}
-            "{{ col.name }}" {{ col.dataType }}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} {{ col.dataType }}
             {%- if not col.allowNulls %} NOT NULL
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {%- endif %}
@@ -588,7 +697,7 @@
             {%- if colSet.itemName == 'PK' -%}
             , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
                 {%- for pkCol in colSet.columns -%}
-                    "{{pkCol.name}}"
+                    {%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -599,7 +708,7 @@
             {%- if colSet.itemName == 'AK' -%}
             , CONSTRAINT  {{ colSet.setName }} UNIQUE (
                 {%- for akCol in colSet.columns -%}
-                    "{{akCol.name}}"
+                    {%- if akCol.useQuotes %}"{{ akCol.name }}"{% else %}{{ akCol.name }}{% endif %}
                     {%- if not loop.last %}, {% endif -%}
                 {%- endfor -%}
                 )
@@ -619,7 +728,7 @@
 
     (
         {% for col in columns -%}
-            "{{ col.name }}"
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
             {%- if not loop.last %}, {% endif %}
         {% endfor %}
@@ -634,15 +743,335 @@
     ;
 
     {%- endif %}
-  runScript: |
+  runScript: >-
+    {%- macro target() -%}
+
+    {{ location.mapping }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{%
+    endif %}
+
+    {%- endmacro  -%}
+
+
+    {%- macro joinCondition(alias1='',alias2='') -%}
+
+    {%- for colSet in columnSets %}                      
+        {%- if colSet.itemName == 'BK' -%}               
+            {%- for bkCol in colSet.columns %}
+            {{alias1}}.{%- if bkCol.useQuotes %}"{{bkCol.name}}" = "{{bkCol.name}}"{% else %}{{bkCol.name}} = {{alias2}}.{{bkCol.name}}{% endif %}
+    {%- if not loop.last %}  AND  {% endif %}
+            {%- endfor -%}                       
+        {%- endif -%}
+    {%- endfor %}
+
+    {%- endmacro  %}
+                     
+
+    {%- if materialization == 'table' %}
+
+    MERGE INTO {{target()}} AS TxObject
+
+    USING (
+        WITH logic AS ( 
+            {{logic}} 
+        )
+
+        , new_recs AS (
+        SELECT logic.* 
+        , 'new recs' as __tmp_update_type      
+        FROM logic 
+        LEFT JOIN {{target()}}  dim
+        ON {{ joinCondition('logic', 'dim') }}  
+        
+        WHERE 
+        {%- for colSet in columnSets %}                      
+                {%- if colSet.itemName == 'BK' -%}               
+                    {%- for bkCol in colSet.columns %}
+        dim.{{wrapColInQuotes(bkCol)}} IS NULL
+                        {%- if not loop.last %}  AND  {% endif %}
+                    {%- endfor -%}                       
+                {%- endif -%}            
+            {%- endfor %}
+        )
+
+        , t2_insert AS (
+        SELECT 
+        {%- for col in columns %}
+            {% if col.name == '__REC_VERSION' %}dim.{{ wrapColInQuotes(col) }}  + 1 AS {{ wrapColInQuotes(col) }},             {#- rec version is incremented #}
+            {%- elif col.name == '__CREATE_DTS' -%}dim.{{ wrapColInQuotes(col) }},                                                  {#- original create date is recovered #}
+            {%- else -%} logic.{{wrapColInQuotes(col)}}
+                {%- if not loop.last %}, {% endif %}
+            {% endif %}
+        {%- endfor %}   
+        , 't2 insert' as __tmp_update_type       
+        FROM logic 
+        LEFT JOIN {{target()}} dim 
+        ON {{ joinCondition('logic', 'dim') }}  
+        WHERE TRUE  
+        AND dim.__IS_LATEST = 'Y'
+        AND logic.__T2DIFF_HASH != dim.__T2DIFF_HASH
+        )
+
+        , t2_expire as (
+        SELECT 
+        {%- for col in columns %}
+            {% if col.name == '__IS_LATEST' -%} FALSE AS {{ wrapColInQuotes(col)}},                                                {#- no longer latest #}                    
+            {%- elif col.name == '__TO_DTS' -%} DATEADD(NANOSECOND,-1, logic.__FROM_DTS) AS {{ wrapColInQuotes(col)}},             {#- delimit to_date to just before the latest from date #}
+            {%- else -%} dim.{{wrapColInQuotes(col)}}
+                {%- if not loop.last %}, {% endif %}
+            {% endif %}
+        {%- endfor %}    
+        , 't2 expire' as __tmp_update_type      
+        FROM logic 
+        INNER JOIN {{target()}} dim 
+        ON {{ joinCondition('logic', 'dim') }}  
+        WHERE TRUE  
+        AND dim.__IS_LATEST = 'Y'
+        AND logic.__T2DIFF_HASH != dim.__T2DIFF_HASH    
+
+        ) 
+
+     {% if not isAllDelta -%}
+        , t1_update as (
+        SELECT 
+        {%- for col in columns %}                                                                                                        {#- these columns should be taken from the dim record -#} 
+            {%- if (col.name == '__REC_VERSION' or
+                    col.name == '__FROM_DTS'or
+                    col.name == '__TO_DTS' or 
+                    col.name == '__CREATE_DTS' ) %} 
+        dim.{{ col.name }}  AS {{ col.name }},           
+            {%- else %}
+        logic.{{wrapColInQuotes(col)}}
+                {%- if not loop.last %}, {% endif %}
+            {% endif %}
+        {%- endfor %}  
+        , 't1 update' as __tmp_update_type  
+        FROM logic 
+        INNER JOIN {{target()}} dim 
+        ON {{ joinCondition('logic', 'dim') }}  
+        WHERE TRUE  
+        AND dim.__IS_LATEST = 'Y' {# remove this to update historic records too. Performance will suffer #}
+        AND logic.__T2DIFF_HASH = dim.__T2DIFF_HASH    
+        AND logic.__T1DIFF_HASH != dim.__T1DIFF_HASH    
+        )
+     {% endif %}
+
+        , allChanges as (
+            SELECT * FROM new_recs
+            UNION ALL
+            SELECT * FROM t2_insert 
+            UNION ALL
+            SELECT * FROM t2_expire  {%- if not isAllDelta %}
+            UNION ALL
+            SELECT * FROM t1_update
+         {% endif %}    
+        )
+
+        SELECT * FROM allChanges
+
+
+    ) AS TxLogic 
+
+
+
+    ON  {{ joinCondition('TxObject', 'TxLogic') }} 
+        AND  TxObject.__REC_VERSION = TxLogic.__REC_VERSION
+
+    WHEN MATCHED 
+
+    THEN UPDATE
+        SET 
+        {%- for col in columns %}         
+            TxObject.{{ col.name }} = TxLogic.{{ col.name }}
+            {%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+    {{''}}
+
+    WHEN NOT MATCHED THEN
+        INSERT (
+        {%- for col in columns %}
+            {{ col.name }}{%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+        )
+        VALUES (
+        {%- for col in columns %}
+            TxLogic.{{ col.name }} {%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+        )
+
+
+    ;
+
+    {% endif %}
+  isDefault: true
+- id: e46ef9bc-30f7-4348-be90-17df448c7615
+  value: "name: Silver\r\nphysicalName: ${parentPhysicalName}_SILVER\r\nlogicalName: ${parentLogicalName} Silver Table\r\ncolor: blue\r\ninheritIdentifiersAs: pk\r\ninheritAttributes: true\r\ndefaultColumns:\r\n  - name: __load_date\r\n    logicalName: load date\r\n    dataType: date\r\n    comment: load date\r\n    nullable: false\r\n    unique: false\r\n    default: current_date()\r\n    position: last\r\n    logic: current_date()\r\nwhereCondition: ''\r\nnodeSettings:\r\n  - groupName: System UI Items\r\n    groupDesc: System UI Items\r\n    isEnabled: true\r\n    items:\r\n      - itemType: materialization\r\n        default: table\r\n        options:\r\n          - table\r\n          - view\r\n        isRequired: true\r\n        isEnabled: true\r\n      - itemType: toggleButton\r\n        itemDesc: Truncate before\r\n        itemName: truncateBefore\r\n        default: false\r\n        isRequired: false\r\n        isEnabled: true\r\n      - itemType: prePostSql\r\n        itemDesc: Pre Create SQL\r\n        itemName: preCreate\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Post Create SQL\r\n        itemName: postCreate\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Pre Run SQL\r\n        itemName: preRun\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Post Run SQL\r\n        itemName: postRun\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n  - groupName: Column settings\r\n    groupDesc: Column settings\r\n    isEnabled: true\r\n    items:\r\n      - itemType: columnSet\r\n        itemName: PK\r\n        itemDesc: Primary key\r\n        isRequired: false\r\n        isEnabled: true\r\n      - itemType: columnSet\r\n        itemName: AK\r\n        itemDesc: Alternate key\r\n        isRequired: false\r\n        isEnabled: true\r\n  - groupName: User UI Items\r\n    groupDesc: Optional user configured items\r\n    isEnabled: true\r\n    items:\r\n      - itemType: toggleButton\r\n        itemDesc: Rely on constraints\r\n        itemName: rely_button\r\n        default: true\r\n        isEnabled: true\r\n"
+  name: Silver
+  color: '#1C70FF'
+  createScript: >
+    {%- if materialization == 'table' %}
+
+    CREATE OR REPLACE TABLE {{ location.databaseName }}.{{ location.schemaName
+    }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{% endif %}
+
+    (
+        {% for col in columns -%}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} {{ col.dataType }}
+            {%- if not col.allowNulls %} NOT NULL
+                {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {%- endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last %}, {% endif %}
+        {% endfor -%}
+        {% for colSet in columnSets %}
+            {%- if colSet.itemName == 'PK' -%}
+            , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
+                {%- for pkCol in colSet.columns -%}
+                    {%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
+                    {%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+                )
+                {%- if rely_button %} RELY {% endif -%}
+            {%- endif -%}
+        {%- endfor %}
+        {% for colSet in columnSets %}
+            {%- if colSet.itemName == 'AK' -%}
+            , CONSTRAINT  {{ colSet.setName }} UNIQUE (
+                {%- for akCol in colSet.columns -%}
+                    {%- if akCol.useQuotes %}"{{ akCol.name }}"{% else %}{{ akCol.name }}{% endif %}
+                    {%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+                )
+                {%- if rely_button %} RELY {% endif -%}
+            {%- endif -%}
+        {%- endfor %}
+    )
+
+    {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
+
+    ;
+
+
+    {%- elif materialization == 'view' %}
+
+    CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
+
+    (
+        {% for col in columns -%}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last %}, {% endif %}
+        {% endfor %}
+    {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
+
+    )
+
+    AS
+
+    {{logic}}
+
+    ;
+
+    {%- endif %}
+  runScript: >
     {% if materialization == 'table' %}
-    INSERT INTO {{ location.mapping }}.{{name}}
+
+    INSERT INTO {{ location.mapping }}.{%- if useQuotes %}"{{ name }}"{% else
+    %}{{ name }}{% endif %}
+
     (
         {%- for col in columns %}
-        "{{ col.name }}"
+        {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
         {%- if not loop.last %}, {% endif %}
         {%- endfor %}
     )
+
     {{ logic }};
+
+    {%- endif %}
+  isDefault: false
+- id: 65d3ce35-d934-4638-a966-0211e969e2e8
+  value: "name: Gold\r\nphysicalName: ${parentPhysicalName}_GOLD\r\nlogicalName: ${parentLogicalName} Gold Table\r\ncolor: yellow\r\ninheritIdentifiersAs: pk\r\ninheritAttributes: true\r\ndefaultColumns:\r\n  - name: __load_date\r\n    logicalName: load date\r\n    dataType: date\r\n    comment: load date\r\n    nullable: false\r\n    unique: false\r\n    default: current_date()\r\n    position: last\r\n    logic: current_date()\r\nwhereCondition: ''\r\nnodeSettings:\r\n  - groupName: System UI Items\r\n    groupDesc: System UI Items\r\n    isEnabled: true\r\n    items:\r\n      - itemType: materialization\r\n        default: table\r\n        options:\r\n          - table\r\n          - view\r\n        isRequired: true\r\n        isEnabled: true\r\n      - itemType: toggleButton\r\n        itemDesc: Truncate before\r\n        itemName: truncateBefore\r\n        default: false\r\n        isRequired: false\r\n        isEnabled: true\r\n      - itemType: prePostSql\r\n        itemDesc: Pre Create SQL\r\n        itemName: preCreate\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Post Create SQL\r\n        itemName: postCreate\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Pre Run SQL\r\n        itemName: preRun\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n      - itemType: prePostSql\r\n        itemDesc: Post Run SQL\r\n        itemName: postRun\r\n        default: ''\r\n        isRequired: false\r\n        isEnabled: true\r\n        isValidated: false\r\n  - groupName: Column settings\r\n    groupDesc: Column settings\r\n    isEnabled: true\r\n    items:\r\n      - itemType: columnSet\r\n        itemName: PK\r\n        itemDesc: Primary key\r\n        isRequired: false\r\n        isEnabled: true\r\n      - itemType: columnSet\r\n        itemName: AK\r\n        itemDesc: Alternate key\r\n        isRequired: false\r\n        isEnabled: true\r\n  - groupName: User UI Items\r\n    groupDesc: Optional user configured items\r\n    isEnabled: true\r\n    items:\r\n      - itemType: toggleButton\r\n        itemDesc: Rely on constraints\r\n        itemName: rely_button\r\n        default: true\r\n        isEnabled: true\r\n"
+  name: Gold
+  color: '#F7B81C'
+  createScript: >
+    {%- if materialization == 'table' %}
+
+    CREATE OR REPLACE TABLE {{ location.databaseName }}.{{ location.schemaName
+    }}.{%- if useQuotes %}"{{ name }}"{% else %}{{ name }}{% endif %}
+
+    (
+        {% for col in columns -%}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %} {{ col.dataType }}
+            {%- if not col.allowNulls %} NOT NULL
+                {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {%- endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last %}, {% endif %}
+        {% endfor -%}
+        {% for colSet in columnSets %}
+            {%- if colSet.itemName == 'PK' -%}
+            , CONSTRAINT  {{ colSet.setName }} PRIMARY KEY (
+                {%- for pkCol in colSet.columns -%}
+                    {%- if pkCol.useQuotes %}"{{ pkCol.name }}"{% else %}{{ pkCol.name }}{% endif %}
+                    {%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+                )
+                {%- if rely_button %} RELY {% endif -%}
+            {%- endif -%}
+        {%- endfor %}
+        {% for colSet in columnSets %}
+            {%- if colSet.itemName == 'AK' -%}
+            , CONSTRAINT  {{ colSet.setName }} UNIQUE (
+                {%- for akCol in colSet.columns -%}
+                    {%- if akCol.useQuotes %}"{{ akCol.name }}"{% else %}{{ akCol.name }}{% endif %}
+                    {%- if not loop.last %}, {% endif -%}
+                {%- endfor -%}
+                )
+                {%- if rely_button %} RELY {% endif -%}
+            {%- endif -%}
+        {%- endfor %}
+    )
+
+    {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
+
+    ;
+
+
+    {%- elif materialization == 'view' %}
+
+    CREATE OR REPLACE VIEW {{ location.mapping }}.{{name}}
+
+    (
+        {% for col in columns -%}
+            {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last %}, {% endif %}
+        {% endfor %}
+    {%- if description | length > 0 %} COMMENT = '{{ description }}'{% endif %}
+
+    )
+
+    AS
+
+    {{logic}}
+
+    ;
+
+    {%- endif %}
+  runScript: >
+    {% if materialization == 'table' %}
+
+    INSERT INTO {{ location.mapping }}.{%- if useQuotes %}"{{ name }}"{% else
+    %}{{ name }}{% endif %}
+
+    (
+        {%- for col in columns %}
+        {%- if col.useQuotes %}"{{ col.name }}"{% else %}{{ col.name }}{% endif %}
+        {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
+    )
+
+    {{ logic }};
+
     {%- endif %}
   isDefault: false

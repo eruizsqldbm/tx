@@ -1,0 +1,145 @@
+name: CUSTOMER_SILVER
+id: ae9ac8bb-e72e-4e58-8840-cc41318803ea
+storageLocationId: 12b1677e-627b-400d-b257-a26c04e6c2f1
+templateId: e46ef9bc-30f7-4348-be90-17df448c7615
+materialization: table
+isSource: false
+columns:
+  - name: CUSTOMER_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b0755a50-a9c9-4b5e-9b47-4856b44567f3
+    useQuotes: false
+    isPK: true
+  - name: NAME
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 76a716d1-f450-4211-8976-519a48b46702
+    useQuotes: false
+  - name: ADDRESS
+    dataType: varchar(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: d11693fa-f1d7-49ba-be12-dc03d9c0472b
+    useQuotes: false
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 04f8de3b-9840-42af-9749-d2fa3ff3d2bf
+    useQuotes: false
+  - name: PHONE
+    dataType: varchar(15)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0d356461-0874-4ebc-9b7f-4e6e7f571729
+    useQuotes: false
+  - name: ACCOUNT_BALANCE_USD
+    dataType: number(12,2)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 4f7f3335-bc39-4a9a-bf38-5300d8391adb
+    useQuotes: false
+  - name: MARKET_SEGMENT
+    dataType: varchar(10)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 46e60c06-483a-43f3-9001-e34a356fd862
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 1d67723c-9b7a-46ba-b48f-5071f952e82a
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 24765bb0-d467-43fc-99e1-18d40d0009f3
+    useQuotes: false
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: fb2b5657-bea4-4051-a036-7a457f454bec
+    useQuotes: false
+columnSets:
+  - id: 9829838c-da0e-41bb-8314-e51050092e5c
+    itemName: PK
+    setName: PK_CUSTOMER_SILVER
+    columns:
+      - columnId: b0755a50-a9c9-4b5e-9b47-4856b44567f3
+        position: 1
+        name: CUSTOMER_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#1C70FF'
+logic: |-
+  with CUSTOMER as (
+      SELECT
+          CUSTOMER_ID,
+          NAME,
+          ADDRESS,
+          LOCATION_ID,
+          PHONE,
+          ACCOUNT_BALANCE_USD,
+          MARKET_SEGMENT,
+          COMMENT,
+          __LOAD_DTS
+      FROM {{ref('BRONZE', 'CUSTOMER')}}
+  )
+  ,
+  common as (
+      SELECT
+          CUSTOMER.CUSTOMER_ID,
+          CUSTOMER.NAME,
+          CUSTOMER.ADDRESS,
+          CUSTOMER.LOCATION_ID,
+          CUSTOMER.PHONE,
+          CUSTOMER.ACCOUNT_BALANCE_USD,
+          CUSTOMER.MARKET_SEGMENT,
+          CUSTOMER.COMMENT,
+          CUSTOMER.__LOAD_DTS,
+          current_date() AS __load_date
+      FROM CUSTOMER
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: CUSTOMER Silver Table
+references:
+  eb42acf6-67b9-449e-aa95-7ea41a0f37e9:
+    parentTableId: 617b5f82-1951-478d-8a7a-5a9133d69e07
+    id: eb42acf6-67b9-449e-aa95-7ea41a0f37e9

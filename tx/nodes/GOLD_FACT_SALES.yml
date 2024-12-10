@@ -1,0 +1,326 @@
+name: FACT_SALES
+id: 17c1d419-5638-4ab1-8021-3fdefef490e5
+storageLocationId: 078fd921-4ee0-41ca-9457-17a54c520515
+templateId: 65d3ce35-d934-4638-a966-0211e969e2e8
+materialization: table
+isSource: false
+columns:
+  - name: CUSTOMER_ID
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 1fac9708-bfdd-4faf-bf2a-68ebefd0ab09
+    useQuotes: false
+    isPK: true
+  - name: CUSTOMER_NAME
+    allowNulls: true
+    dataType: VARCHAR(16777216)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: e7890d87-675b-4f65-96d7-5d4830352f68
+  - name: CUSTOMER_ADDRESS
+    allowNulls: true
+    dataType: VARCHAR(16777216)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 386b151b-487f-4dc0-a23d-904e3f310f08
+  - name: PART_ID
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: part of unique identifier with ps_suppkey
+    id: 55b7a9c4-4bd5-453d-9424-6eba770a0cf7
+    useQuotes: false
+    isPK: true
+  - name: SUPPLIER_ID
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: part of unique identifier with ps_partkey
+    id: cc8a19af-58d1-4cac-9fb8-72738500b777
+    useQuotes: false
+    isPK: true
+  - name: LINE_NUMBER
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 89099629-e53e-400f-bc24-a03d2f3370df
+    useQuotes: false
+    isPK: true
+  - name: SALES_ORDER_ID
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 160b860e-3c27-445f-8991-af290eb6e8ee
+    useQuotes: false
+    isPK: true
+  - name: NET_SALE_AMOUNT_USD
+    allowNulls: true
+    dataType: NUMBER(32,10)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 0a27e8da-b13c-4d59-a40a-3cc7e3b77ae5
+  - name: DAYS_TO_SHIP
+    allowNulls: true
+    dataType: NUMBER(9,0)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 52363efa-7ac3-4fc3-838e-2fbce1b3e408
+  - name: ORDER_YEAR
+    allowNulls: true
+    dataType: NUMBER(4,0)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 1d1fa105-20f1-4472-89b7-a1dcbbdd8aeb
+  - name: ORDER_MONTH
+    allowNulls: true
+    dataType: NUMBER(2,0)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: eb8073c9-03b0-428c-b5b6-966cfd1b6eee
+  - name: SUPPLIER_FULL_ADDRESS
+    allowNulls: true
+    dataType: VARCHAR(16777216)
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 6972d9bf-6e28-4a6a-8baf-192e57229326
+  - name: LOAD_DATE
+    allowNulls: true
+    dataType: DATE
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+    id: 5368d88d-73ad-43d6-9dd7-f3839d4c801e
+columnSets:
+  - id: 4671c82d-4f1a-4c40-9c52-a9f63fa66b38
+    itemName: PK
+    setName: >-
+      PK_CUSTOMER_SILVER_INVENTORY_SILVER_LINEITEM_SILVER_PART_SILVER_LOCATION_SILVER_REGION_SILVER_SALES_ORDER_SILVER_SUPPLIER_SILVER_GOLD
+    columns:
+      - columnId: 1fac9708-bfdd-4faf-bf2a-68ebefd0ab09
+        position: 1
+        name: CUSTOMER_ID
+        useQuotes: false
+      - columnId: 55b7a9c4-4bd5-453d-9424-6eba770a0cf7
+        position: 2
+        name: PART_ID
+        useQuotes: false
+      - columnId: cc8a19af-58d1-4cac-9fb8-72738500b777
+        position: 3
+        name: SUPPLIER_ID
+        useQuotes: false
+      - columnId: 89099629-e53e-400f-bc24-a03d2f3370df
+        position: 4
+        name: LINE_NUMBER
+        useQuotes: false
+      - columnId: 160b860e-3c27-445f-8991-af290eb6e8ee
+        position: 5
+        name: SALES_ORDER_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#F7B81C'
+logic: |
+  with CUSTOMER_SILVER as (
+      SELECT
+          CUSTOMER_ID,
+          TRIM(UPPER(NAME)) AS NAME,
+          TRIM(ADDRESS) AS ADDRESS,
+          LOCATION_ID,
+          COALESCE(PHONE, 'UNKNOWN') AS PHONE,
+          COALESCE(ACCOUNT_BALANCE_USD, 0) AS ACCOUNT_BALANCE_USD,
+          TRIM(UPPER(MARKET_SEGMENT)) AS MARKET_SEGMENT,
+          COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'CUSTOMER_SILVER')}}
+  ),
+  INVENTORY_SILVER as (
+      SELECT
+          PART_ID,
+          SUPPLIER_ID,
+          COALESCE(AVAILABLE_AMOUNT, 0) AS AVAILABLE_AMOUNT,
+          COALESCE(SUPPLIER_COST_USD, 0) AS SUPPLIER_COST_USD,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'INVENTORY_SILVER')}}
+  ),
+  LINEITEM_SILVER as (
+      SELECT
+          LINE_NUMBER,
+          SALES_ORDER_ID,
+          PART_ID,
+          SUPPLIER_ID,
+          COALESCE(QUANTITY, 0) AS QUANTITY,
+          COALESCE(EXTENDED_PRICE_USD, 0) AS EXTENDED_PRICE_USD,
+          COALESCE(DISCOUNT_PERCENT, 0) AS DISCOUNT_PERCENT,
+          COALESCE(TAX_PERCENT, 0) AS TAX_PERCENT,
+          RETURN_FLAG,
+          LINE_STATUS,
+          SHIP_DATE,
+          COMMIT_DATE,
+          RECEIPT_DATE,
+          SHIP_INSTRUCTIONS,
+          SHIP_MODE,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'LINEITEM_SILVER')}}
+  ),
+  PART_SILVER as (
+      SELECT
+          PART_ID,
+          TRIM(NAME) AS NAME,
+          TRIM(UPPER(MANUFACTURER)) AS MANUFACTURER,
+          TRIM(BRAND) AS BRAND,
+          TRIM(TYPE) AS TYPE,
+          COALESCE(SIZE_CENTIMETERS, 0) AS SIZE_CENTIMETERS,
+          TRIM(CONTAINER) AS CONTAINER,
+          COALESCE(RETAIL_PRICE_USD, 0) AS RETAIL_PRICE_USD,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'PART_SILVER')}}
+  ),
+  LOCATION_SILVER as (
+      SELECT
+          LOCATION_ID,
+          TRIM(UPPER(NAME)) AS NAME,
+          REGION_ID,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'LOCATION_SILVER')}}
+  ),
+  REGION_SILVER as (
+      SELECT
+          REGION_ID,
+          TRIM(NAME) AS NAME,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'REGION_SILVER')}}
+  ),
+  SALES_ORDER_SILVER as (
+      SELECT
+          SALES_ORDER_ID,
+          CUSTOMER_ID,
+          ORDER_STATUS,
+          COALESCE(TOTAL_PRICE_USD, 0) AS TOTAL_PRICE_USD,
+          ORDER_DATE,
+          ORDER_PRIORITY,
+          CLERK,
+          SHIP_PRIORITY,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'SALES_ORDER_SILVER')}}
+  ),
+  SUPPLIER_SILVER as (
+      SELECT
+          SUPPLIER_ID,
+          TRIM(NAME) AS NAME,
+          TRIM(ADDRESS) AS ADDRESS,
+          LOCATION_ID,
+          COALESCE(PHONE, 'UNKNOWN') AS PHONE,
+          COALESCE(ACCOUNT_BALANCE_USD, 0) AS ACCOUNT_BALANCE_USD,
+          TRIM(COMMENT) AS COMMENT,
+          __LOAD_DTS,
+          __load_date
+      FROM {{ref('SILVER', 'SUPPLIER_SILVER')}}
+  ),
+  common as (
+      SELECT
+          CUSTOMER_SILVER.CUSTOMER_ID,
+          CUSTOMER_SILVER.NAME AS CUSTOMER_NAME,
+          CUSTOMER_SILVER.ADDRESS AS CUSTOMER_ADDRESS,
+          INVENTORY_SILVER.PART_ID,
+          INVENTORY_SILVER.SUPPLIER_ID,
+          LINEITEM_SILVER.LINE_NUMBER,
+          LINEITEM_SILVER.SALES_ORDER_ID,
+          COALESCE(LINEITEM_SILVER.EXTENDED_PRICE_USD * (1 - LINEITEM_SILVER.DISCOUNT_PERCENT / 100) 
+                  + (LINEITEM_SILVER.EXTENDED_PRICE_USD * LINEITEM_SILVER.TAX_PERCENT / 100), 0) 
+                  AS NET_SALE_AMOUNT_USD,
+          DATEDIFF('DAY', SALES_ORDER_SILVER.ORDER_DATE, LINEITEM_SILVER.SHIP_DATE) AS DAYS_TO_SHIP,
+          EXTRACT(YEAR FROM SALES_ORDER_SILVER.ORDER_DATE) AS ORDER_YEAR,
+          EXTRACT(MONTH FROM SALES_ORDER_SILVER.ORDER_DATE) AS ORDER_MONTH,
+          CONCAT(TRIM(SUPPLIER_SILVER.ADDRESS), ', ', TRIM(LOCATION_SILVER.NAME), ', ', TRIM(REGION_SILVER.NAME)) AS SUPPLIER_FULL_ADDRESS,
+          current_date() AS LOAD_DATE
+      FROM CUSTOMER_SILVER
+      INNER JOIN SALES_ORDER_SILVER 
+          ON CUSTOMER_SILVER.CUSTOMER_ID = SALES_ORDER_SILVER.CUSTOMER_ID
+      INNER JOIN LINEITEM_SILVER 
+          ON SALES_ORDER_SILVER.SALES_ORDER_ID = LINEITEM_SILVER.SALES_ORDER_ID
+      INNER JOIN INVENTORY_SILVER 
+          ON INVENTORY_SILVER.PART_ID = LINEITEM_SILVER.PART_ID
+          AND INVENTORY_SILVER.SUPPLIER_ID = LINEITEM_SILVER.SUPPLIER_ID
+      INNER JOIN PART_SILVER 
+          ON PART_SILVER.PART_ID = LINEITEM_SILVER.PART_ID
+      INNER JOIN LOCATION_SILVER 
+          ON CUSTOMER_SILVER.LOCATION_ID = LOCATION_SILVER.LOCATION_ID
+      INNER JOIN REGION_SILVER 
+          ON LOCATION_SILVER.REGION_ID = REGION_SILVER.REGION_ID
+      INNER JOIN SUPPLIER_SILVER 
+          ON LINEITEM_SILVER.SUPPLIER_ID = SUPPLIER_SILVER.SUPPLIER_ID
+          AND SUPPLIER_SILVER.LOCATION_ID = LOCATION_SILVER.LOCATION_ID
+  )
+  SELECT * FROM common
+description: ''
+logicalName: >-
+  CUSTOMER Silver Table_INVENTORY Silver Table_LINEITEM Silver Table_PART Silver
+  Table_LOCATION Silver Table_REGION Silver Table_SALES_ORDER Silver
+  Table_SUPPLIER Silver Table Gold Table
+references:
+  1575c4b1-0f78-4bb7-ab34-59917465ffbd:
+    parentTableId: ae9ac8bb-e72e-4e58-8840-cc41318803ea
+    id: 1575c4b1-0f78-4bb7-ab34-59917465ffbd
+  4a3e9e99-dac2-4de2-8bfb-64764cc061db:
+    parentTableId: cc921404-f683-4a8e-9769-b1edfbc2c124
+    id: 4a3e9e99-dac2-4de2-8bfb-64764cc061db
+  dc8a84fd-ffcd-4188-be74-5b5425c289c6:
+    parentTableId: cd0997df-b05f-4309-b94c-11bddc015e0a
+    id: dc8a84fd-ffcd-4188-be74-5b5425c289c6
+  d2536dd4-2a97-48a0-9f7e-e61c7eac208c:
+    parentTableId: 2af4e5dc-2d04-447d-9de5-a954a352f227
+    id: d2536dd4-2a97-48a0-9f7e-e61c7eac208c
+  10ae9f18-262d-4587-8f3e-a652d34e35a2:
+    parentTableId: a67bba40-19b7-4662-b233-6769fb60c847
+    id: 10ae9f18-262d-4587-8f3e-a652d34e35a2
+  0118f0e7-a000-4449-a4a7-ecc94c616e71:
+    parentTableId: 65086349-098f-4144-bd1e-3ca00123afa5
+    id: 0118f0e7-a000-4449-a4a7-ecc94c616e71
+  41bcd9bc-bde2-4601-a8cc-da9eb3b2a33e:
+    parentTableId: c64ba411-a3b7-49ab-a2b6-1b7e6f98ed12
+    id: 41bcd9bc-bde2-4601-a8cc-da9eb3b2a33e
+  3c793e02-eedf-4ae8-8c6d-8421baba4086:
+    parentTableId: f01fa6cd-cc5f-4690-a97d-e1d3274215c6
+    id: 3c793e02-eedf-4ae8-8c6d-8421baba4086

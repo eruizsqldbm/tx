@@ -1,0 +1,68 @@
+sourceId: 617b5f82-1951-478d-8a7a-5a9133d69e07
+name: CUSTOMER
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: Registered cusotmers
+columns:
+  - name: CUSTOMER_ID
+    dataType: number(38,0)
+    id: e18d4f3a-42e9-45a7-a3f3-3f5d2807e588
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: NAME
+    dataType: varchar(16777216)
+    id: ac1debfc-4a4b-4083-9124-bd796ed79cbd
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ADDRESS
+    dataType: varchar(16777216)
+    id: 9e86289a-b552-4680-811d-55faed13254d
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    id: cd7ccd62-c014-4f84-a0ab-ea95ffcc51d0
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PHONE
+    dataType: varchar(15)
+    id: a852af9f-4368-41cc-9f29-66d75845d0be
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ACCOUNT_BALANCE_USD
+    dataType: number(12,2)
+    id: dec77b23-a37f-4ffc-9e41-3ebdbdc64d02
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: MARKET_SEGMENT
+    dataType: varchar(10)
+    id: f99e6b50-97e7-42f7-b2f7-55cd3a835438
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    id: 0fe95b30-83e5-47a6-b6e5-0a234e9db902
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: 20525046-cfc0-47c1-a83d-bbe3339e7dfd
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

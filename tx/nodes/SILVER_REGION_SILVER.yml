@@ -1,0 +1,100 @@
+name: REGION_SILVER
+id: 65086349-098f-4144-bd1e-3ca00123afa5
+storageLocationId: 12b1677e-627b-400d-b257-a26c04e6c2f1
+templateId: e46ef9bc-30f7-4348-be90-17df448c7615
+materialization: table
+isSource: false
+columns:
+  - name: REGION_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 86368b70-f913-4361-ac82-db2873f7e556
+    useQuotes: false
+    isPK: true
+  - name: NAME
+    dataType: varchar(25)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5f3a8c9c-3243-4789-9c36-ae1362be4811
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(152)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: a05ed32f-33b5-46cd-bad4-8379e64c8a69
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 54b09a52-127d-45b1-8e6b-2bb820473da4
+    useQuotes: false
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 7276922f-34ad-4ea5-9a4c-2a14576e1110
+    useQuotes: false
+columnSets:
+  - id: f76a178c-3d63-4cfa-ab42-c9d792b204a3
+    itemName: PK
+    setName: PK_REGION_SILVER
+    columns:
+      - columnId: 86368b70-f913-4361-ac82-db2873f7e556
+        position: 1
+        name: REGION_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#1C70FF'
+logic: |-
+  with REGION as (
+      SELECT
+          REGION_ID,
+          NAME,
+          COMMENT,
+          __LOAD_DTS
+      FROM {{ref('BRONZE', 'REGION')}}
+  )
+  ,
+  common as (
+      SELECT
+          REGION.REGION_ID,
+          REGION.NAME,
+          REGION.COMMENT,
+          REGION.__LOAD_DTS,
+          current_date() AS __load_date
+      FROM REGION
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: REGION Silver Table
+references:
+  f1795880-c280-4503-a4bd-81c7cf7af47b:
+    parentTableId: d3dd55ee-ca98-43c8-8a4b-ee8d18363725
+    id: f1795880-c280-4503-a4bd-81c7cf7af47b

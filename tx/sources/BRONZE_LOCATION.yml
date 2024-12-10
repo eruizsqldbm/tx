@@ -1,0 +1,40 @@
+sourceId: aee2cbca-c458-4cf5-b8cc-7e8b5d57b75d
+name: LOCATION
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: location assigned to \ncustomer or supplier
+columns:
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    id: 95430d5b-f6c4-4580-a86b-62736beb0b76
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: NAME
+    dataType: varchar(25)
+    id: 9fb4a617-9e09-4241-b13c-ed1dd004324e
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: REGION_ID
+    dataType: number(38,0)
+    id: c0a51336-a937-4787-bd3d-43c6bc6711f6
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(152)
+    id: f5e05cb9-9f43-4503-b164-a74a52033b0a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: 66f0c366-8e7a-48ef-9358-050286f40b66
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

@@ -1,0 +1,109 @@
+name: LOCATION_SILVER
+id: a67bba40-19b7-4662-b233-6769fb60c847
+storageLocationId: 12b1677e-627b-400d-b257-a26c04e6c2f1
+templateId: e46ef9bc-30f7-4348-be90-17df448c7615
+materialization: table
+isSource: false
+columns:
+  - name: LOCATION_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: e5b5f3c2-c8d9-49b9-aee9-3f459eccc10f
+    useQuotes: false
+    isPK: true
+  - name: NAME
+    dataType: varchar(25)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c6da2894-a656-498f-8277-5d756733402f
+    useQuotes: false
+  - name: REGION_ID
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 6f88b129-023b-4178-8f2c-0083648b8fea
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(152)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: b21deb16-64ce-40e1-8d67-93c90c488285
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 282681c4-ec9d-4a47-a700-c59bb6dee6f3
+    useQuotes: false
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 545f094b-cd98-4b27-9fcd-074b214f4000
+    useQuotes: false
+columnSets:
+  - id: d3006897-d581-468a-b72b-538793e2880f
+    itemName: PK
+    setName: PK_LOCATION_SILVER
+    columns:
+      - columnId: e5b5f3c2-c8d9-49b9-aee9-3f459eccc10f
+        position: 1
+        name: LOCATION_ID
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#1C70FF'
+logic: |-
+  with LOCATION as (
+      SELECT
+          LOCATION_ID,
+          NAME,
+          REGION_ID,
+          COMMENT,
+          __LOAD_DTS
+      FROM {{ref('BRONZE', 'LOCATION')}}
+  )
+  ,
+  common as (
+      SELECT
+          LOCATION.LOCATION_ID,
+          LOCATION.NAME,
+          LOCATION.REGION_ID,
+          LOCATION.COMMENT,
+          LOCATION.__LOAD_DTS,
+          current_date() AS __load_date
+      FROM LOCATION
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: LOCATION Silver Table
+references:
+  c102eb6f-6b91-46a7-8e52-cb560420c67e:
+    parentTableId: aee2cbca-c458-4cf5-b8cc-7e8b5d57b75d
+    id: c102eb6f-6b91-46a7-8e52-cb560420c67e
