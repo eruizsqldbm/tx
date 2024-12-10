@@ -1,0 +1,106 @@
+name: DIM_PROMOTION
+id: 91da9beb-981d-4a70-9588-b85b07eee73a
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: PROMOTION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 46e80be5-e7b0-4f22-83bb-ef3718b9e1d4
+    isPK: true
+  - name: PROMOTION_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: cdd187ac-3180-4db8-b429-3f91e8cf4b8c
+  - name: PROMOTION_DESCRIPTION
+    dataType: VARCHAR(255)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 03ac97ea-e012-43fb-ba68-0987b4f54c1d
+  - name: START_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 479dc6f6-dfe0-4051-af80-3ab3bc9a73be
+  - name: END_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 88e87c37-59ce-4949-8380-392a1fdf029f
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 637df768-69d7-4c05-aba8-f8d46ad45823
+columnSets:
+  - id: 6d1346f4-8bbc-49a2-beca-b9682e2e7d86
+    itemName: PK
+    setName: PK_tmp_stg_PROMOTION
+    columns:
+      - columnId: 46e80be5-e7b0-4f22-83bb-ef3718b9e1d4
+        position: 1
+        name: PROMOTION_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_PROMOTION" as (
+      SELECT
+          "PROMOTION_KEY",
+          "PROMOTION_ID",
+          "PROMOTION_DESCRIPTION",
+          "START_DATE",
+          "END_DATE",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_PROMOTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_PROMOTION"."PROMOTION_KEY",
+          "stg_PROMOTION"."PROMOTION_ID",
+          "stg_PROMOTION"."PROMOTION_DESCRIPTION",
+          "stg_PROMOTION"."START_DATE",
+          "stg_PROMOTION"."END_DATE",
+          current_date() AS "load_date"
+      FROM "stg_PROMOTION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage PROMOTION dimension
+references:
+  4a58b516-2f19-44fc-b5ee-9acb0712a70f:
+    parentTableId: 62ad0204-668e-4b37-975f-0bbf5453eac0
+    id: 4a58b516-2f19-44fc-b5ee-9acb0712a70f

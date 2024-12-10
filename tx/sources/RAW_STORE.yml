@@ -1,0 +1,54 @@
+sourceId: 86c44e46-fe58-435d-b778-6785e8b325bd
+name: STORE
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: STORE_KEY
+    dataType: number(38,0)
+    id: dcad0ef8-c58b-4dca-9947-c04a6da00445
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STORE_ID
+    dataType: varchar(50)
+    id: 705e6074-27c2-4e1a-a016-ed4172f846fb
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STORE_NAME
+    dataType: varchar(100)
+    id: 972769f8-21c5-4600-ac88-bf3126741464
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CITY
+    dataType: varchar(50)
+    id: d3f0d954-27e9-49c2-bc62-eb0c72206ac5
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STATE
+    dataType: varchar(50)
+    id: 55c75877-7cb5-4401-8223-0d969163f9fe
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COUNTRY
+    dataType: varchar(50)
+    id: 9c73ff80-5c54-47f9-ba9b-5e5c72a20a14
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: REGION_KEY
+    dataType: number(38,0)
+    id: 7ccf3eb8-ca60-43d6-8c55-ddd7de8f321c
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

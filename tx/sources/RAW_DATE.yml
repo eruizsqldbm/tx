@@ -1,0 +1,47 @@
+sourceId: 9a0d75fa-84af-4803-af8b-1288f0cf3404
+name: DATE
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: DATE_KEY
+    dataType: number(38,0)
+    id: 878f6ef6-7ad0-427b-b283-3c5d70156aea
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: DATE
+    dataType: date
+    id: f24170b6-a849-478e-b8a3-4f9ef17f594c
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: DAY
+    dataType: number(38,0)
+    id: 2d43db0d-f670-4eff-a6e6-11b2d4dafd9a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: MONTH
+    dataType: number(38,0)
+    id: 16da07bb-0979-4596-bc21-c074913455ab
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: YEAR
+    dataType: number(38,0)
+    id: 1b6bff0e-8abb-4073-b5e9-9d9954f57e2a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: QUARTER
+    dataType: number(38,0)
+    id: 76019466-c102-48fd-a4f2-186cbd6d192f
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false

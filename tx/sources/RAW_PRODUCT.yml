@@ -1,0 +1,47 @@
+sourceId: d6e9bd42-2524-42fc-bdf7-5d91267f68f3
+name: PRODUCT
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: PRODUCT_KEY
+    dataType: number(38,0)
+    id: 1ae938fb-790f-4325-b03c-8f41584af1ae
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PRODUCT_ID
+    dataType: varchar(50)
+    id: a22ab959-5228-4f93-9f19-dc7036318b27
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PRODUCT_NAME
+    dataType: varchar(100)
+    id: 96954d98-6ec0-4c92-a2f5-c3c272b31cec
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CATEGORY_KEY
+    dataType: number(38,0)
+    id: 38ee6ad0-2313-4558-ad86-1aad30bcadfa
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SUPPLIER_KEY
+    dataType: number(38,0)
+    id: 6f59a1df-3cca-4dc4-980c-48f227e0b91a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PRICE
+    dataType: number(10,2)
+    id: 88b69f12-7940-4375-ab9a-eb7d27c6dec5
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

@@ -1,59 +1,59 @@
-name: stg_DATE
-id: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
+name: DIM_DATE
+id: 8634bd95-7fb0-46ed-965f-dc8b6d919b21
 storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
 templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
 materialization: table
 isSource: false
 columns:
   - name: DATE_KEY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: 3eebb641-1fc0-4460-80bd-cc209b002c33
+    id: 90a48f7f-0084-4a74-b010-8dcd0a2f4c34
     isPK: true
   - name: DATE
-    dataType: date
+    dataType: DATE
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: 35b65d7a-f7fe-4358-aa5c-bfc8658631c6
+    id: 38585746-62a9-49b4-8033-86d90c83427b
   - name: DAY
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: 2d3bc57e-c8bf-440d-b3a7-d245ff1346a1
+    id: b4674ff6-aa56-495f-9334-21fd10e74e0c
   - name: MONTH
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: 4f199c0e-6f8a-495d-89c8-afc70d9cf76d
+    id: b6de80a3-9c9c-4731-acee-61ee956fde8a
   - name: YEAR
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: 16694d17-c117-46ee-b23c-6b6a87ff70f3
+    id: fedcf598-1cd4-45b8-a55a-c987d84baccb
   - name: QUARTER
-    dataType: number(38,0)
+    dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
     description: ''
-    id: f5e7c116-86c5-4bae-8c54-d1f1e2bbc1a6
-  - name: __load_date
-    dataType: date
+    id: 968b2b0e-918e-42df-b6ee-9784b4251923
+  - name: load_date
+    dataType: DATE
     allowNulls: false
     defaultValue: current_date()
     description: load date
-    id: 63d283dd-364a-4e26-8350-e40bae7669c2
+    id: 700db410-8dff-4d38-a0d3-47815192cdbe
 columnSets:
-  - id: a42f4dbd-dd8e-450b-bfb5-8bdbb3f0c95c
+  - id: c3aa3e84-817f-467d-8beb-c58d75d79667
     itemName: PK
-    setName: PK_stg_DATE
+    setName: PK_tmp_stg_DATE
     columns:
-      - columnId: 3eebb641-1fc0-4460-80bd-cc209b002c33
+      - columnId: 90a48f7f-0084-4a74-b010-8dcd0a2f4c34
         position: 1
         name: DATE_KEY
         useQuotes: false
@@ -75,37 +75,41 @@ postRun:
   value:
     - ''
   isValidated: false
+my_button: true
+my_dropdown: option 1
 rely_button: true
-parentName: STAGE
+parentName: EDW
+status: DataPreviewIncorrectStructure
 color: '#FC7917'
 logic: |-
-  with "DATE" as (
+  with "stg_DATE" as (
       SELECT
           "DATE_KEY",
           "DATE",
           "DAY",
           "MONTH",
           "YEAR",
-          "QUARTER"
-      FROM {{ref('RAW', 'DATE')}}
+          "QUARTER",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_DATE')}}
   )
   ,
   common as (
       SELECT
-          "DATE"."DATE_KEY",
-          "DATE"."DATE",
-          "DATE"."DAY",
-          "DATE"."MONTH",
-          "DATE"."YEAR",
-          "DATE"."QUARTER",
-          current_date() AS "__load_date"
-      FROM "DATE"
+          "stg_DATE"."DATE_KEY",
+          "stg_DATE"."DATE",
+          "stg_DATE"."DAY",
+          "stg_DATE"."MONTH",
+          "stg_DATE"."YEAR",
+          "stg_DATE"."QUARTER",
+          current_date() AS "load_date"
+      FROM "stg_DATE"
   )
 
   SELECT * FROM common
 description: ''
-logicalName: stage DATE
+logicalName: stage DATE dimension
 references:
-  a3f22cb4-7898-4ed9-96c6-7ca9cf35b646:
-    parentTableId: 9a0d75fa-84af-4803-af8b-1288f0cf3404
-    id: a3f22cb4-7898-4ed9-96c6-7ca9cf35b646
+  f12fda76-0968-45cf-b2d9-a78f7f9d5ec8:
+    parentTableId: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
+    id: f12fda76-0968-45cf-b2d9-a78f7f9d5ec8

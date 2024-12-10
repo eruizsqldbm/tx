@@ -1,39 +1,39 @@
-sourceId: cf68f056-c430-4ba2-95b0-2e4cf29ee32a
-name: CUSTOMER
+sourceId: f066dd09-7078-4d34-aef0-825fcdf8359d
+name: PROMOTION
 locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
 description: ''
 columns:
-  - name: CUSTOMER_KEY
+  - name: PROMOTION_KEY
     dataType: number(38,0)
-    id: 260d76e8-604a-4f9c-9585-5443653f33b4
+    id: 97f731cd-3417-4703-aa29-5ca403789400
     allowNulls: false
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: CUSTOMER_ID
+  - name: PROMOTION_ID
     dataType: varchar(50)
-    id: 1012cb08-7028-4b0f-a724-fd2536a9c68b
+    id: 42ef8996-8133-4197-9af4-3f0d63aaa20e
     allowNulls: false
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: CUSTOMER_NAME
-    dataType: varchar(100)
-    id: d259ca86-fe48-4df5-97a3-bb01d662d492
-    allowNulls: false
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-  - name: EMAIL
-    dataType: varchar(100)
-    id: 791a1d44-d9af-4b13-b2e1-b43d978cdf88
+  - name: PROMOTION_DESCRIPTION
+    dataType: varchar(255)
+    id: 8da4ffb3-1796-47a9-b9a2-8a97a3bcaee1
     allowNulls: true
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: PHONE
-    dataType: varchar(20)
-    id: aa7a4660-78b3-4c9f-91d8-3e4882cfef26
+  - name: START_DATE
+    dataType: date
+    id: 3be8a200-7edc-4751-b7a6-c21ddbd14b38
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: END_DATE
+    dataType: date
+    id: f80c93a5-be71-491f-bbdf-80368a6b4e0e
     allowNulls: true
     defaultValue: ''
     description: ''

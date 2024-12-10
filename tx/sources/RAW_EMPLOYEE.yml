@@ -1,32 +1,32 @@
-sourceId: a9114ac4-25bb-4f8c-9332-84e945bfbba9
-name: SUPPLIER
+sourceId: 8754e203-c974-465a-a91d-bd069a4f664d
+name: EMPLOYEE
 locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
 description: ''
 columns:
-  - name: SUPPLIER_KEY
+  - name: EMPLOYEE_KEY
     dataType: number(38,0)
-    id: 251e1236-12e1-4195-a547-c1c15303b949
+    id: 882a7a8d-e0fa-450a-9311-ca721f4c6081
     allowNulls: false
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: SUPPLIER_ID
+  - name: EMPLOYEE_ID
     dataType: varchar(50)
-    id: 708d78d5-8148-471f-8be1-5021623a7767
+    id: f9a7da94-3e7c-4868-9399-454a0f636496
     allowNulls: false
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: SUPPLIER_NAME
+  - name: EMPLOYEE_NAME
     dataType: varchar(100)
-    id: e7db2f43-a9df-4634-a452-77109b80ffc1
+    id: 43bc12fd-b1c0-4d60-9744-77d4352a7e8a
     allowNulls: false
     defaultValue: ''
     description: ''
     useQuotes: false
-  - name: CONTACT_INFO
-    dataType: varchar(100)
-    id: 09cc17e4-6a29-4714-af9b-4a91def1c36c
+  - name: JOB_TITLE
+    dataType: varchar(50)
+    id: 3ead3afe-b332-4329-a651-3c091574a726
     allowNulls: true
     defaultValue: ''
     description: ''

@@ -1,0 +1,90 @@
+name: DIM_CATEGORY
+id: 7e8c0fd0-a49b-4e8b-9ac7-dbd885c31740
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: CATEGORY_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 85d4df2b-b87d-4777-a83c-b52fbac5fc32
+    isPK: true
+  - name: CATEGORY_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0a3c5fbe-6d6d-4da2-aaae-5862d294b497
+  - name: CATEGORY_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ab3490b3-8779-4e14-8278-862dd2bce4f3
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 2e23f8b9-4e31-4969-93ad-35ebcf36586f
+columnSets:
+  - id: e7d88c20-3494-43e2-bef7-b81b258304c5
+    itemName: PK
+    setName: PK_tmp_stg_CATEGORY
+    columns:
+      - columnId: 85d4df2b-b87d-4777-a83c-b52fbac5fc32
+        position: 1
+        name: CATEGORY_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_CATEGORY" as (
+      SELECT
+          "CATEGORY_KEY",
+          "CATEGORY_ID",
+          "CATEGORY_NAME",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_CATEGORY')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_CATEGORY"."CATEGORY_KEY",
+          "stg_CATEGORY"."CATEGORY_ID",
+          "stg_CATEGORY"."CATEGORY_NAME",
+          current_date() AS "load_date"
+      FROM "stg_CATEGORY"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CATEGORY dimension
+references:
+  6c4abaf1-3110-42b1-81f4-32c8aeb55602:
+    parentTableId: 3bd95745-51d2-4a2f-8c74-8f6fbbe38eaf
+    id: 6c4abaf1-3110-42b1-81f4-32c8aeb55602

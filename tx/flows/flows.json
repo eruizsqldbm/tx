@@ -1,1 +1,1 @@
-[]
+[{"Id":"46f32ea1-7450-4f5f-8311-6116e1195cf2","Name":"Fact Daily Load","Description":"","Selector":"+{name: 'Fact_Sales'}","Nodes":null},{"Id":"76eb07cd-8eb9-4f3d-bd2f-c8d4708f8896","Name":"Customer Dimension Load","Description":"","Selector":" +{name: 'DIM_CUSTOMER'}","Nodes":null}]

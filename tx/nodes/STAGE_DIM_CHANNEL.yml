@@ -1,0 +1,90 @@
+name: DIM_CHANNEL
+id: 3665583d-bc50-49bb-adfe-accac63eb861
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: CHANNEL_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 7517a451-0fa1-48dd-a340-9a9cd606cb7a
+    isPK: true
+  - name: CHANNEL_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 3c4a6bb0-9b6c-44da-860a-554d639ac88e
+  - name: CHANNEL_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ae8d12a3-3aea-4f48-9802-e6349c9673ba
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 7e047083-9713-44d3-bc01-39274a529abd
+columnSets:
+  - id: 3a2b360d-1df1-420c-b69e-91efe80bf0b1
+    itemName: PK
+    setName: PK_tmp_stg_CHANNEL
+    columns:
+      - columnId: 7517a451-0fa1-48dd-a340-9a9cd606cb7a
+        position: 1
+        name: CHANNEL_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_CHANNEL" as (
+      SELECT
+          "CHANNEL_KEY",
+          "CHANNEL_ID",
+          "CHANNEL_NAME",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_CHANNEL')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_CHANNEL"."CHANNEL_KEY",
+          "stg_CHANNEL"."CHANNEL_ID",
+          "stg_CHANNEL"."CHANNEL_NAME",
+          current_date() AS "load_date"
+      FROM "stg_CHANNEL"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CHANNEL dimension
+references:
+  7007258f-3b0d-4d60-a42d-1596a0bedee1:
+    parentTableId: 447aed36-bdab-4e97-beb0-dc4967763891
+    id: 7007258f-3b0d-4d60-a42d-1596a0bedee1

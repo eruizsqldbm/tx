@@ -1,7 +1,7 @@
 name: Fact_Sales
-id: d4f3899a-e004-4893-832b-0d9d34f82f90
-storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
-templateId: 868ce611-8c34-40b7-8e89-5a3190b1e2c8
+id: 13374a8c-d6df-4bb9-92c1-40586e82f9ff
+storageLocationId: a2575844-c93d-4841-804f-b47ba7964209
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
 materialization: table
 isSource: false
 columns:
@@ -9,332 +9,316 @@ columns:
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each supplier within the system.
-    id: 5e5afb13-f2c2-44d5-8d49-a4c8a8cd18f1
+    description: ''
+    id: 8220d1f9-b3d2-4f0f-b684-4758bc08958c
+    isPK: true
   - name: STORE_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each store in the retail chain.
-    id: 407e8aaa-87a4-4a48-9aaa-e809cf6bd695
+    description: ''
+    id: 84a80167-88c9-4356-a125-07bca7605167
+    isPK: true
   - name: PROMOTION_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each promotional campaign or offer.
-    id: f31b41b6-deb3-4c7d-96e8-f02896a758a4
+    description: ''
+    id: c95a566c-b847-42d3-827d-948d0287d2a5
+    isPK: true
   - name: PRODUCT_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each product available for sale.
-    id: d58995f8-ea02-4674-8802-cc573dda621a
+    description: ''
+    id: 0df2959d-8aa7-4c0c-b5d3-472aacf0a822
+    isPK: true
   - name: EMPLOYEE_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each employee within the organization.
-    id: dbfcf593-3ca1-48ed-96f5-2e0ad8dce7de
+    description: ''
+    id: 3e54cda0-6689-4328-a822-2dce0cce8c63
+    isPK: true
   - name: DATE_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each date in the calendar used for transactions.
-    id: e1e81ca2-1084-480b-9560-53ff0547d45e
+    description: ''
+    id: 711c40dd-0485-40d7-9dfc-a1eb60232320
+    isPK: true
   - name: CUSTOMER_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: A unique identifier for each customer in the database.
-    id: 25cf4787-720b-4d79-bf0a-525501ba52dd
+    description: ''
+    id: b3823c7d-f57f-4a08-9fbd-0403675cb274
+    isPK: true
   - name: CHANNEL_KEY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: >-
-      A unique identifier for each sales channel through which products are
-      sold.
-    id: 561308e5-a157-4c9e-ab60-1d5ddd2b1faa
+    description: ''
+    id: dda6cfdd-51fb-4c6d-98a7-3d4db6c077b8
+    isPK: true
   - name: SUPPLIER_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: >-
-      The identification number assigned to the supplier, used for tracking
-      purposes.
-    id: 083d78fb-67c3-46c8-a4d4-3d5fdc0b140a
+    description: ''
+    id: 5d5f6775-6f0b-4795-b3af-8fef7f5cea15
   - name: SUPPLIER_NAME
     dataType: VARCHAR(100)
     allowNulls: false
     defaultValue: ''
-    description: The name of the supplier or vendor providing products.
-    id: 127c8b18-c12c-4cff-a6e2-9ea431d1d647
+    description: ''
+    id: 98c51083-e9e1-4b83-8d21-3776e6dfd2e2
   - name: CONTACT_INFO
     dataType: VARCHAR(100)
     allowNulls: true
     defaultValue: ''
-    description: >-
-      The contact details for the supplier, including phone numbers and email
-      addresses.
-    id: 4d67c047-602e-48f2-9d67-7a61815989b8
+    description: ''
+    id: af775605-8807-431f-90c1-326814650c5a
   - name: STORE_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The identification number for the specific retail location.
-    id: c8ff51f7-767e-4f50-aab2-617e7dcc59d2
+    description: ''
+    id: ce623af0-82cf-4352-a73c-e7ebd16a5b69
   - name: STORE_NAME
     dataType: VARCHAR(100)
     allowNulls: false
     defaultValue: ''
-    description: The name of the store, typically reflecting the brand or location
-    id: 2f14d4bd-2136-4379-8ebe-0d4eee22818c
+    description: ''
+    id: b66323c5-cec9-47f2-ba2f-9bebef1e774d
   - name: CITY
     dataType: VARCHAR(50)
     allowNulls: true
     defaultValue: ''
-    description: The city where the store is located.
-    id: 6260a011-8e8c-4b4c-b264-169a0deddf28
+    description: ''
+    id: 7f316431-47ea-497c-8ac6-a725824cf438
   - name: STATE
     dataType: VARCHAR(50)
     allowNulls: true
     defaultValue: ''
-    description: The state in which the store operates.
-    id: 6362096a-e8db-4830-82ec-0c39d6707be9
+    description: ''
+    id: b709f09e-a9d6-459a-b919-2e308916591d
   - name: COUNTRY
     dataType: VARCHAR(50)
     allowNulls: true
     defaultValue: ''
-    description: he country where the store is situated.
-    id: 88c00b99-0e12-4012-b8a4-05a65b91c8f8
+    description: ''
+    id: 5c7f21f7-c1a0-4d12-b1f7-1038cf1689ca
   - name: REGION_KEY
     dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
-    description: A unique identifier for the geographic region that the store belongs to.
-    id: 394b2d2c-89eb-4b8f-8490-12213e1aa485
+    description: ''
+    id: a9b831c7-eaf4-4421-b8ec-4945dded7763
   - name: PROMOTION_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The identification number for a specific promotional event.
-    id: 8f7650ee-29e0-4885-9b94-45e392ea4a18
+    description: ''
+    id: a930887d-8289-4ab8-b6ff-66372198bb64
   - name: PROMOTION_DESCRIPTION
     dataType: VARCHAR(255)
     allowNulls: true
     defaultValue: ''
-    description: A brief description of the promotional offer.
-    id: 1737045f-1b8e-45eb-9a3b-764ec01c472d
+    description: ''
+    id: 38691499-c47b-4d23-8941-3b1619c0ed2e
   - name: START_DATE
     dataType: DATE
     allowNulls: true
     defaultValue: ''
-    description: The date when the promotion begins.
-    id: 0b080920-88c6-43ab-8040-067175583f10
+    description: ''
+    id: c2964bdd-ee41-4f98-b456-129190bbab3e
   - name: END_DATE
     dataType: DATE
     allowNulls: true
     defaultValue: ''
-    description: The date when the promotion concludes.
-    id: 50df3a53-2c23-4723-91bc-b30ba0b7d85b
+    description: ''
+    id: 2888025d-8c47-4a15-a183-f935f558d217
   - name: PRODUCT_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The identification number for the product.
-    id: b1969636-6f77-4113-8c03-01101ce91340
+    description: ''
+    id: 4bed1786-25ea-4cbf-a7c7-47867230e53b
   - name: PRODUCT_NAME
     dataType: VARCHAR(100)
     allowNulls: false
     defaultValue: ''
-    description: The name of the product as it appears to customers.
-    id: b0c48775-8f6c-4a91-8cee-f33712ef80a4
+    description: ''
+    id: 26ae84e0-e661-4142-a3f4-ae7ffdc5d689
   - name: CATEGORY_KEY
     dataType: NUMBER(38,0)
     allowNulls: true
     defaultValue: ''
-    description: A unique identifier for the category to which the product belongs.
-    id: c30225a2-6707-4299-a147-0e283076e510
+    description: ''
+    id: e8f2f43a-3847-4ac5-a594-eeb832c35614
   - name: PRICE
     dataType: NUMBER(10,2)
     allowNulls: true
     defaultValue: ''
-    description: The retail price of the product.
-    id: e71dc3df-437a-4b27-add1-6bbb939b4bad
+    description: ''
+    id: 9f3b00da-9a97-45bc-9130-187178e16808
   - name: EMPLOYEE_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The unique identification number assigned to each employee.
-    id: 3413dbc1-6a56-4cb0-9210-d3c9386973ec
+    description: ''
+    id: de978596-4949-4343-bdec-c2ba943da4ac
   - name: EMPLOYEE_NAME
     dataType: VARCHAR(100)
-    allowNulls: false
+    allowNulls: true
     defaultValue: ''
-    description: The full name of the employee.
-    id: 15665a81-62b2-483b-be07-4bd7a8df6cfb
+    description: ''
+    id: ec6fa129-3fb6-4d0d-a8d5-69c507bb8e1e
+    useQuotes: false
   - name: JOB_TITLE
     dataType: VARCHAR(50)
     allowNulls: true
     defaultValue: ''
-    description: The official job title of the employee within the organization.
-    id: c29cff5c-9627-471f-8096-d1a3db6b7520
+    description: ''
+    id: f0190ff1-3815-4250-b5f8-116ed8316559
   - name: DATE
     dataType: DATE
     allowNulls: false
     defaultValue: ''
-    description: The calendar date represented in a standard format.
-    id: 1e29be92-3aea-4eb2-a8bf-ba4370626ba5
+    description: ''
+    id: 247785b5-04e9-4a37-9a98-57834c63a6aa
   - name: DAY
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: The day of the month, ranging from 1 to 31.
-    id: ab6ebd63-db40-4543-becc-819e7f5d994a
+    description: ''
+    id: c98c1990-5107-497a-a0a1-00f0afc057c7
   - name: MONTH
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: The month of the year, represented as a number or name.
-    id: 19022adc-ff60-455e-b6b2-a1e95bc8c2ec
+    description: ''
+    id: c4539eef-46ce-4127-a9c8-fb0cf84f02bf
   - name: YEAR
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: The year of the date.
-    id: 6a4b4579-4cd2-45d1-bd47-92df07e2525f
+    description: ''
+    id: 76ce154c-7458-42ff-b175-41977672c3e7
   - name: QUARTER
     dataType: NUMBER(38,0)
     allowNulls: false
     defaultValue: ''
-    description: The financial quarter of the year to which the date belongs.
-    id: 7bc10602-bc6b-4acc-a70e-d8878230d812
+    description: ''
+    id: 6b99f495-6cec-449b-b937-0eec82edab8a
   - name: CUSTOMER_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The unique identification number for each customer.
-    id: 410bde6a-343b-4b89-b5d5-f7bdbc70f9d0
+    description: ''
+    id: dc4fb62b-291f-417b-a53f-3cb01aff507f
   - name: CUSTOMER_NAME
     dataType: VARCHAR(100)
     allowNulls: false
     defaultValue: ''
-    description: The name of the customer as recorded in the system.
-    id: f49a3392-ba94-444f-ae0e-fcc44691018f
+    description: ''
+    id: a2421996-4b5f-4c93-b564-5b1612c85f35
   - name: EMAIL
     dataType: VARCHAR(100)
     allowNulls: true
     defaultValue: ''
-    description: The email address associated with the customer.
-    id: 786fa6cb-43d7-4556-baf4-030bf27ef5d8
+    description: ''
+    id: 7892c3ad-bada-4561-a18b-57f7b1dfeb08
+    useQuotes: false
   - name: PHONE
     dataType: VARCHAR(20)
     allowNulls: true
     defaultValue: ''
-    description: The phone number provided by the customer for contact purposes.
-    id: fc913927-bbb9-4826-bb48-4d7dfa4ec2dd
+    description: ''
+    id: abddc8de-20bc-488e-9ea7-823fc1a023f2
   - name: CHANNEL_ID
     dataType: VARCHAR(50)
     allowNulls: false
     defaultValue: ''
-    description: The identification number for each sales channel.
-    id: 2c708759-840d-4411-bb18-7049b17aa6c3
+    description: ''
+    id: 713cecaa-ac5e-4dab-948e-a724e013898e
   - name: CHANNEL_NAME
     dataType: VARCHAR(100)
     allowNulls: false
     defaultValue: ''
-    description: The name of the sales channel (e.g., online, in-store).
-    id: 366604ea-e8e2-47cd-b5dd-9c7635bdbadb
-  - name: QUANTITY_SOLD
-    dataType: NUMBER(10,0)
-    allowNulls: false
-    defaultValue: ''
-    description: The total number of units sold in a transaction.
-    id: 41341f19-260d-4b7f-8c9c-63df57097f71
-  - name: SALES_AMOUNT
-    dataType: NUMBER(10,2)
-    allowNulls: false
-    defaultValue: ''
-    description: The total revenue generated from the sales transaction.
-    id: 744cc7bc-ec2b-420c-b594-cf214b3d0d31
-  - name: DISCOUNT_AMOUNT
-    dataType: NUMBER(10,2)
-    allowNulls: true
-    defaultValue: '0'
-    description: The total value of discounts applied to the transaction.
-    id: 2583a0a3-3641-4f5a-a144-4bc065251303
-  - name: TOTAL_COST
-    dataType: NUMBER(10,2)
-    allowNulls: false
-    defaultValue: ''
-    description: >-
-      The total cost incurred for the transaction, including any expenses
-      related to discounts.
-    id: 5a9aff2c-eff4-4ccd-ab55-ff0f127e7da8
-  - name: load_date
-    dataType: DATE
-    allowNulls: false
-    defaultValue: current_date()
-    description: load date
-    id: 5659674c-e186-4b44-9612-491b2d93db7c
+    description: ''
+    id: c7a80400-2e70-4e5b-be55-097a37a8765e
 columnSets:
-  - id: 7cfd3cef-b0a7-4e09-9d10-3630918e2a99
+  - id: aca3a626-09c0-4049-80d1-fa6e6242824a
     itemName: PK
     setName: >-
-      PK_tmp_DIM_SUPPLIER_DIM_STORE_DIM_PROMOTION_DIM_PRODUCT_DIM_EMPLOYEE_DIM_DATE_DIM_CUSTOMER_DIM_CHANNEL_DIM_TRANSACTION
+      PK_tmp_DIM_SUPPLIER_DIM_STORE_DIM_PROMOTION_DIM_PRODUCT_DIM_EMPLOYEE_DIM_DATE_DIM_CUSTOMER_DIM_CHANNEL
     columns:
-      - columnId: 5e5afb13-f2c2-44d5-8d49-a4c8a8cd18f1
+      - columnId: 8220d1f9-b3d2-4f0f-b684-4758bc08958c
         position: 1
         name: SUPPLIER_KEY
-      - columnId: 407e8aaa-87a4-4a48-9aaa-e809cf6bd695
+        useQuotes: false
+      - columnId: 84a80167-88c9-4356-a125-07bca7605167
         position: 2
         name: STORE_KEY
-      - columnId: f31b41b6-deb3-4c7d-96e8-f02896a758a4
+        useQuotes: false
+      - columnId: c95a566c-b847-42d3-827d-948d0287d2a5
         position: 3
         name: PROMOTION_KEY
-      - columnId: d58995f8-ea02-4674-8802-cc573dda621a
+        useQuotes: false
+      - columnId: 0df2959d-8aa7-4c0c-b5d3-472aacf0a822
         position: 4
         name: PRODUCT_KEY
-      - columnId: dbfcf593-3ca1-48ed-96f5-2e0ad8dce7de
+        useQuotes: false
+      - columnId: 3e54cda0-6689-4328-a822-2dce0cce8c63
         position: 5
         name: EMPLOYEE_KEY
-      - columnId: e1e81ca2-1084-480b-9560-53ff0547d45e
+        useQuotes: false
+      - columnId: 711c40dd-0485-40d7-9dfc-a1eb60232320
         position: 6
         name: DATE_KEY
-      - columnId: 25cf4787-720b-4d79-bf0a-525501ba52dd
+        useQuotes: false
+      - columnId: b3823c7d-f57f-4a08-9fbd-0403675cb274
         position: 7
         name: CUSTOMER_KEY
-      - columnId: 561308e5-a157-4c9e-ab60-1d5ddd2b1faa
+        useQuotes: false
+      - columnId: dda6cfdd-51fb-4c6d-98a7-3d4db6c077b8
         position: 8
         name: CHANNEL_KEY
+        useQuotes: false
 nodeFormat: dynamic
 truncateBefore: false
 preCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 preRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 my_button: true
 my_dropdown: option 1
 rely_button: true
 parentName: EDW
-color: '#1C70FF'
+status: RunFailed
+color: '#FC7917'
 logic: |-
   with "DIM_SUPPLIER" as (
       SELECT
           "SUPPLIER_KEY",
           "SUPPLIER_ID",
           "SUPPLIER_NAME",
-          "CONTACT_INFO",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_SUPPLIER')}}
+          "CONTACT_INFO"
+      FROM {{ref('STAGE', 'stg_SUPPLIER')}}
   ),
   "DIM_STORE" as (
       SELECT
@@ -344,9 +328,8 @@ logic: |-
           "CITY",
           "STATE",
           "COUNTRY",
-          "REGION_KEY",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_STORE')}}
+          "REGION_KEY"
+      FROM {{ref('STAGE', 'stg_PRODUCT')}}
   ),
   "DIM_PROMOTION" as (
       SELECT
@@ -354,9 +337,8 @@ logic: |-
           "PROMOTION_ID",
           "PROMOTION_DESCRIPTION",
           "START_DATE",
-          "END_DATE",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_PROMOTION')}}
+          "END_DATE"
+      FROM {{ref('STAGE', 'stg_PROMOTION')}}
   ),
   "DIM_PRODUCT" as (
       SELECT
@@ -365,18 +347,16 @@ logic: |-
           "PRODUCT_NAME",
           "CATEGORY_KEY",
           "SUPPLIER_KEY",
-          "PRICE",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_PRODUCT')}}
+          "PRICE"
+      FROM {{ref('STAGE', 'stg_PRODUCT')}}
   ),
   "DIM_EMPLOYEE" as (
       SELECT
           "EMPLOYEE_KEY",
           "EMPLOYEE_ID",
-          "EMPLOYEE_NAME",
-          "JOB_TITLE",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_EMPLOYEE')}}
+          LOWER("EMPLOYEE_NAME") AS "EMPLOYEE_NAME",
+          "JOB_TITLE"
+      FROM {{ref('STAGE', 'stg_EMPLOYEE')}}
   ),
   "DIM_DATE" as (
       SELECT
@@ -386,8 +366,7 @@ logic: |-
           "MONTH",
           "YEAR",
           "QUARTER",
-          "load_date"
-      FROM {{ref('EDW', 'DIM_DATE')}}
+      FROM {{ref('STAGE', 'stg_DATE')}}
   ),
   "DIM_CUSTOMER" as (
       SELECT
@@ -397,7 +376,7 @@ logic: |-
           "EMAIL",
           "PHONE",
           "load_date"
-      FROM {{ref('EDW', 'DIM_CUSTOMER')}}
+      FROM {{ref('STAGE', 'stg_CUSTOMER')}}
   ),
   "DIM_CHANNEL" as (
       SELECT
@@ -405,24 +384,7 @@ logic: |-
           "CHANNEL_ID",
           "CHANNEL_NAME",
           "load_date"
-      FROM {{ref('EDW', 'DIM_CHANNEL')}}
-  ),
-  "DIM_TRANSACTION" as (
-      SELECT
-          "TRANSACTION_KEY",
-          "DATE_KEY",
-          "PRODUCT_KEY",
-          "CUSTOMER_KEY",
-          "STORE_KEY",
-          "CHANNEL_KEY",
-          "EMPLOYEE_KEY",
-          "PROMOTION_KEY",
-          "QUANTITY_SOLD",
-          "SALES_AMOUNT",
-          "DISCOUNT_AMOUNT",
-          "TOTAL_COST",
-          "load_date",
-      FROM {{ref('EDW', 'DIM_TRANSACTION')}}
+      FROM {{ref('STAGE', 'stg_CHANNEL')}}
   )
   ,
   common as (
@@ -465,55 +427,39 @@ logic: |-
           "DIM_CUSTOMER"."EMAIL",
           "DIM_CUSTOMER"."PHONE",
           "DIM_CHANNEL"."CHANNEL_ID",
-          "DIM_CHANNEL"."CHANNEL_NAME",
-          "DIM_TRANSACTION"."QUANTITY_SOLD",
-          "DIM_TRANSACTION"."SALES_AMOUNT",
-          "DIM_TRANSACTION"."DISCOUNT_AMOUNT",
-          "DIM_TRANSACTION"."TOTAL_COST",
-          current_date() AS "load_date"
-          FROM "DIM_PRODUCT"
-          JOIN "DIM_SUPPLIER" ON "DIM_SUPPLIER"."SUPPLIER_KEY" = "DIM_PRODUCT"."SUPPLIER_KEY"
-          JOIN "DIM_STORE" ON "DIM_STORE"."REGION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"  -- Example join condition, adjust as needed
-          JOIN "DIM_CUSTOMER" ON "DIM_CUSTOMER"."CUSTOMER_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
-          JOIN "DIM_EMPLOYEE" ON "DIM_EMPLOYEE"."EMPLOYEE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
-          JOIN "DIM_DATE" ON "DIM_DATE"."DATE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
-          JOIN "DIM_CHANNEL" ON "DIM_CHANNEL"."CHANNEL_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
-          JOIN "DIM_TRANSACTION" ON "DIM_TRANSACTION"."CUSTOMER_KEY" = "DIM_CUSTOMER"."CUSTOMER_KEY"
-          LEFT JOIN "DIM_PROMOTION" ON "DIM_PROMOTION"."PROMOTION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"
+          "DIM_CHANNEL"."CHANNEL_NAME"
+      FROM "DIM_PRODUCT"
+      JOIN "DIM_SUPPLIER" ON "DIM_SUPPLIER"."SUPPLIER_KEY" = "DIM_PRODUCT"."SUPPLIER_KEY"
+      JOIN "DIM_STORE" ON "DIM_STORE"."REGION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_CUSTOMER" ON "DIM_CUSTOMER"."CUSTOMER_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_EMPLOYEE" ON "DIM_EMPLOYEE"."EMPLOYEE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_DATE" ON "DIM_DATE"."DATE_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      JOIN "DIM_CHANNEL" ON "DIM_CHANNEL"."CHANNEL_KEY" = "DIM_SUPPLIER"."SUPPLIER_KEY"  -- Example join condition, adjust as needed
+      LEFT JOIN "DIM_PROMOTION" ON "DIM_PROMOTION"."PROMOTION_KEY" = "DIM_PRODUCT"."CATEGORY_KEY"
   )
 
-  SELECT *
-  FROM common
+  SELECT * FROM common
 description: ''
-logicalName: >-
-  stage SUPPLIER dimension_stage STORE dimension_stage PROMOTION dimension_stage
-  PRODUCT dimension_stage EMPLOYEE dimension_stage DATE dimension_stage CUSTOMER
-  dimension_stage CHANNEL dimension_stage TRANSACTION dimension dimension
+logicalName: Fact_Sales
 references:
-  52b0f786-8054-4510-9990-45300190dc16:
-    parentTableId: 4c687734-f49b-46cc-902b-1ca8e2c08119
-    id: 52b0f786-8054-4510-9990-45300190dc16
-  fb8c0204-772a-47ff-b56f-acc88fecd512:
-    parentTableId: 16e1b412-433c-42e5-a672-5567cc2deb18
-    id: fb8c0204-772a-47ff-b56f-acc88fecd512
-  ba3b2e12-352d-493c-a05b-5eb80dcc0afd:
-    parentTableId: 91da9beb-981d-4a70-9588-b85b07eee73a
-    id: ba3b2e12-352d-493c-a05b-5eb80dcc0afd
-  5be60b14-d3d8-4f8f-afee-dc9d539c2b51:
-    parentTableId: c5196c75-0ed4-4852-986a-7f2422fc35ae
-    id: 5be60b14-d3d8-4f8f-afee-dc9d539c2b51
-  e136bd35-48cf-4e09-a2c4-d8bebc8c47ed:
-    parentTableId: e892c888-77d4-44c5-8fd3-3ff22a71737e
-    id: e136bd35-48cf-4e09-a2c4-d8bebc8c47ed
-  6c3cf7bc-a850-45d0-8c49-6ff1e1e1c95b:
-    parentTableId: 8634bd95-7fb0-46ed-965f-dc8b6d919b21
-    id: 6c3cf7bc-a850-45d0-8c49-6ff1e1e1c95b
-  4205b1cb-9056-4542-b584-121b42360c0a:
-    parentTableId: a252e317-0123-4a90-a35f-de83e5adaa99
-    id: 4205b1cb-9056-4542-b584-121b42360c0a
-  1fb8bf11-7558-4e4b-9520-77a45d78f02c:
-    parentTableId: 3665583d-bc50-49bb-adfe-accac63eb861
-    id: 1fb8bf11-7558-4e4b-9520-77a45d78f02c
-  fe4e14ff-444c-464a-b09a-52b1122d572a:
-    parentTableId: a42ae2f9-085c-470c-a815-2c1e7c31c2b6
-    id: fe4e14ff-444c-464a-b09a-52b1122d572a
+  ddfd56f6-9de3-4415-89e1-9a1c54d9ab0d:
+    parentTableId: de463375-3c79-4787-88eb-0a6aedd13304
+    id: ddfd56f6-9de3-4415-89e1-9a1c54d9ab0d
+  9e274ede-ea65-4efe-a838-73a9e0911329:
+    parentTableId: 21ee2684-01c9-4be0-8e2f-f2f132eb994d
+    id: 9e274ede-ea65-4efe-a838-73a9e0911329
+  732c7596-bb61-45cf-b30e-4c3ff9b9b898:
+    parentTableId: 62ad0204-668e-4b37-975f-0bbf5453eac0
+    id: 732c7596-bb61-45cf-b30e-4c3ff9b9b898
+  e584186a-e1e3-408e-9c51-db58696d9b16:
+    parentTableId: 3516eb95-6b18-42d5-a12c-4d225bf623e8
+    id: e584186a-e1e3-408e-9c51-db58696d9b16
+  6ed6812d-991d-4f39-94d9-87f13eff9cbc:
+    parentTableId: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
+    id: 6ed6812d-991d-4f39-94d9-87f13eff9cbc
+  5e1fe667-b00e-468e-a7f2-7ec434d7c528:
+    parentTableId: 9738c69b-3704-42d6-87aa-8351a15d716b
+    id: 5e1fe667-b00e-468e-a7f2-7ec434d7c528
+  0a8d6ec7-723c-491e-bacb-0dde32ac7cc9:
+    parentTableId: 447aed36-bdab-4e97-beb0-dc4967763891
+    id: 0a8d6ec7-723c-491e-bacb-0dde32ac7cc9

@@ -1,6 +1,6 @@
 name: stg_SUPPLIER
 id: de463375-3c79-4787-88eb-0a6aedd13304
-storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
 templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
 materialization: table
 isSource: false
@@ -11,6 +11,7 @@ columns:
     defaultValue: ''
     description: ''
     id: 12bbddd5-2d90-43a7-98be-a43b31d1a506
+    isPK: true
   - name: SUPPLIER_ID
     dataType: varchar(50)
     allowNulls: false
@@ -43,19 +44,24 @@ columnSets:
       - columnId: 12bbddd5-2d90-43a7-98be-a43b31d1a506
         position: 1
         name: SUPPLIER_KEY
+        useQuotes: false
 nodeFormat: dynamic
 truncateBefore: false
 preCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 preRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 rely_button: true
 parentName: STAGE

@@ -1,0 +1,114 @@
+name: DIM_PRODUCT
+id: c5196c75-0ed4-4852-986a-7f2422fc35ae
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: PRODUCT_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ec74c18f-ec5f-4bf7-ae31-24ba4739bf96
+    isPK: true
+  - name: PRODUCT_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 34d8e3d3-44ef-4c71-abad-8200b1ffb7e4
+  - name: PRODUCT_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 281c907f-ffc4-42b5-a48a-271c708b98df
+  - name: CATEGORY_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 95bb6612-c95e-4d31-9a73-fbb28c88bd67
+  - name: SUPPLIER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: e75f7612-6e49-442b-9319-9b03205bd489
+  - name: PRICE
+    dataType: NUMBER(10,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 1370cd1d-16fc-43e1-accf-6fb6a78972e4
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 8e7bf8f3-308a-4228-bc15-3234d322262f
+columnSets:
+  - id: 4edb4f20-d725-47b8-a968-5bc7b36066f6
+    itemName: PK
+    setName: PK_tmp_stg_PRODUCT
+    columns:
+      - columnId: ec74c18f-ec5f-4bf7-ae31-24ba4739bf96
+        position: 1
+        name: PRODUCT_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_PRODUCT" as (
+      SELECT
+          "PRODUCT_KEY",
+          "PRODUCT_ID",
+          "PRODUCT_NAME",
+          "CATEGORY_KEY",
+          "SUPPLIER_KEY",
+          "PRICE",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_PRODUCT')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_PRODUCT"."PRODUCT_KEY",
+          "stg_PRODUCT"."PRODUCT_ID",
+          "stg_PRODUCT"."PRODUCT_NAME",
+          "stg_PRODUCT"."CATEGORY_KEY",
+          "stg_PRODUCT"."SUPPLIER_KEY",
+          "stg_PRODUCT"."PRICE",
+          current_date() AS "load_date"
+      FROM "stg_PRODUCT"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage PRODUCT dimension
+references:
+  0703d5c9-6b1a-499a-937c-3acb3c643643:
+    parentTableId: 21ee2684-01c9-4be0-8e2f-f2f132eb994d
+    id: 0703d5c9-6b1a-499a-937c-3acb3c643643

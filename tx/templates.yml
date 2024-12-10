@@ -1,4 +1,5 @@
-- value: |2-
+- id: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+  value: |2-
 
       name: stage
 
@@ -104,17 +105,6 @@
           isEnabled: true
   name: stage
   color: '#FC7917'
-  runScript: |
-    {% if materialization == 'table' %}
-    INSERT INTO {{ location.mapping }}.{{name}}
-    (
-        {%- for col in columns %}
-        "{{ col.name }}"
-        {%- if not loop.last %}, {% endif %}
-        {%- endfor %}
-    )
-    {{ logic }};
-    {%- endif %}
   createScript: >
     {%- if materialization == 'table' %}
 
@@ -180,9 +170,20 @@
     ;
 
     {%- endif %}
-  id: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+  runScript: |
+    {% if materialization == 'table' %}
+    INSERT INTO {{ location.mapping }}.{{name}}
+    (
+        {%- for col in columns %}
+        "{{ col.name }}"
+        {%- if not loop.last %}, {% endif %}
+        {%- endfor %}
+    )
+    {{ logic }};
+    {%- endif %}
   isDefault: true
-- value: |2-
+- id: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+  value: |2-
 
       name: Persistent Stage
 
@@ -288,41 +289,6 @@
           isEnabled: true
   name: persistent stage
   color: '#FC7917'
-  runScript: |
-    {%- if materialization == 'table' %}
-    MERGE INTO {{ location.mapping }}.{{ name }} AS TxObject
-    USING (
-        {{ logic }}
-    ) AS TxLogic
-    ON
-        {%- for colSet in columnSets %}
-            {%- if colSet.itemName == 'PK' -%}
-                {%- for pkCol in colSet.columns %}
-        TxObject."{{pkCol.name}}" = TxLogic."{{pkCol.name}}"
-        {%- if not loop.last %}  AND  {% endif %}
-                {%- endfor -%}
-            {%- endif -%}
-        {%- endfor %}
-
-    WHEN NOT MATCHED THEN
-        INSERT (
-        {%- for col in columns %}
-            "{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
-        {%- endfor -%}
-        )
-        VALUES (
-        {%- for col in columns %}
-            TxLogic."{{ col.name }}" {%- if not loop.last -%}, {%- endif %}
-        {%- endfor -%}
-        )
-
-    WHEN MATCHED THEN
-        UPDATE SET
-        {%- for col in columns %}
-            TxObject."{{ col.name }}" = TxLogic."{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
-        {%- endfor -%}
-    ;
-    {%- endif %}
   createScript: >
     {%- if materialization == 'table' %}
 
@@ -388,9 +354,43 @@
     ;
 
     {%- endif %}
-  id: 2168e0c1-186b-4952-ae36-9b93af4f4a35
+  runScript: |
+    {%- if materialization == 'table' %}
+    MERGE INTO {{ location.mapping }}.{{ name }} AS TxObject
+    USING (
+        {{ logic }}
+    ) AS TxLogic
+    ON
+        {%- for colSet in columnSets %}
+            {%- if colSet.itemName == 'PK' -%}
+                {%- for pkCol in colSet.columns %}
+        TxObject."{{pkCol.name}}" = TxLogic."{{pkCol.name}}"
+        {%- if not loop.last %}  AND  {% endif %}
+                {%- endfor -%}
+            {%- endif -%}
+        {%- endfor %}
+
+    WHEN NOT MATCHED THEN
+        INSERT (
+        {%- for col in columns %}
+            "{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+        )
+        VALUES (
+        {%- for col in columns %}
+            TxLogic."{{ col.name }}" {%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+        )
+
+    WHEN MATCHED THEN
+        UPDATE SET
+        {%- for col in columns %}
+            TxObject."{{ col.name }}" = TxLogic."{{ col.name }}"{%- if not loop.last -%}, {%- endif %}
+        {%- endfor -%}
+    ;
+    {%- endif %}
   isDefault: true
-- name: All Props Template
+- id: dd67c35a-908d-4f64-ac8e-9dad011129d5
   value: |2-
 
       name: All Props Template
@@ -567,6 +567,8 @@
           itemName: rely_button
           default: true
           isEnabled: true
+  name: All Props Template
+  color: '#E53E3E'
   createScript: >
     {%- if materialization == 'table' %}
 
@@ -643,6 +645,4 @@
     )
     {{ logic }};
     {%- endif %}
-  color: '#E53E3E'
-  id: dd67c35a-908d-4f64-ac8e-9dad011129d5
   isDefault: false

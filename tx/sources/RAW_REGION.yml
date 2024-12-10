@@ -1,23 +1,26 @@
-sourceId: a22bed9e-f55d-4a9b-8b05-5e3f1fabb390
+sourceId: 247d8d06-26fb-4e7e-b874-cf3457b3e58b
 name: REGION
-locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
 description: ''
 columns:
-  - name: R_REGIONKEY
+  - name: REGION_KEY
     dataType: number(38,0)
-    id: 6852ddd5-72f9-41ba-9284-f86d16e56fac
+    id: 99d06bbd-bbda-436f-8dc1-2ba77a776ae4
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: REGION_NAME
+    dataType: varchar(100)
+    id: 257120cd-8e7b-4bb6-8be5-57053e2bcd52
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COUNTRY
+    dataType: varchar(50)
+    id: 324f3bd9-782a-45b8-89b8-bf101fd26b3c
     allowNulls: true
     defaultValue: ''
     description: ''
-  - name: R_NAME
-    dataType: varchar(25)
-    id: 2e760c9d-4c87-402e-9c08-8c14e0cadb58
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: R_COMMENT
-    dataType: varchar(152)
-    id: 422cf8db-0946-4be3-a1da-351217fdf23b
-    allowNulls: true
-    defaultValue: ''
-    description: ''
+    useQuotes: false

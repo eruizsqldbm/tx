@@ -1,6 +1,6 @@
 name: stg_PROMOTION
 id: 62ad0204-668e-4b37-975f-0bbf5453eac0
-storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
 templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
 materialization: table
 isSource: false
@@ -11,6 +11,7 @@ columns:
     defaultValue: ''
     description: ''
     id: e3ae4c52-b471-4f85-911d-0e5404b35937
+    isPK: true
   - name: PROMOTION_ID
     dataType: varchar(50)
     allowNulls: false
@@ -49,19 +50,24 @@ columnSets:
       - columnId: e3ae4c52-b471-4f85-911d-0e5404b35937
         position: 1
         name: PROMOTION_KEY
+        useQuotes: false
 nodeFormat: dynamic
 truncateBefore: false
 preCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 preRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 rely_button: true
 parentName: STAGE
