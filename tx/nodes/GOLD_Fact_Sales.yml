@@ -1,248 +1,290 @@
 name: Fact_Sales
-color: '#F7B81C'
+id: df55bca6-0cd0-4eba-b8dd-9eefaeafe75f
+storageLocationId: 078fd921-4ee0-41ca-9457-17a54c520515
+templateId: 65d3ce35-d934-4638-a966-0211e969e2e8
+materialization: table
 isSource: false
 columns:
   - name: CUSTOMER_ID
-    allowNulls: false
     dataType: VARCHAR(16777216)
+    allowNulls: false
     defaultValue: ''
     description: ''
-    useQuotes: false
-    isPK: true
     id: 7639bd27-1cec-4fbe-8ed1-409e21f7ae88
+    useQuotes: false
+    isPK: true
   - name: CUSTOMER_NAME
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 0c7c840f-45ac-45a0-8fae-30f489f20c4f
+    useQuotes: false
   - name: CUSTOMER_ADDRESS
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: c7b2442e-a332-4819-ad8f-24d919506e23
+    useQuotes: false
   - name: CUSTOMER_LOCATION_ID
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 959e2c6d-815b-4970-ba09-6fd998f0cadf
+    useQuotes: false
   - name: CUSTOMER_PHONE
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 8b300ef8-f126-4aa5-b600-00da1c11e325
+    useQuotes: false
   - name: CUSTOMER_ACCOUNT_BALANCE
-    allowNulls: true
     dataType: NUMBER(18,2)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 9cd6b605-0f26-49c2-bd3e-602952eaf1ed
+    useQuotes: false
   - name: MARKET_SEGMENT
-    allowNulls: false
     dataType: VARCHAR(30)
+    allowNulls: false
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 98c67522-6a6d-4fdd-868f-dc3cf234e1e9
+    useQuotes: false
   - name: SALES_ORDER_ID
-    allowNulls: false
     dataType: VARCHAR(16777216)
+    allowNulls: false
     defaultValue: ''
     description: ''
-    useQuotes: false
-    isPK: true
     id: 2fbe9240-bbd9-45d0-b4ab-1ea5eb76db51
-  - name: ORDER_STATUS
-    allowNulls: true
-    dataType: VARCHAR(3)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: a6fada3b-0046-4fff-8899-29e1b21f3d00
-  - name: TOTAL_PRICE_USD
-    allowNulls: true
-    dataType: NUMBER(18,2)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: be702f09-0787-48f5-bfbf-1340d90db6ed
-  - name: ORDER_DATE
-    allowNulls: true
-    dataType: DATE
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: da564938-f994-431a-9726-e165e14ee8d4
-  - name: ORDER_PRIORITY
-    allowNulls: true
-    dataType: VARCHAR(45)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 2e201947-1f82-45b4-bedd-fd97f635cd64
-  - name: CLERK
-    allowNulls: true
-    dataType: VARCHAR(45)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 6885600c-2fcc-43ff-a980-d9dea659f639
-  - name: SHIP_PRIORITY
-    allowNulls: true
-    dataType: NUMBER(38,0)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 23ce7988-d0bf-467b-95a1-e2c9f6b759b7
-  - name: LINE_NUMBER
-    allowNulls: false
-    dataType: VARCHAR(16777216)
-    defaultValue: ''
-    description: ''
     useQuotes: false
     isPK: true
-    id: be5502ea-f8ed-4853-9a32-a5e75c7f15f4
-  - name: PART_ID
-    allowNulls: false
-    dataType: VARCHAR(16777216)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 40d27964-57cc-41e0-8641-a31bcb89ea59
-  - name: SUPPLIER_ID
-    allowNulls: false
-    dataType: VARCHAR(16777216)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 22cc6316-5efd-49e6-b154-496fbd2ff4e9
-  - name: QUANTITY_SOLD
+  - name: ORDER_STATUS
+    dataType: VARCHAR(3)
     allowNulls: true
-    dataType: NUMBER(38,0)
     defaultValue: ''
     description: ''
+    id: a6fada3b-0046-4fff-8899-29e1b21f3d00
     useQuotes: false
-    id: 28485abe-ded8-4077-99b0-aec2c19529d9
-  - name: GROSS_REVENUE
-    allowNulls: true
+  - name: TOTAL_PRICE_USD
     dataType: NUMBER(18,2)
+    allowNulls: true
     defaultValue: ''
     description: ''
+    id: be702f09-0787-48f5-bfbf-1340d90db6ed
     useQuotes: false
-    id: 439984ef-17ff-4fb1-b8bd-612ab0f2f810
-  - name: DISCOUNT_AMOUNT
-    allowNulls: true
-    dataType: NUMBER(30,2)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 7d41ae9f-519b-4e06-84d3-39747886a006
-  - name: TAX_AMOUNT
-    allowNulls: true
-    dataType: NUMBER(30,2)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 9d6f5375-33a0-4cfe-8605-1f1e159eb747
-  - name: NET_REVENUE
-    allowNulls: true
-    dataType: NUMBER(31,2)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 0f100a22-dc26-4c4f-a475-f1e3451ce20f
-  - name: RETURN_FLAG
-    allowNulls: true
-    dataType: VARCHAR(3)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 2b3bf6f2-1a67-4a94-b23e-a9e6d6327538
-  - name: LINE_STATUS
-    allowNulls: true
-    dataType: VARCHAR(3)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 6f7e1e60-2a79-4b84-8626-3c6cffddc607
-  - name: SHIP_DATE
-    allowNulls: true
+  - name: ORDER_DATE
     dataType: DATE
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: f4c50677-53f6-4809-97e2-4886a643d503
-  - name: COMMIT_DATE
     allowNulls: true
-    dataType: DATE
     defaultValue: ''
     description: ''
+    id: da564938-f994-431a-9726-e165e14ee8d4
     useQuotes: false
-    id: c9b3f440-120d-46f4-951f-8d6b4f500e70
-  - name: RECEIPT_DATE
+  - name: ORDER_PRIORITY
+    dataType: VARCHAR(45)
     allowNulls: true
-    dataType: DATE
     defaultValue: ''
     description: ''
+    id: 2e201947-1f82-45b4-bedd-fd97f635cd64
     useQuotes: false
-    id: 44f8a59e-3c88-4fef-aaf4-d046579b22d2
-  - name: SHIP_INSTRUCTIONS
+  - name: CLERK
+    dataType: VARCHAR(45)
     allowNulls: true
-    dataType: VARCHAR(16777216)
     defaultValue: ''
     description: ''
+    id: 6885600c-2fcc-43ff-a980-d9dea659f639
     useQuotes: false
-    id: e49e1db3-50b7-4411-b48b-69fa2d92df10
-  - name: SHIP_MODE
-    allowNulls: true
-    dataType: VARCHAR(30)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: e83e23fe-1907-4217-b7bc-f938b85d2577
-  - name: LOCATION_NAME
-    allowNulls: true
-    dataType: VARCHAR(75)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 24aab323-a4a0-4539-9912-1346c79cdb62
-  - name: REGION_ID
-    allowNulls: false
+  - name: SHIP_PRIORITY
     dataType: NUMBER(38,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
+    id: 23ce7988-d0bf-467b-95a1-e2c9f6b759b7
     useQuotes: false
-    id: 94f050f5-1414-4384-8dbf-7acf3b60366a
-  - name: REGION_NAME
-    allowNulls: true
-    dataType: VARCHAR(75)
+  - name: LINE_NUMBER
+    dataType: VARCHAR(16777216)
+    allowNulls: false
     defaultValue: ''
     description: ''
+    id: be5502ea-f8ed-4853-9a32-a5e75c7f15f4
     useQuotes: false
-    id: 2972e030-10b3-48d0-9482-e6b70cc6c469
-  - name: LOAD_DATE
+    isPK: true
+  - name: PART_ID
+    dataType: VARCHAR(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 40d27964-57cc-41e0-8641-a31bcb89ea59
+    useQuotes: false
+  - name: SUPPLIER_ID
+    dataType: VARCHAR(16777216)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 22cc6316-5efd-49e6-b154-496fbd2ff4e9
+    useQuotes: false
+  - name: QUANTITY_SOLD
+    dataType: NUMBER(38,0)
     allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 28485abe-ded8-4077-99b0-aec2c19529d9
+    useQuotes: false
+  - name: GROSS_REVENUE
+    dataType: NUMBER(18,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 439984ef-17ff-4fb1-b8bd-612ab0f2f810
+    useQuotes: false
+  - name: DISCOUNT_AMOUNT
+    dataType: NUMBER(30,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 7d41ae9f-519b-4e06-84d3-39747886a006
+    useQuotes: false
+  - name: TAX_AMOUNT
+    dataType: NUMBER(30,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 9d6f5375-33a0-4cfe-8605-1f1e159eb747
+    useQuotes: false
+  - name: NET_REVENUE
+    dataType: NUMBER(31,2)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 0f100a22-dc26-4c4f-a475-f1e3451ce20f
+    useQuotes: false
+  - name: RETURN_FLAG
+    dataType: VARCHAR(3)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 2b3bf6f2-1a67-4a94-b23e-a9e6d6327538
+    useQuotes: false
+  - name: LINE_STATUS
+    dataType: VARCHAR(3)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 6f7e1e60-2a79-4b84-8626-3c6cffddc607
+    useQuotes: false
+  - name: SHIP_DATE
     dataType: DATE
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 58407cd5-6c9e-49eb-8769-5ff4a6947ddf
-  - name: RECORD_SOURCE
     allowNulls: true
-    dataType: VARCHAR(6)
     defaultValue: ''
     description: ''
+    id: f4c50677-53f6-4809-97e2-4886a643d503
     useQuotes: false
+  - name: COMMIT_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: c9b3f440-120d-46f4-951f-8d6b4f500e70
+    useQuotes: false
+  - name: RECEIPT_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 44f8a59e-3c88-4fef-aaf4-d046579b22d2
+    useQuotes: false
+  - name: SHIP_INSTRUCTIONS
+    dataType: VARCHAR(16777216)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: e49e1db3-50b7-4411-b48b-69fa2d92df10
+    useQuotes: false
+  - name: SHIP_MODE
+    dataType: VARCHAR(30)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: e83e23fe-1907-4217-b7bc-f938b85d2577
+    useQuotes: false
+  - name: LOCATION_NAME
+    dataType: VARCHAR(75)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 24aab323-a4a0-4539-9912-1346c79cdb62
+    useQuotes: false
+  - name: REGION_ID
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 94f050f5-1414-4384-8dbf-7acf3b60366a
+    useQuotes: false
+  - name: REGION_NAME
+    dataType: VARCHAR(75)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 2972e030-10b3-48d0-9482-e6b70cc6c469
+    useQuotes: false
+  - name: LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 58407cd5-6c9e-49eb-8769-5ff4a6947ddf
+    useQuotes: false
+  - name: RECORD_SOURCE
+    dataType: VARCHAR(6)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
     id: 9b18cfa2-866a-4bcd-9fd8-c6e0d1e35165
+    useQuotes: false
+columnSets:
+  - id: 6caf3cd0-82d4-41aa-b8cf-65cbf25929dc
+    itemName: PK
+    setName: >-
+      PK_CUSTOMER_SILVER_LINEITEM_SILVER_LOCATION_SILVER_REGION_SILVER_SALES_ORDER_SILVER_GOLD
+    columns:
+      - columnId: 7639bd27-1cec-4fbe-8ed1-409e21f7ae88
+        position: 1
+        name: CUSTOMER_ID
+        useQuotes: false
+      - columnId: 2fbe9240-bbd9-45d0-b4ab-1ea5eb76db51
+        position: 2
+        name: SALES_ORDER_ID
+        useQuotes: false
+      - columnId: be5502ea-f8ed-4853-9a32-a5e75c7f15f4
+        position: 3
+        name: LINE_NUMBER
+        useQuotes: false
+nodeFormat: dynamic
+useQuotes: false
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+rely_button: true
+color: '#F7B81C'
 logic: |
   WITH CUSTOMER_SILVER AS (
       SELECT
@@ -385,48 +427,6 @@ logic: |
   FROM common
 description: ''
 logicalName: Fact_Sales
-columnSets:
-  - itemName: PK
-    setName: >-
-      PK_CUSTOMER_SILVER_LINEITEM_SILVER_LOCATION_SILVER_REGION_SILVER_SALES_ORDER_SILVER_GOLD
-    columns:
-      - columnId: 7639bd27-1cec-4fbe-8ed1-409e21f7ae88
-        position: 1
-        name: CUSTOMER_ID
-        useQuotes: false
-      - columnId: 2fbe9240-bbd9-45d0-b4ab-1ea5eb76db51
-        position: 2
-        name: SALES_ORDER_ID
-        useQuotes: false
-      - columnId: be5502ea-f8ed-4853-9a32-a5e75c7f15f4
-        position: 3
-        name: LINE_NUMBER
-        useQuotes: false
-    id: 6caf3cd0-82d4-41aa-b8cf-65cbf25929dc
-useQuotes: false
-templateId: 65d3ce35-d934-4638-a966-0211e969e2e8
-materialization: table
-storageLocationId: 078fd921-4ee0-41ca-9457-17a54c520515
-truncateBefore: false
-preCreate:
-  value:
-    - ''
-  isValidated: false
-postCreate:
-  value:
-    - ''
-  isValidated: false
-preRun:
-  value:
-    - ''
-  isValidated: false
-postRun:
-  value:
-    - ''
-  isValidated: false
-rely_button: true
-id: df55bca6-0cd0-4eba-b8dd-9eefaeafe75f
-nodeFormat: dynamic
 references:
   63859a5a-4bf7-4987-87e0-9dcac6270413:
     parentTableId: ae9ac8bb-e72e-4e58-8840-cc41318803ea
