@@ -14,19 +14,19 @@ columns:
     useQuotes: false
     isPK: true
   - name: CUSTOMER_NAME
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: e7890d87-675b-4f65-96d7-5d4830352f68
+    useQuotes: false
   - name: CUSTOMER_ADDRESS
-    allowNulls: true
     dataType: VARCHAR(16777216)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 386b151b-487f-4dc0-a23d-904e3f310f08
+    useQuotes: false
   - name: PART_ID
     dataType: NUMBER(38,0)
     allowNulls: false
@@ -60,47 +60,47 @@ columns:
     useQuotes: false
     isPK: true
   - name: NET_SALE_AMOUNT_USD
-    allowNulls: true
     dataType: NUMBER(32,10)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 0a27e8da-b13c-4d59-a40a-3cc7e3b77ae5
+    useQuotes: false
   - name: DAYS_TO_SHIP
-    allowNulls: true
     dataType: NUMBER(9,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 52363efa-7ac3-4fc3-838e-2fbce1b3e408
+    useQuotes: false
   - name: ORDER_YEAR
-    allowNulls: true
     dataType: NUMBER(4,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: 1d1fa105-20f1-4472-89b7-a1dcbbdd8aeb
+    useQuotes: false
   - name: ORDER_MONTH
-    allowNulls: true
     dataType: NUMBER(2,0)
+    allowNulls: true
     defaultValue: ''
     description: ''
-    useQuotes: false
     id: eb8073c9-03b0-428c-b5b6-966cfd1b6eee
+    useQuotes: false
   - name: SUPPLIER_FULL_ADDRESS
-    allowNulls: true
     dataType: VARCHAR(16777216)
-    defaultValue: ''
-    description: ''
-    useQuotes: false
-    id: 6972d9bf-6e28-4a6a-8baf-192e57229326
-  - name: LOAD_DATE
     allowNulls: true
-    dataType: DATE
     defaultValue: ''
     description: ''
+    id: 6972d9bf-6e28-4a6a-8baf-192e57229326
     useQuotes: false
+  - name: LOAD_DATE
+    dataType: DATE
+    allowNulls: true
+    defaultValue: ''
+    description: ''
     id: 5368d88d-73ad-43d6-9dd7-f3839d4c801e
+    useQuotes: false
 columnSets:
   - id: 4671c82d-4f1a-4c40-9c52-a9f63fa66b38
     itemName: PK
