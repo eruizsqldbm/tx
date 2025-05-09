@@ -1,0 +1,124 @@
+sourceId: 2cdffcb9-f169-4016-85ff-d02667e87fd3
+name: LINEITEM
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: various line items per order
+columns:
+  - name: LINE_NUMBER
+    dataType: number(38,0)
+    id: b45e37de-abb0-40a9-a728-1a7162b09ee5
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SALES_ORDER_ID
+    dataType: number(38,0)
+    id: 518906d0-58ed-4dbd-9571-215353202c72
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PART_ID
+    dataType: number(38,0)
+    id: 4e567e23-ab2b-4441-8608-963479e445e7
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SUPPLIER_ID
+    dataType: number(38,0)
+    id: 41c3a681-1181-4855-b026-0b9d7ad6767f
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: QUANTITY
+    dataType: number(12,2)
+    id: d014a3d4-3a40-4bb6-8332-1b7be4acda03
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: EXTENDED_PRICE_USD
+    dataType: number(12,2)
+    id: a85a095e-ca00-4aa9-89c9-63af2e3ccfdb
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: DISCOUNT_PERCENT
+    dataType: number(12,2)
+    id: 1c753f44-79ee-4de4-ad76-a35d45f9b21c
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: TAX_PERCENT
+    dataType: number(12,2)
+    id: 62360dee-f73b-499b-90e9-f6ed6c5b33c5
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: RETURN_FLAG
+    dataType: varchar(1)
+    id: fff79c53-852c-45f2-bd5c-93f6a3134dd1
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: LINE_STATUS
+    dataType: varchar(1)
+    id: 6649d044-5348-4d2b-9859-e4b79640ea10
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SHIP_DATE
+    dataType: date
+    id: e12fd712-a3a3-48da-8c31-a864d09db700
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMIT_DATE
+    dataType: date
+    id: 4f33e6fd-3ff9-47d7-970e-f1efb5adc4c0
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: RECEIPT_DATE
+    dataType: date
+    id: 80835406-10c4-49e4-b627-40fe037a9c55
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SHIP_INSTRUCTIONS
+    dataType: varchar(25)
+    id: 797d8ba8-0a64-4d90-9689-6c1c9b314f15
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SHIP_MODE
+    dataType: varchar(10)
+    id: 25058f2f-b842-4b71-be9b-d45029a87701
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(44)
+    id: 27cfb619-8743-476a-bf94-0d7b8489aa95
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: aae4ae29-8944-4c55-b86f-1e6b82cd0367
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

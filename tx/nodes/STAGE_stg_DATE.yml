@@ -1,6 +1,6 @@
 name: stg_DATE
 id: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
-storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
 templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
 materialization: table
 isSource: false
@@ -11,6 +11,7 @@ columns:
     defaultValue: ''
     description: ''
     id: 3eebb641-1fc0-4460-80bd-cc209b002c33
+    isPK: true
   - name: DATE
     dataType: date
     allowNulls: false
@@ -55,19 +56,24 @@ columnSets:
       - columnId: 3eebb641-1fc0-4460-80bd-cc209b002c33
         position: 1
         name: DATE_KEY
+        useQuotes: false
 nodeFormat: dynamic
 truncateBefore: false
 preCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postCreate:
-  value: ''
+  value:
+    - ''
   isValidated: false
 preRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 postRun:
-  value: ''
+  value:
+    - ''
   isValidated: false
 rely_button: true
 parentName: STAGE

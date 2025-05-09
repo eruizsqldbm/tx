@@ -1,0 +1,81 @@
+name: stg_CATEGORY
+id: 3bd95745-51d2-4a2f-8c74-8f6fbbe38eaf
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: CATEGORY_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 05a4a2d2-963b-468b-a8ce-e2cc9e8fe0c5
+  - name: CATEGORY_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: cea9c995-42d5-46be-bffb-d9c3d54927a6
+  - name: CATEGORY_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 6ea5932f-34f9-461a-8ea2-ef65f73b2c49
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 50d00f9c-3248-4dae-a561-c8d43f40dd0f
+columnSets:
+  - id: b9d200f2-f59a-46c3-89fd-54c5f9bb5c44
+    itemName: PK
+    setName: PK_stg_CATEGORY
+    columns:
+      - columnId: 05a4a2d2-963b-468b-a8ce-e2cc9e8fe0c5
+        position: 1
+        name: CATEGORY_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "CATEGORY" as (
+      SELECT
+          "CATEGORY_KEY",
+          "CATEGORY_ID",
+          "CATEGORY_NAME"
+      FROM {{ref('RAW', 'CATEGORY')}}
+  )
+  ,
+  common as (
+      SELECT
+          "CATEGORY"."CATEGORY_KEY",
+          "CATEGORY"."CATEGORY_ID",
+          "CATEGORY"."CATEGORY_NAME",
+          current_date() AS "__load_date"
+      FROM "CATEGORY"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CATEGORY
+references:
+  73fc8bbb-b890-4c4f-8b0e-e0dbd3f80ea4:
+    parentTableId: 7f906ce5-eb95-4680-8176-bb9d04aaf904
+    id: 73fc8bbb-b890-4c4f-8b0e-e0dbd3f80ea4

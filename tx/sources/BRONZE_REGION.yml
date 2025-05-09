@@ -1,0 +1,33 @@
+sourceId: d3dd55ee-ca98-43c8-8a4b-ee8d18363725
+name: REGION
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: region mapping for our locations
+columns:
+  - name: REGION_ID
+    dataType: number(38,0)
+    id: a7acb372-3c8a-4896-b463-748677828879
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: NAME
+    dataType: varchar(25)
+    id: 40b32215-5dff-402d-953b-2a3346d49a43
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(152)
+    id: 12c64781-d756-4696-bef7-fd6ceb55e1ca
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: fe570bf3-aece-4275-94ea-51d8b399c024
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

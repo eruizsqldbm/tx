@@ -1,0 +1,33 @@
+sourceId: 8754e203-c974-465a-a91d-bd069a4f664d
+name: EMPLOYEE
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: EMPLOYEE_KEY
+    dataType: number(38,0)
+    id: 882a7a8d-e0fa-450a-9311-ca721f4c6081
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: EMPLOYEE_ID
+    dataType: varchar(50)
+    id: f9a7da94-3e7c-4868-9399-454a0f636496
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: EMPLOYEE_NAME
+    dataType: varchar(100)
+    id: 43bc12fd-b1c0-4d60-9744-77d4352a7e8a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: JOB_TITLE
+    dataType: varchar(50)
+    id: 3ead3afe-b332-4329-a651-3c091574a726
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

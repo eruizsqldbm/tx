@@ -1,0 +1,82 @@
+name: stg_CHANNEL
+id: 447aed36-bdab-4e97-beb0-dc4967763891
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: CHANNEL_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 6c14ed4a-c7cc-40ee-8895-d269fd87491f
+  - name: CHANNEL_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: ecec00ca-98e8-4773-8ce2-a63c1cc80725
+  - name: CHANNEL_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: c85d49f8-c911-416a-aebd-b7fd303b0088
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 7f9aa389-eb29-4381-8c3c-a6b75d6b082e
+columnSets:
+  - id: 10b076ff-8db9-4ff4-b284-1b0e7f47caef
+    itemName: PK
+    setName: PK_stg_CHANNEL
+    columns:
+      - columnId: 6c14ed4a-c7cc-40ee-8895-d269fd87491f
+        position: 1
+        name: CHANNEL_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+status: RunSuccess
+color: '#FC7917'
+logic: |-
+  with "CHANNEL" as (
+      SELECT
+          "CHANNEL_KEY",
+          "CHANNEL_ID",
+          "CHANNEL_NAME"
+      FROM {{ref('RAW', 'CHANNEL')}}
+  )
+  ,
+  common as (
+      SELECT
+          "CHANNEL"."CHANNEL_KEY",
+          "CHANNEL"."CHANNEL_ID",
+          "CHANNEL"."CHANNEL_NAME",
+          current_date() AS "__load_date"
+      FROM "CHANNEL"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CHANNEL
+references:
+  b2b9bdf8-4c86-4455-b7db-64512d223614:
+    parentTableId: b3cefc10-602a-4986-928d-72ca1955e66a
+    id: b2b9bdf8-4c86-4455-b7db-64512d223614

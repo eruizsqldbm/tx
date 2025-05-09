@@ -1,0 +1,98 @@
+name: DIM_EMPLOYEE
+id: e892c888-77d4-44c5-8fd3-3ff22a71737e
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: EMPLOYEE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0608f1aa-5aec-40c6-9f46-eb0f0b7c5cdc
+    isPK: true
+  - name: EMPLOYEE_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 2981d935-a3b8-40ad-a1f7-6988b067f07b
+  - name: EMPLOYEE_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: dd95dd20-70cb-45d0-af32-989df93bb828
+  - name: JOB_TITLE
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 780ee91e-64b7-4189-851b-92951a60f2bb
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 1dc23263-37cd-46d0-b597-138f47407f41
+columnSets:
+  - id: ac8a4899-cd2e-4e84-b15b-d398cfa361b2
+    itemName: PK
+    setName: PK_tmp_stg_EMPLOYEE
+    columns:
+      - columnId: 0608f1aa-5aec-40c6-9f46-eb0f0b7c5cdc
+        position: 1
+        name: EMPLOYEE_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_EMPLOYEE" as (
+      SELECT
+          "EMPLOYEE_KEY",
+          "EMPLOYEE_ID",
+          "EMPLOYEE_NAME",
+          "JOB_TITLE",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_EMPLOYEE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_EMPLOYEE"."EMPLOYEE_KEY",
+          "stg_EMPLOYEE"."EMPLOYEE_ID",
+          "stg_EMPLOYEE"."EMPLOYEE_NAME",
+          "stg_EMPLOYEE"."JOB_TITLE",
+          current_date() AS "load_date"
+      FROM "stg_EMPLOYEE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage EMPLOYEE dimension
+references:
+  399e27b5-68b7-4c51-acd5-8555391d3422:
+    parentTableId: 3516eb95-6b18-42d5-a12c-4d225bf623e8
+    id: 399e27b5-68b7-4c51-acd5-8555391d3422

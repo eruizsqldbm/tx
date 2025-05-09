@@ -1,0 +1,116 @@
+name: DIM_STORE
+id: 16e1b412-433c-42e5-a672-5567cc2deb18
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: STORE_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 5eefcd93-8e2e-42bc-a11f-1a3c7261bb12
+  - name: STORE_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 76d641ea-9faa-4211-b1ef-8b60abba8e0e
+  - name: STORE_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 69f78893-1620-4f2f-bf66-be94f9634ade
+  - name: CITY
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: d8ddc331-975f-4f56-88e8-9a40f9d2f3b1
+  - name: STATE
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: a0cd80f1-21c5-4b18-8892-501276665cd7
+  - name: COUNTRY
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: b8e6fd79-cd3d-4ed5-8267-3a8574e358e7
+  - name: REGION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 23217ea8-344a-4e70-bffb-7650217a1d4b
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 6c71d70e-9cb0-4568-986f-a8149ab5b298
+columnSets:
+  - id: 9c71dda6-e156-4c72-9bb2-1c572e0750e2
+    itemName: PK
+    setName: PK_tmp_stg_STORE
+    columns:
+      - columnId: 5eefcd93-8e2e-42bc-a11f-1a3c7261bb12
+        position: 1
+        name: STORE_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_STORE" as (
+      SELECT
+          "STORE_KEY",
+          "STORE_ID",
+          "STORE_NAME",
+          "CITY",
+          "STATE",
+          "COUNTRY",
+          "REGION_KEY",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_STORE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_STORE"."STORE_KEY",
+          "stg_STORE"."STORE_ID",
+          "stg_STORE"."STORE_NAME",
+          "stg_STORE"."CITY",
+          "stg_STORE"."STATE",
+          "stg_STORE"."COUNTRY",
+          "stg_STORE"."REGION_KEY",
+          current_date() AS "load_date"
+      FROM "stg_STORE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage STORE dimension
+references:
+  c1e8323b-35cd-4f0c-bf09-c25d122077a8:
+    parentTableId: 0cd20916-f1ac-45b2-9af0-90b99ec2b34c
+    id: c1e8323b-35cd-4f0c-bf09-c25d122077a8

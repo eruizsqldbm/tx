@@ -1,0 +1,47 @@
+sourceId: d5d3133a-d442-4b2f-bd1c-60c319dd0497
+name: INVENTORY
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: Warehouse Inventory
+columns:
+  - name: PART_ID
+    dataType: number(38,0)
+    id: fc3e9f5b-cb8b-4703-aa1f-3b3c685b4f14
+    allowNulls: false
+    defaultValue: ''
+    description: part of unique identifier with ps_suppkey
+    useQuotes: false
+  - name: SUPPLIER_ID
+    dataType: number(38,0)
+    id: ea235133-906d-4c09-8cdc-e5f1e9c2a416
+    allowNulls: false
+    defaultValue: ''
+    description: part of unique identifier with ps_partkey
+    useQuotes: false
+  - name: AVAILABLE_AMOUNT
+    dataType: number(38,0)
+    id: 4b8f34ff-5cf6-4e3b-966e-fe73b520e04e
+    allowNulls: false
+    defaultValue: ''
+    description: number of parts available for sale
+    useQuotes: false
+  - name: SUPPLIER_COST_USD
+    dataType: number(12,2)
+    id: f26af7c6-d863-4f87-b4ba-e61c0990ce1a
+    allowNulls: false
+    defaultValue: ''
+    description: original cost paid to supplier
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(16777216)
+    id: 96abd721-46df-4f9a-af2d-c474e66c82b1
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: 93a52377-2a26-49a4-97bb-01f67e7ebe91
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

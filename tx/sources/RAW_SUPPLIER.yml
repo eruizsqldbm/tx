@@ -1,47 +1,33 @@
-sourceId: 884bcdee-3f4a-426a-9f6e-a5e18fc709ef
+sourceId: a9114ac4-25bb-4f8c-9332-84e945bfbba9
 name: SUPPLIER
-locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
 description: ''
 columns:
-  - name: S_SUPPKEY
+  - name: SUPPLIER_KEY
     dataType: number(38,0)
-    id: c6d84c87-73f6-45af-9546-c1ced626a42e
+    id: 251e1236-12e1-4195-a547-c1c15303b949
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SUPPLIER_ID
+    dataType: varchar(50)
+    id: 708d78d5-8148-471f-8be1-5021623a7767
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SUPPLIER_NAME
+    dataType: varchar(100)
+    id: e7db2f43-a9df-4634-a452-77109b80ffc1
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CONTACT_INFO
+    dataType: varchar(100)
+    id: 09cc17e4-6a29-4714-af9b-4a91def1c36c
     allowNulls: true
     defaultValue: ''
     description: ''
-  - name: S_NAME
-    dataType: varchar(25)
-    id: 61d9f8ab-f826-4d93-a04e-450f619bae00
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: S_ADDRESS
-    dataType: varchar(40)
-    id: 2ecaef63-a9f9-44a3-a9ea-40cb06a8f6d7
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: S_NATIONKEY
-    dataType: number(38,0)
-    id: 344142c5-f0db-4e1c-808e-e85091c1edf6
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: S_PHONE
-    dataType: varchar(15)
-    id: 1e9aef5b-67b6-4d9e-a1af-a17c152a7ba4
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: S_ACCTBAL
-    dataType: number(12,2)
-    id: f0e65f4d-e997-4f06-99d1-2d1fb9ac59bf
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: S_COMMENT
-    dataType: varchar(101)
-    id: 5aa05186-0f88-495b-abef-98a350c3941c
-    allowNulls: true
-    defaultValue: ''
-    description: ''
+    useQuotes: false

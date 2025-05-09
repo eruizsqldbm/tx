@@ -1,53 +1,40 @@
-sourceId: 9fff3174-9794-467e-9e0c-4dfbe343f259
+sourceId: cf68f056-c430-4ba2-95b0-2e4cf29ee32a
 name: CUSTOMER
-locationId: c355d1cd-4824-45db-b86b-5bdc7a5dad21
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
 description: ''
 columns:
-  - name: C_CUSTKEY
+  - name: CUSTOMER_KEY
     dataType: number(38,0)
-    id: de23d06c-5e4a-4a92-887e-3a54a0fa81d7
+    id: 260d76e8-604a-4f9c-9585-5443653f33b4
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CUSTOMER_ID
+    dataType: varchar(50)
+    id: 1012cb08-7028-4b0f-a724-fd2536a9c68b
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CUSTOMER_NAME
+    dataType: varchar(100)
+    id: d259ca86-fe48-4df5-97a3-bb01d662d492
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: EMAIL
+    dataType: varchar(100)
+    id: 791a1d44-d9af-4b13-b2e1-b43d978cdf88
     allowNulls: true
     defaultValue: ''
     description: ''
-  - name: C_NAME
-    dataType: varchar(25)
-    id: 039fba33-4427-4656-810f-713f9d048784
+    useQuotes: false
+  - name: PHONE
+    dataType: varchar(20)
+    id: aa7a4660-78b3-4c9f-91d8-3e4882cfef26
     allowNulls: true
     defaultValue: ''
     description: ''
-  - name: C_ADDRESS
-    dataType: varchar(40)
-    id: 5d752a63-ab29-446b-9a1d-384b97143a3a
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: C_NATIONKEY
-    dataType: number(38,0)
-    id: 862b4e8f-be37-4b59-8f9c-65a9e634f327
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: C_PHONE
-    dataType: varchar(15)
-    id: eb0f25aa-8d71-4407-afb7-da8f6ca8b3bb
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: C_ACCTBAL
-    dataType: number(12,2)
-    id: 6cd11aa1-68f2-43ed-98a7-ca58c36581df
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: C_MKTSEGMENT
-    dataType: varchar(10)
-    id: eab99e1a-f394-4570-8cd8-914c2a7b2385
-    allowNulls: true
-    defaultValue: ''
-    description: ''
-  - name: C_COMMENT
-    dataType: varchar(117)
-    id: c604921c-7a77-4f11-9561-a36f8769d131
-    allowNulls: true
-    defaultValue: ''
-    description: ''
+    useQuotes: false

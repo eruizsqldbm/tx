@@ -1,0 +1,26 @@
+sourceId: 7f906ce5-eb95-4680-8176-bb9d04aaf904
+name: CATEGORY
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: CATEGORY_KEY
+    dataType: number(38,0)
+    id: 417b7b8e-e1a2-47bc-9997-a3e4f80f93d0
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CATEGORY_ID
+    dataType: varchar(50)
+    id: 3c8f411f-dbfc-4f07-879d-00451ef51430
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CATEGORY_NAME
+    dataType: varchar(100)
+    id: 9bd80766-c8db-4788-9a39-2c2f84e8662f
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false

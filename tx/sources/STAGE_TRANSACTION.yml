@@ -1,0 +1,138 @@
+sourceId: f5ca2307-c934-4510-8ad7-1d29433b7bcc
+name: TRANSACTION
+locationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+description: ''
+columns:
+  - name: STORE_KEY
+    dataType: number(38,0)
+    id: 8d05aad3-f21b-4aea-9839-d7ca03dc6381
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: TRANSACTION_KEY
+    dataType: number(38,0)
+    id: ff6a9cf7-a926-42a7-b891-45ac8e893e6a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STORE_ID
+    dataType: varchar(50)
+    id: c2dcd166-acfe-4b23-b8da-7edae43bb4a0
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STORE_NAME
+    dataType: varchar(100)
+    id: 9fb44429-ef55-4d0a-ae8f-22d2747830b5
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CITY
+    dataType: varchar(50)
+    id: bf19efda-92c4-445b-a804-58e2cad33611
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STATE
+    dataType: varchar(50)
+    id: 2b84cb75-b6aa-4e21-88bb-dadd7b403ae4
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COUNTRY
+    dataType: varchar(50)
+    id: ebb03850-e5ac-4f7c-9817-b869223d6145
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: REGION_KEY
+    dataType: number(38,0)
+    id: b4bbd867-96a1-4846-ace9-fa2880626b51
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: DATE_KEY
+    dataType: number(38,0)
+    id: d9235888-cb71-4580-9a6b-7f7cf5baf46b
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PRODUCT_KEY
+    dataType: number(38,0)
+    id: 18033e71-7eb9-4aa8-bf5c-d435798bf8d0
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CUSTOMER_KEY
+    dataType: number(38,0)
+    id: a9d9fc0e-74d3-43e3-af2b-d812624be5ed
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: STORE_KEY_TRANSACTIONS
+    dataType: number(38,0)
+    id: 6695870a-00a2-4dcb-a18d-4aed4da0a1e9
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CHANNEL_KEY
+    dataType: number(38,0)
+    id: 4ca3efab-8ffc-4947-b88f-4b80e41b1e99
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: EMPLOYEE_KEY
+    dataType: number(38,0)
+    id: c76e1bd9-9057-4533-abaf-8a81dbe13b2a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: PROMOTION_KEY
+    dataType: number(38,0)
+    id: b9bcb0cb-461b-4959-ac54-161ccbab4d2b
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: QUANTITY_SOLD
+    dataType: number(10,0)
+    id: 998c97f6-0d31-446a-9c02-54cd6fbd7ed5
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SALES_AMOUNT
+    dataType: number(10,2)
+    id: 3a00a429-aaf9-4368-812f-29ca27b6175c
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: DISCOUNT_AMOUNT
+    dataType: number(10,2)
+    id: fc5ce1ab-1b0e-4fa4-8485-8c95113419ee
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: TOTAL_COST
+    dataType: number(10,2)
+    id: 67ed80ea-32f6-4cf3-854c-336e86f96d5a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false

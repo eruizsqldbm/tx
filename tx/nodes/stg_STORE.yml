@@ -1,0 +1,113 @@
+name: stg_STORE
+id: 0cd20916-f1ac-45b2-9af0-90b99ec2b34c
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: STORE_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 1d1ddef8-be84-4e2e-a9bf-aefd16842011
+  - name: STORE_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 0aaf06ab-aca9-48d4-91f4-ba79f4f1c69a
+  - name: STORE_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 55c70e4a-795f-4288-ad7f-3b5a9a196618
+  - name: CITY
+    dataType: varchar(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 987e9edf-0cea-4314-8562-052ab1fc3437
+  - name: STATE
+    dataType: varchar(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 819245d1-cbda-42a3-97e4-e80ff5d7e869
+  - name: COUNTRY
+    dataType: varchar(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: c940ca49-4535-4524-844f-c5afc0467244
+  - name: REGION_KEY
+    dataType: number(38,0)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 7fc09edd-7d2e-4bf1-9745-ec68b5f22875
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 7496be5a-1eea-45af-9b42-b6de19072338
+columnSets:
+  - id: 68c5c310-b541-4b97-bbdb-4c12d5f65f4e
+    itemName: PK
+    setName: PK_stg_STORE
+    columns:
+      - columnId: 1d1ddef8-be84-4e2e-a9bf-aefd16842011
+        position: 1
+        name: STORE_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "STORE" as (
+      SELECT
+          "STORE_KEY",
+          "STORE_ID",
+          "STORE_NAME",
+          "CITY",
+          "STATE",
+          "COUNTRY",
+          "REGION_KEY"
+      FROM {{ref('RAW', 'STORE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "STORE"."STORE_KEY",
+          "STORE"."STORE_ID",
+          "STORE"."STORE_NAME",
+          "STORE"."CITY",
+          "STORE"."STATE",
+          "STORE"."COUNTRY",
+          "STORE"."REGION_KEY",
+          current_date() AS "__load_date"
+      FROM "STORE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage STORE
+references:
+  bb9579a0-2552-48ec-996f-efce48f64a8f:
+    parentTableId: 86c44e46-fe58-435d-b778-6785e8b325bd
+    id: bb9579a0-2552-48ec-996f-efce48f64a8f

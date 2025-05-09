@@ -1,0 +1,75 @@
+sourceId: 46bd1008-1f05-432d-ac02-573ad34f5e41
+name: SALES_ORDER
+locationId: 40ad6d34-3280-4ef0-ae46-a3c23cfc07d7
+description: single order per customer
+columns:
+  - name: SALES_ORDER_ID
+    dataType: number(38,0)
+    id: 3c31af98-1594-4727-ad1b-1c6aaa67e794
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CUSTOMER_ID
+    dataType: number(38,0)
+    id: 164ddbed-5edd-4466-baa6-2db617170667
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ORDER_STATUS
+    dataType: varchar(1)
+    id: 1ab8ba53-04d2-43bd-8218-da0c358f942a
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: TOTAL_PRICE_USD
+    dataType: number(12,2)
+    id: aefc85d4-a01d-4f7c-82e7-c71a405b34bc
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ORDER_DATE
+    dataType: date
+    id: abc40e2b-e611-42ef-af7d-76d10415d4bc
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: ORDER_PRIORITY
+    dataType: varchar(15)
+    id: 56e8e0be-7311-4881-9dee-50a008463f5f
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CLERK
+    dataType: varchar(15)
+    id: dbd24d7b-4ef0-45b5-ab70-a1d37fcf211d
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: SHIP_PRIORITY
+    dataType: number(38,0)
+    id: 8c977e26-3db1-44f4-aa89-f961305f7f02
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: COMMENT
+    dataType: varchar(79)
+    id: 6afd8c7f-cceb-45bd-96bb-26f2733eac7f
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: __LOAD_DTS
+    dataType: timestamp_ltz(9)
+    id: ec6b738d-0c15-45c0-ad3b-045a284e0486
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    useQuotes: false

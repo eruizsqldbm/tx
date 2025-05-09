@@ -1,0 +1,105 @@
+name: stg_DATE
+id: dfdeb06b-0a9a-4806-9d00-9b277a3d656f
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: DATE_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 3eebb641-1fc0-4460-80bd-cc209b002c33
+  - name: DATE
+    dataType: date
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 35b65d7a-f7fe-4358-aa5c-bfc8658631c6
+  - name: DAY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 2d3bc57e-c8bf-440d-b3a7-d245ff1346a1
+  - name: MONTH
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 4f199c0e-6f8a-495d-89c8-afc70d9cf76d
+  - name: YEAR
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 16694d17-c117-46ee-b23c-6b6a87ff70f3
+  - name: QUARTER
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: f5e7c116-86c5-4bae-8c54-d1f1e2bbc1a6
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 63d283dd-364a-4e26-8350-e40bae7669c2
+columnSets:
+  - id: a42f4dbd-dd8e-450b-bfb5-8bdbb3f0c95c
+    itemName: PK
+    setName: PK_stg_DATE
+    columns:
+      - columnId: 3eebb641-1fc0-4460-80bd-cc209b002c33
+        position: 1
+        name: DATE_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "DATE" as (
+      SELECT
+          "DATE_KEY",
+          "DATE",
+          "DAY",
+          "MONTH",
+          "YEAR",
+          "QUARTER"
+      FROM {{ref('RAW', 'DATE')}}
+  )
+  ,
+  common as (
+      SELECT
+          "DATE"."DATE_KEY",
+          "DATE"."DATE",
+          "DATE"."DAY",
+          "DATE"."MONTH",
+          "DATE"."YEAR",
+          "DATE"."QUARTER",
+          current_date() AS "__load_date"
+      FROM "DATE"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage DATE
+references:
+  a3f22cb4-7898-4ed9-96c6-7ca9cf35b646:
+    parentTableId: 9a0d75fa-84af-4803-af8b-1288f0cf3404
+    id: a3f22cb4-7898-4ed9-96c6-7ca9cf35b646

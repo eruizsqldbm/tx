@@ -1,0 +1,26 @@
+sourceId: b3cefc10-602a-4986-928d-72ca1955e66a
+name: CHANNEL
+locationId: 5fc6db1e-0bb6-4986-958e-f51b469359e9
+description: ''
+columns:
+  - name: CHANNEL_KEY
+    dataType: number(38,0)
+    id: edc7c3b8-4f8b-447e-966d-a216b366749a
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CHANNEL_ID
+    dataType: varchar(50)
+    id: 526f9a8e-8d47-47da-8156-a0bc236361e3
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false
+  - name: CHANNEL_NAME
+    dataType: varchar(100)
+    id: 9644d439-a35c-41a4-b0f3-8a710f4a1ec7
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    useQuotes: false

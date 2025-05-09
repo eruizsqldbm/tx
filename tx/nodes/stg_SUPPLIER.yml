@@ -1,0 +1,89 @@
+name: stg_SUPPLIER
+id: de463375-3c79-4787-88eb-0a6aedd13304
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: SUPPLIER_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 12bbddd5-2d90-43a7-98be-a43b31d1a506
+  - name: SUPPLIER_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: efe9ae91-1061-4b09-9354-87208d67052e
+  - name: SUPPLIER_NAME
+    dataType: varchar(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: e69d6f2a-ecca-4017-85cb-7a2b38475529
+  - name: CONTACT_INFO
+    dataType: varchar(100)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 806db6a4-4326-43df-9e7e-08df02066546
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: 968fa6b8-f40e-460c-9b5a-c58798f7d51d
+columnSets:
+  - id: 35cec9e7-e634-47cd-b148-7f9b088c9982
+    itemName: PK
+    setName: PK_stg_SUPPLIER
+    columns:
+      - columnId: 12bbddd5-2d90-43a7-98be-a43b31d1a506
+        position: 1
+        name: SUPPLIER_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "SUPPLIER" as (
+      SELECT
+          "SUPPLIER_KEY",
+          "SUPPLIER_ID",
+          "SUPPLIER_NAME",
+          "CONTACT_INFO"
+      FROM {{ref('RAW', 'SUPPLIER')}}
+  )
+  ,
+  common as (
+      SELECT
+          "SUPPLIER"."SUPPLIER_KEY",
+          "SUPPLIER"."SUPPLIER_ID",
+          "SUPPLIER"."SUPPLIER_NAME",
+          "SUPPLIER"."CONTACT_INFO",
+          current_date() AS "__load_date"
+      FROM "SUPPLIER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage SUPPLIER
+references:
+  a46c3797-7bfb-4f0a-b5fe-a6cb671e2ec2:
+    parentTableId: a9114ac4-25bb-4f8c-9332-84e945bfbba9
+    id: a46c3797-7bfb-4f0a-b5fe-a6cb671e2ec2

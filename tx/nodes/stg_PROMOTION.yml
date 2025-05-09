@@ -1,0 +1,97 @@
+name: stg_PROMOTION
+id: 62ad0204-668e-4b37-975f-0bbf5453eac0
+storageLocationId: b5ca061d-99a8-40d1-802e-5add915f8314
+templateId: f0b6697a-7eb4-4925-9f72-ec5eb6318733
+materialization: table
+isSource: false
+columns:
+  - name: PROMOTION_KEY
+    dataType: number(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: e3ae4c52-b471-4f85-911d-0e5404b35937
+  - name: PROMOTION_ID
+    dataType: varchar(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: caf7e7cf-545e-4275-a75d-26acbe329764
+  - name: PROMOTION_DESCRIPTION
+    dataType: varchar(255)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 75a3c467-877c-44b7-a8cb-4c866d38a3c4
+  - name: START_DATE
+    dataType: date
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: a635b7ae-0c30-4fe3-bd69-7d5598de4878
+  - name: END_DATE
+    dataType: date
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: fac630fd-c236-434b-9fe8-e96e719dcdbc
+  - name: __load_date
+    dataType: date
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: c0e72a58-1ab8-47c1-8276-beef40f4a698
+columnSets:
+  - id: c183961e-489c-4ae8-9dfc-55e68c2867f9
+    itemName: PK
+    setName: PK_stg_PROMOTION
+    columns:
+      - columnId: e3ae4c52-b471-4f85-911d-0e5404b35937
+        position: 1
+        name: PROMOTION_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+rely_button: true
+parentName: STAGE
+color: '#FC7917'
+logic: |-
+  with "PROMOTION" as (
+      SELECT
+          "PROMOTION_KEY",
+          "PROMOTION_ID",
+          "PROMOTION_DESCRIPTION",
+          "START_DATE",
+          "END_DATE"
+      FROM {{ref('RAW', 'PROMOTION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "PROMOTION"."PROMOTION_KEY",
+          "PROMOTION"."PROMOTION_ID",
+          "PROMOTION"."PROMOTION_DESCRIPTION",
+          "PROMOTION"."START_DATE",
+          "PROMOTION"."END_DATE",
+          current_date() AS "__load_date"
+      FROM "PROMOTION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage PROMOTION
+references:
+  3b5a276b-8381-4cb0-b354-de04a9df3614:
+    parentTableId: f066dd09-7078-4d34-aef0-825fcdf8359d
+    id: 3b5a276b-8381-4cb0-b354-de04a9df3614

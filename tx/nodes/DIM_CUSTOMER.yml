@@ -1,0 +1,100 @@
+name: DIM_CUSTOMER
+id: a252e317-0123-4a90-a35f-de83e5adaa99
+storageLocationId: 4085255e-7806-47c9-b989-eee6ab87f2a1
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: CUSTOMER_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: df1bcb38-c99c-40a7-98dc-900fa8b7ea85
+  - name: CUSTOMER_ID
+    dataType: VARCHAR(50)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: cf5038b8-d5db-4494-8544-cf43bdae3430
+  - name: CUSTOMER_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: b3269c2f-d053-440c-9084-b54208a0b232
+  - name: EMAIL
+    dataType: VARCHAR(100)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: c6f653f6-8e11-494c-b33d-b2188db18aaf
+  - name: PHONE
+    dataType: VARCHAR(20)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 5ce9ba86-b515-4b71-861e-a4663299ddda
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: ae7ec0c2-a273-4644-a6ac-9b3d60e43ee4
+columnSets:
+  - id: 24f635e0-1b80-4b8a-98b6-d38d55d21020
+    itemName: PK
+    setName: PK_tmp_stg_CUSTOMER
+    columns:
+      - columnId: df1bcb38-c99c-40a7-98dc-900fa8b7ea85
+        position: 1
+        name: CUSTOMER_KEY
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value: ''
+  isValidated: false
+postCreate:
+  value: ''
+  isValidated: false
+preRun:
+  value: ''
+  isValidated: false
+postRun:
+  value: ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_CUSTOMER" as (
+      SELECT
+          "CUSTOMER_KEY",
+          "CUSTOMER_ID",
+          "CUSTOMER_NAME",
+          "EMAIL",
+          "PHONE",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_CUSTOMER')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_CUSTOMER"."CUSTOMER_KEY",
+          "stg_CUSTOMER"."CUSTOMER_ID",
+          "stg_CUSTOMER"."CUSTOMER_NAME",
+          "stg_CUSTOMER"."EMAIL",
+          "stg_CUSTOMER"."PHONE",
+          current_date() AS "load_date"
+      FROM "stg_CUSTOMER"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage CUSTOMER dimension
+references:
+  86b48978-47a3-4ec1-92ce-40ba31f86654:
+    parentTableId: 9738c69b-3704-42d6-87aa-8351a15d716b
+    id: 86b48978-47a3-4ec1-92ce-40ba31f86654

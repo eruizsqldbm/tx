@@ -1,0 +1,90 @@
+name: DIM_REGION
+id: ebb24a25-c35f-4591-9c58-402a29741f86
+storageLocationId: 1591fcf9-92e9-4d60-bfa4-03d60a737ac5
+templateId: d49262ec-7dbe-4818-99d8-483ac56ef34c
+materialization: table
+isSource: false
+columns:
+  - name: REGION_KEY
+    dataType: NUMBER(38,0)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 122fb032-9254-4bb8-b954-4ce6db60c2d8
+    isPK: true
+  - name: REGION_NAME
+    dataType: VARCHAR(100)
+    allowNulls: false
+    defaultValue: ''
+    description: ''
+    id: 64b52117-0fd6-4226-8b9b-9eac792567f5
+  - name: COUNTRY
+    dataType: VARCHAR(50)
+    allowNulls: true
+    defaultValue: ''
+    description: ''
+    id: 2b6e856e-6b4c-415d-b623-b1dfe65eece0
+  - name: load_date
+    dataType: DATE
+    allowNulls: false
+    defaultValue: current_date()
+    description: load date
+    id: e06d0153-7549-4d69-a621-945b1b884235
+columnSets:
+  - id: 0fc98ddf-409f-4251-b923-128382338d89
+    itemName: PK
+    setName: PK_tmp_stg_REGION
+    columns:
+      - columnId: 122fb032-9254-4bb8-b954-4ce6db60c2d8
+        position: 1
+        name: REGION_KEY
+        useQuotes: false
+nodeFormat: dynamic
+truncateBefore: false
+preCreate:
+  value:
+    - ''
+  isValidated: false
+postCreate:
+  value:
+    - ''
+  isValidated: false
+preRun:
+  value:
+    - ''
+  isValidated: false
+postRun:
+  value:
+    - ''
+  isValidated: false
+my_button: true
+my_dropdown: option 1
+rely_button: true
+parentName: EDW
+color: '#8E44AD'
+logic: |-
+  with "stg_REGION" as (
+      SELECT
+          "REGION_KEY",
+          "REGION_NAME",
+          "COUNTRY",
+          "__load_date"
+      FROM {{ref('STAGE', 'stg_REGION')}}
+  )
+  ,
+  common as (
+      SELECT
+          "stg_REGION"."REGION_KEY",
+          "stg_REGION"."REGION_NAME",
+          "stg_REGION"."COUNTRY",
+          current_date() AS "load_date"
+      FROM "stg_REGION"
+  )
+
+  SELECT * FROM common
+description: ''
+logicalName: stage REGION dimension
+references:
+  47fffdb2-b6e3-4560-94af-03996bcd73ff:
+    parentTableId: e900219b-dc82-4983-9cfa-5e89846a0e0a
+    id: 47fffdb2-b6e3-4560-94af-03996bcd73ff
